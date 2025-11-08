@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location Detection - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="auth.js"></script>
+
+<script>checkAuth();</script>
+
+
+
+
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8" id="navMenu"></nav>
+                    <script src="nav.js"></script>
+
+                <!-- Navigation Links -->
+                <!-- <nav class="hidden md:flex items-center space-x-8"> -->
+                    <!-- <a href="user_login.html" class="text-text-secondary hover:text-primary transition-standard">Sign In</a> -->
+                    <!-- <a href="body_type_quiz.html" class="text-text-secondary hover:text-primary transition-standard">Take Quiz</a>
+                    <a href="food_recommendations.html" class="text-text-secondary hover:text-primary transition-standard">Recommendations</a>
+                </nav> -->
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- <button onclick="logout()" style="position:absolute; right:15px; top:15px; background:#ff5964; color:white; padding:6px 14px; border-radius:6px;"> -->
+  <!-- Logout
+</button> -->
+
+
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-success-500 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium text-success-600">Body Type</span>
+                    </div>
+                    <div class="w-16 h-1 bg-success-200 rounded-full"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium text-primary">Location</span>
+                    </div>
+                    <div class="w-16 h-1 bg-surface rounded-full"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-surface rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <span class="ml-2 text-sm font-medium text-text-secondary">Recommendations</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-fluid-3xl font-inter font-semibold text-text-primary mb-4">
+                    Let's Find Your Perfect Climate Match
+                </h1>
+                <p class="text-fluid-lg text-text-secondary max-w-2xl mx-auto">
+                    Your location helps us understand your climate and seasonal conditions to provide personalized Ayurvedic nutrition recommendations that align with your environment.
+                </p>
+            </div>
+
+            <!-- Location Detection Card -->
+            <div class="card shadow-medium mb-8" id="locationCard">
+                <div class="text-center">
+                    <!-- Location Icon -->
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-fluid-2xl font-inter font-semibold text-text-primary mb-4">
+                        Share Your Location
+                    </h2>
+                    <p class="text-fluid-base text-text-secondary mb-8 max-w-lg mx-auto">
+                        Allow us to detect your location automatically for the most accurate climate-based recommendations, or enter your city manually below.
+                    </p>
+
+                    <!-- Auto Location Button -->
+                    <button id="autoLocationBtn" class="btn-primary min-h-touch mb-6 flex items-center justify-center space-x-2 mx-auto">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span id="autoLocationText">Allow Location Access</span>
+                        <div id="locationSpinner" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    </button>
+
+                    <!-- Manual Entry Section -->
+                    <div class="border-t border-surface pt-6">
+                        <p class="text-sm text-text-secondary mb-4">Or enter your location manually:</p>
+                        <div class="max-w-md mx-auto">
+                            <div class="relative">
+                                <input type="text" id="cityInput" placeholder="Enter your city or region" class="input-field pr-10" />
+                                <button id="searchLocationBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <svg class="w-5 h-5 text-text-secondary hover:text-primary transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- City Suggestions -->
+                            <div id="citySuggestions" class="hidden mt-2 bg-surface border border-primary-100 rounded-lg shadow-soft max-h-48 overflow-y-auto">
+                                <!-- Dynamic suggestions will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Display Card (Hidden initially) -->
+            <div class="card shadow-medium mb-8 hidden" id="weatherCard">
+                <div class="text-center mb-6">
+                    <h3 class="text-fluid-xl font-inter font-semibold text-text-primary mb-2">
+                        Current Climate Conditions
+                    </h3>
+                    <p class="text-text-secondary">Understanding your environment for optimal nutrition</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Temperature -->
+                    <div class="text-center p-4 bg-primary-50 rounded-lg">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-text-secondary mb-1">Temperature</p>
+                        <p class="text-2xl font-semibold text-primary" id="temperature">--°</p>
+                    </div>
+
+                    <!-- Humidity -->
+                    <div class="text-center p-4 bg-accent-50 rounded-lg">
+                        <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 3.636L6.464 2.22A7.036 7.036 0 0110 1a7.036 7.036 0 013.536.78L14.95 3.22a1 1 0 11-1.414 1.414L12.12 3.22A5.036 5.036 0 0010 3a5.036 5.036 0 00-2.12.22L6.464 4.636A1 1 0 115.05 3.636zM3 10a7 7 0 1114 0 7 7 0 01-14 0zm2 0a5 5 0 1110 0 5 5 0 01-10 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-text-secondary mb-1">Humidity</p>
+                        <p class="text-2xl font-semibold text-accent" id="humidity">--%</p>
+                    </div>
+
+                    <!-- Season -->
+                    <div class="text-center p-4 bg-secondary-50 rounded-lg">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2L13.09 8.26L20 9L13.09 9.74L10 16L6.91 9.74L0 9L6.91 8.26L10 2Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-text-secondary mb-1">Season</p>
+                        <p class="text-2xl font-semibold text-secondary" id="season">--</p>
+                    </div>
+                </div>
+
+                <!-- Location Info -->
+                <div class="mt-6 p-4 bg-success-50 rounded-lg border border-success-200">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-5 h-5 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <p class="font-medium text-success-700" id="locationName">Your Location</p>
+                            <p class="text-sm text-success-600">Climate data updated: <span id="lastUpdated">Just now</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map Display -->
+                <!-- <div id="mapBox" class="mt-6 hidden">
+                    <iframe id="mapFrame" width="100%" height="300" style="border-radius:12px;border:0;"></iframe>
+                </div> -->
+
+                <div id="mapBox" class="mt-6 hidden">
+                    <div id="map" style="height:300px;border-radius:12px;"></div>
+                </div>
+
+
+            </div>
+
+            <!-- Educational Content -->
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <!-- Climate & Ayurveda -->
+                <div class="card">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=100&auto=format&fit=crop" alt="Climate and Ayurveda" class="w-16 h-16 rounded-lg object-cover" onerror="this.src='https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;" />
+                        <div>
+                            <h3 class="text-lg font-inter font-semibold text-text-primary mb-2">
+                                Climate & Constitution
+                            </h3>
+                            <p class="text-sm text-text-secondary">
+                                Ayurveda teaches that our environment directly affects our body's balance. Hot climates may aggravate Pitta, while cold, dry conditions can increase Vata.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seasonal Eating -->
+                <div class="card">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://images.pixabay.com/photo/2017/09/26/13/42/apple-2788662_960_720.jpg" alt="Seasonal Eating" class="w-16 h-16 rounded-lg object-cover" onerror="this.src='https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;" />
+                        <div>
+                            <h3 class="text-lg font-inter font-semibold text-text-primary mb-2">
+                                Seasonal Wisdom
+                            </h3>
+                            <p class="text-sm text-text-secondary">
+                                Traditional nutrition emphasizes eating foods that naturally grow in your region and season to maintain optimal health and energy balance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Assurance -->
+            <div class="card bg-primary-50 border-primary-200 mb-8">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-inter font-semibold text-text-primary mb-2">
+                            Your Privacy is Protected
+                        </h3>
+                        <p class="text-sm text-text-secondary mb-3">
+                            We only use your location to fetch weather data and provide climate-appropriate recommendations. Your precise location is never stored or shared.
+                        </p>
+                        <ul class="text-sm text-text-secondary space-y-1">
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Location data is used only for weather information</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>No precise coordinates are stored permanently</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Data is encrypted and secure</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continue Button (Hidden initially) -->
+            <div class="text-center">
+                <button id="continueBtn" class="btn-primary min-h-touch px-8 hidden" onclick="window.location.href='food_recommendations.html'">
+                    Continue to Recommendations
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Error Message (Hidden initially) -->
+            <div id="errorMessage" class="hidden mt-6 p-4 bg-error-50 border border-error-200 rounded-lg">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-error-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <p class="font-medium text-error-700">Location Access Error</p>
+                        <p class="text-sm text-error-600" id="errorText">Please try manual entry or check your browser settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Location detection and weather functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const API_BASE = "http://localhost:5000";
+            const autoLocationBtn = document.getElementById('autoLocationBtn');
+            const autoLocationText = document.getElementById('autoLocationText');
+            const locationSpinner = document.getElementById('locationSpinner');
+            const cityInput = document.getElementById('cityInput');
+            const searchLocationBtn = document.getElementById('searchLocationBtn');
+            const citySuggestions = document.getElementById('citySuggestions');
+            const weatherCard = document.getElementById('weatherCard');
+            const continueBtn = document.getElementById('continueBtn');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Sample cities for autocomplete
+           
+
+            // Auto location detection
+            autoLocationBtn.addEventListener('click', function() {
+                if (!navigator.geolocation) {
+                    showError('Geolocation is not supported by this browser.');
+                    return;
+                }
+
+                // Show loading state
+                autoLocationText.textContent = 'Detecting Location...';
+                locationSpinner.classList.remove('hidden');
+                autoLocationBtn.disabled = true;
+
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        
+                        // Simulate weather API call
+                        // setTimeout(() => {
+                        //     displayWeatherData({
+                        //         location: 'Your Current Location',
+                        //         temperature: Math.round(Math.random() * 30 + 60), // 60-90°F
+                        //         humidity: Math.round(Math.random() * 40 + 40), // 40-80%
+                        //         season: getCurrentSeason()
+                        //     });
+                        // }, 1500);
+                        fetch(`${API_BASE}/api/reverse_geocode?lat=${lat}&lon=${lon}`)
+                        .then(r => r.json())
+                        .then(loc => fetch(`${API_BASE}/api/weather?lat=${lat}&lon=${lon}`)
+                            .then(r => r.json())
+                            .then(w => {
+                                // displayWeatherData({
+                                //     location: `${loc.formatted}`,
+                                //     temperature: w.weather.temperature_f,
+                                //     humidity: w.weather.humidity,
+                                //     season: w.season,
+                                //     lat: lat,
+                                //     lon: lon
+                                // });
+                                    //for better map 
+                                displayWeatherData({
+                                        location: loc.formatted,
+                                        temperature: w.weather.temperature_f,
+                                        humidity: w.weather.humidity,
+                                        season: w.season,
+                                        lat: lat,
+                                        lon: lon
+                                    });
+
+
+                            })
+                        ).catch(err => showError("Weather fetch failed"));
+
+                    },
+                    function(error) {
+                        let errorMsg = 'Unable to retrieve your location. ';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMsg += 'Please allow location access or enter your city manually.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMsg += 'Location information is unavailable.';
+                                break;
+                            case error.TIMEOUT:
+                                errorMsg += 'Location request timed out.';
+                                break;
+                            default:
+                                errorMsg += 'An unknown error occurred.';
+                                break;
+                        }
+                        showError(errorMsg);
+                        resetLocationButton();
+                    }
+                );
+            });
+
+            // Manual city search
+            cityInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length < 2) {
+                    citySuggestions.classList.add('hidden');
+                    return;
+                }
+                        //todo
+                                                fetch(`${API_BASE}/api/suggest_cities?q=${query}`)
+                        .then(r => r.json())
+                        .then(d => {
+                            if (!d.items || d.items.length === 0) {
+                                citySuggestions.classList.add('hidden');
+                                return;
+                            }
+                            citySuggestions.innerHTML = d.items.map(c =>
+                            `<div class="p-3 hover:bg-primary-50 cursor-pointer border-b border-surface last:border-b-0"
+                                onclick="selectCity('${c.name}, ${c.region}, ${c.country}')">${c.name}, ${c.region}, ${c.country}</div>`
+                            ).join('');
+                            citySuggestions.classList.remove('hidden');
+                        });
+                            });
+                       
+                
+            // Search button click
+            searchLocationBtn.addEventListener('click', function() {
+                const city = cityInput.value.trim();
+                if (city) {
+                    searchCity(city);
+                }
+            });
+
+            // Enter key for search
+            cityInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const city = this.value.trim();
+                    if (city) {
+                        searchCity(city);
+                    }
+                }
+            });
+
+            function selectCity(city) {
+                cityInput.value = city;
+                citySuggestions.classList.add('hidden');
+                searchCity(city);
+            }
+
+            function searchCity(city) {
+                // Show loading state
+                searchLocationBtn.innerHTML = '<div class="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>';
+                
+                // Simulate API call
+                                    fetch(`${API_BASE}/api/weather?place=${city}`)
+                    .then(r => r.json())
+                    .then(w => {
+                        displayWeatherData({
+                                location: city,
+                                temperature: w.weather.temperature_f,
+                                humidity: w.weather.humidity,
+                                season: w.season,
+                                lat: w.lat,
+                                lon: w.lon
+                            });
+
+                    })
+                    .catch(() => showError("Weather fetch failed"))
+                    .finally(() => {
+                        searchLocationBtn.innerHTML = '<svg class="w-5 h-5 text-text-secondary hover:text-primary transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>';
+                    });
+                }
+
+            // function displayWeatherData(data) {
+            //     // Update weather display
+            //     document.getElementById('temperature').textContent = `${data.temperature}°F`;
+            //     document.getElementById('humidity').textContent = `${data.humidity}%`;
+            //     document.getElementById('season').textContent = data.season;
+            //     document.getElementById('locationName').textContent = data.location;
+            //     document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
+            //     //map 
+            //     // MAP CODE
+            //         mapBox.classList.remove('hidden');
+
+            //         const map = L.map('map').setView([data.lat, data.lon], 15);
+
+            //         L.tileLayer(
+            //             `https://tiles.locationiq.com/v3/streets/vector/{z}/{x}/{y}.png?key=pk.7c96d60feb3fb63a4f96776bf9efec25`,
+            //             { maxZoom: 18 }
+            //         ).addTo(map);
+
+            //         L.marker([data.lat, data.lon]).addTo(map);
+
+
+            //     // show map
+            //         const mapFrame = document.getElementById('mapFrame');
+            //         const mapBox = document.getElementById('mapBox');
+
+            //         mapFrame.src = `https://maps.locationiq.com/v3/staticmap?key=pk.7c96d60feb3fb63a4f96776bf9efec25&center=${data.lat},${data.lon}&zoom=15&size=800x300&markers=icon:small-red-cutout|${data.lat},${data.lon}`;
+            //         mapBox.classList.remove('hidden');
+
+
+            //     // Show weather card and continue button
+            //     weatherCard.classList.remove('hidden');
+            //     continueBtn.classList.remove('hidden');
+                
+            //     // Hide error message
+            //     errorMessage.classList.add('hidden');
+                
+            //     // Reset location button
+            //     resetLocationButton();
+
+            //     // Scroll to weather card
+            //     weatherCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // }
+
+
+            function displayWeatherData(data) {
+
+    document.getElementById('temperature').textContent = `${data.temperature}°F`;
+    document.getElementById('humidity').textContent = `${data.humidity}%`;
+    document.getElementById('season').textContent = data.season;
+    document.getElementById('locationName').textContent = data.location;
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
+    // SHOW MAP
+    // const mapBox = document.getElementById('mapBox');
+    // mapBox.classList.remove('hidden');
+
+    // if (window._map) window._map.remove();
+    //  window._map = L.map('map').setView([data.lat, data.lon], 15);
+
+    // L.tileLayer(
+    //     `https://tiles.locationiq.com/v3/streets/vector/{z}/{x}/{y}.png?key=pk.7c96d60feb3fb63a4f96776bf9efec25`,
+    //     { maxZoom: 18 }
+    // ).addTo(map);
+
+    // L.marker([data.lat, data.lon]).addTo(map);
+
+    // SHOW MAP
+const mapBox = document.getElementById('mapBox');
+mapBox.classList.remove('hidden');
+
+if (window._map) window._map.remove();
+window._map = L.map('map').setView([data.lat, data.lon], 15);
+
+L.tileLayer(
+    `https://tile.openstreetmap.org/{z}/{x}/{y}.png`,
+    { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }
+).addTo(window._map);
+
+
+L.marker([data.lat, data.lon]).addTo(window._map);
+
+
+    weatherCard.classList.remove('hidden');
+    continueBtn.classList.remove('hidden');
+    errorMessage.classList.add('hidden');
+    resetLocationButton();
+    weatherCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+            function getCurrentSeason() {
+                const month = new Date().getMonth();
+                if (month >= 2 && month <= 4) return 'Spring';
+                if (month >= 5 && month <= 7) return 'Summer';
+                if (month >= 8 && month <= 10) return 'Fall';
+                return 'Winter';
+            }
+
+            function showError(message) {
+                document.getElementById('errorText').textContent = message;
+                errorMessage.classList.remove('hidden');
+                resetLocationButton();
+            }
+
+            function resetLocationButton() {
+                autoLocationText.textContent = 'Allow Location Access';
+                locationSpinner.classList.add('hidden');
+                autoLocationBtn.disabled = false;
+            }
+
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!cityInput.contains(e.target) && !citySuggestions.contains(e.target)) {
+                    citySuggestions.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+<!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
+
+
+<script type="module" src="chatbot/chatbot.js"></script>
+
+</body>
+</html>

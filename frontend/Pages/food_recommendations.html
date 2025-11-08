@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Recommendations - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+
+
+<script src="auth.js"></script>
+
+<script>checkAuth();</script>
+
+
+
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="body_type_quiz.html" class="text-text-secondary hover:text-primary transition-standard">Take Quiz</a>
+                    <a href="body_type_results.html" class="text-text-secondary hover:text-primary transition-standard">My Results</a>
+                    <a href="food_recommendations.html" class="text-primary font-medium">Recommendations</a>
+                    <a href="user_login.html" class="text-text-secondary hover:text-primary transition-standard">Account</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+<!-- <button onclick="logout()" style="position:absolute; right:15px; top:15px; background:#ff5964; color:white; padding:6px 14px; border-radius:6px;">
+  Logout
+</button> -->
+
+
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div>
+                        <h1 class="text-fluid-3xl font-inter font-semibold text-text-primary mb-2">Your Personalized Food Recommendations</h1>
+                        <p class="text-fluid-base text-text-secondary">Discover foods that align with your Vata body type and current climate conditions</p>
+                    </div>
+                    
+                    <!-- Weather Widget -->
+                    <div class="card bg-primary-50 border-primary-200 p-4 min-w-80">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-lg font-semibold text-text-primary">San Francisco, CA</span>
+                                    <span class="text-2xl font-bold text-accent">72°F</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Mild & Dry - Perfect for warming foods</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Type Info Banner -->
+            <div class="card bg-success-50 border-success-200 mb-8">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-success-700">Your Body Type: Vata</h3>
+                        <p class="text-sm text-success-600">Focus on warm, grounding, and nourishing foods to balance your natural energy</p>
+                    </div>
+                    <button class="text-success-600 hover:text-success-700 transition-standard" title="Learn more about Vata">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="card mb-8">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <!-- Search Bar -->
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search for foods or ingredients..." class="input-field pl-10" />
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Filter Controls -->
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Meal Type Filter -->
+                        <select id="mealTypeFilter" class="input-field min-w-32">
+                            <option value>All Meals</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="snacks">Snacks</option>
+                        </select>
+
+                        <!-- Properties Filter -->
+                        <select id="propertiesFilter" class="input-field min-w-32">
+                            <option value>All Properties</option>
+                            <option value="warming">Warming</option>
+                            <option value="cooling">Cooling</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+
+                        <!-- Region Filter -->
+                        <select id="regionFilter" class="input-field min-w-32">
+                            <option value>All Regions</option>
+                            <option value="indian">Indian</option>
+                            <option value="mediterranean">Mediterranean</option>
+                            <option value="asian">Asian</option>
+                            <option value="american">American</option>
+                        </select>
+
+                        <!-- Reset Filters -->
+                        <button id="resetFilters" class="btn-secondary min-h-touch flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Filters Display -->
+                <div id="activeFilters" class="hidden mt-4 flex flex-wrap gap-2">
+                    <!-- Active filter tags will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Favorites Counter -->
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <h2 class="text-fluid-xl font-inter font-semibold text-text-primary">Recommended Foods</h2>
+                    <span id="resultsCount" class="text-sm text-text-secondary bg-surface px-3 py-1 rounded-full">24 foods found</span>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                    <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span id="favoritesCount">3 favorites saved</span>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-12">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                <p class="text-text-secondary">Loading personalized recommendations...</p>
+            </div>
+
+            <!-- Food Recommendations Grid -->
+            <div id="foodGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                <!-- Food Card 1 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="1" data-meal-type="breakfast" data-properties="warming" data-region="indian">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Golden Turmeric Oatmeal" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="1">
+                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Golden Turmeric Oatmeal</h3>
+                        <p class="text-sm text-text-secondary mb-3">Traditional Indian breakfast with anti-inflammatory spices</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-primary bg-primary-50 px-2 py-1 rounded">Indian Cuisine</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-xs text-success">Perfect for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Breakfast</span>
+                            <span>⏰ 15 min prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="2" data-meal-type="lunch" data-properties="warming" data-region="mediterranean">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop" alt="Mediterranean Lentil Soup" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="2">
+                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Mediterranean Lentil Soup</h3>
+                        <p class="text-sm text-text-secondary mb-3">Protein-rich soup with herbs and olive oil</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-secondary bg-secondary-50 px-2 py-1 rounded">Mediterranean</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-xs text-success">Great for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Lunch</span>
+                            <span>⏰ 30 min prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="3" data-meal-type="snacks" data-properties="neutral" data-region="american">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.pixabay.com/photo/2016/12/06/18/27/almonds-1887523_960_720.jpg" alt="Spiced Almond Mix" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1508736793122-f516e3ba5569?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="3">
+                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-warning text-white text-xs px-2 py-1 rounded-full">Neutral</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Spiced Almond Mix</h3>
+                        <p class="text-sm text-text-secondary mb-3">Roasted almonds with warming spices</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-accent bg-accent-50 px-2 py-1 rounded">American</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-xs text-success">Good for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Snack</span>
+                            <span>⏰ 5 min prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 4 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="4" data-meal-type="dinner" data-properties="warming" data-region="asian">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Ginger Miso Soup" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="4">
+                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Ginger Miso Soup</h3>
+                        <p class="text-sm text-text-secondary mb-3">Digestive soup with fermented miso and fresh ginger</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-warning bg-warning-50 px-2 py-1 rounded">Asian</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-xs text-success">Excellent for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Dinner</span>
+                            <span>⏰ 20 min prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 5 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="5" data-meal-type="breakfast" data-properties="warming" data-region="indian">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=400&auto=format&fit=crop" alt="Cardamom Rice Pudding" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="5">
+                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Cardamom Rice Pudding</h3>
+                        <p class="text-sm text-text-secondary mb-3">Creamy breakfast pudding with aromatic spices</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-primary bg-primary-50 px-2 py-1 rounded">Indian Cuisine</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-xs text-success">Perfect for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Breakfast</span>
+                            <span>⏰ 25 min prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 6 -->
+                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="6" data-meal-type="lunch" data-properties="cooling" data-region="mediterranean">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Greek Cucumber Salad" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="6">
+                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-primary text-white text-xs px-2 py-1 rounded-full">Cooling</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Greek Cucumber Salad</h3>
+                        <p class="text-sm text-text-secondary mb-3">Fresh salad with herbs and olive oil dressing</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-secondary bg-secondary-50 px-2 py-1 rounded">Mediterranean</span>
+                            <div class="flex items-center space-x-1">
+                                <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                                </svg>
+                                <span class="text-xs text-warning">Use sparingly for Vata</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-text-secondary">
+                            <span>🍽️ Lunch</span>
+                            <span>⏰ 10 min prep</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Tip -->
+            <div class="card bg-accent-50 border-accent-200 mb-8">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.663 17h4.673M12 3v1m6.364-.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-accent-700 mb-2">Ayurvedic Wisdom</h3>
+                        <p class="text-sm text-accent-600 mb-3">
+                            For Vata body types, focus on warm, moist, and grounding foods. The current mild weather supports warming foods that help balance your natural air and space elements.
+                        </p>
+                        <button class="text-accent-700 hover:text-accent-800 text-sm font-medium transition-standard">
+                            Learn more about Vata nutrition →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Food Detail Modal -->
+    <div id="foodModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="modalTitle" class="text-fluid-2xl font-inter font-semibold text-text-primary">Food Details</h2>
+                    <button id="closeModal" class="w-8 h-8 rounded-full bg-surface hover:bg-primary-50 flex items-center justify-center transition-standard">
+                        <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal Content -->
+                <div id="modalContent">
+                    <!-- Content will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Food recommendations functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const mealTypeFilter = document.getElementById('mealTypeFilter');
+            const propertiesFilter = document.getElementById('propertiesFilter');
+            const regionFilter = document.getElementById('regionFilter');
+            const resetFilters = document.getElementById('resetFilters');
+            const activeFilters = document.getElementById('activeFilters');
+            const resultsCount = document.getElementById('resultsCount');
+            const favoritesCount = document.getElementById('favoritesCount');
+            const foodGrid = document.getElementById('foodGrid');
+            const foodModal = document.getElementById('foodModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+
+            let favorites = new Set(['2', '4', '5']); // Mock favorited items
+            let allFoodCards = document.querySelectorAll('.food-card');
+
+            // Mock food data for detailed view
+            const foodData = {
+                '1': {
+                    name: 'Golden Turmeric Oatmeal',
+                    image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
+                    region: 'Indian Cuisine',
+                    properties: 'Warming',
+                    bodyType: 'Perfect for Vata',
+                    prepTime: '15 minutes',
+                    mealType: 'Breakfast',
+                    description: 'A nourishing breakfast that combines the grounding properties of oats with the anti-inflammatory benefits of turmeric.',
+                    history: 'Turmeric has been used in Ayurvedic medicine for over 4,000 years. This golden spice was considered sacred in ancient India and was used in religious ceremonies.',
+                    benefits: ['Reduces inflammation', 'Supports digestion', 'Boosts immunity', 'Provides sustained energy'],
+                    ingredients: ['Rolled oats', 'Turmeric powder', 'Ginger', 'Cinnamon', 'Almond milk', 'Honey'],
+                    preparation: 'Combine oats with warm almond milk, add turmeric, ginger, and cinnamon. Simmer for 10 minutes and sweeten with honey.'
+                },
+                '2': {
+                    name: 'Mediterranean Lentil Soup',
+                    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop',
+                    region: 'Mediterranean',
+                    properties: 'Warming',
+                    bodyType: 'Great for Vata',
+                    prepTime: '30 minutes',
+                    mealType: 'Lunch',
+                    description: 'A protein-rich soup that provides grounding energy and supports digestive health with Mediterranean herbs.',
+                    history: 'Lentils have been cultivated in the Mediterranean region for over 8,000 years and were considered a staple food in ancient Greece and Rome.',
+                    benefits: ['High in protein', 'Rich in fiber', 'Supports heart health', 'Provides sustained energy'],
+                    ingredients: ['Red lentils', 'Olive oil', 'Onions', 'Garlic', 'Tomatoes', 'Bay leaves', 'Thyme'],
+                    preparation: 'Sauté onions and garlic in olive oil, add lentils, tomatoes, and herbs. Simmer for 25 minutes until tender.'
+                }
+            };
+
+            // Initialize favorites display
+            updateFavoritesCount();
+
+            // Search functionality
+            searchInput.addEventListener('input', filterFoods);
+            mealTypeFilter.addEventListener('change', filterFoods);
+            propertiesFilter.addEventListener('change', filterFoods);
+            regionFilter.addEventListener('change', filterFoods);
+
+            // Reset filters
+            resetFilters.addEventListener('click', function() {
+                searchInput.value = '';
+                mealTypeFilter.value = '';
+                propertiesFilter.value = '';
+                regionFilter.value = '';
+                filterFoods();
+            });
+
+            // Favorite functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.favorite-btn')) {
+                    const btn = e.target.closest('.favorite-btn');
+                    const foodId = btn.dataset.foodId;
+                    toggleFavorite(foodId, btn);
+                }
+            });
+
+            // Food card click for modal
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.food-card') && !e.target.closest('.favorite-btn')) {
+                    const card = e.target.closest('.food-card');
+                    const foodId = card.dataset.foodId;
+                    showFoodDetail(foodId);
+                }
+            });
+
+            // Modal close
+            closeModal.addEventListener('click', closeFoodModal);
+            foodModal.addEventListener('click', function(e) {
+                if (e.target === foodModal) {
+                    closeFoodModal();
+                }
+            });
+
+            function filterFoods() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const mealType = mealTypeFilter.value;
+                const properties = propertiesFilter.value;
+                const region = regionFilter.value;
+
+                let visibleCount = 0;
+                const activeFiltersList = [];
+
+                allFoodCards.forEach(card => {
+                    const cardMealType = card.dataset.mealType;
+                    const cardProperties = card.dataset.properties;
+                    const cardRegion = card.dataset.region;
+                    const cardText = card.textContent.toLowerCase();
+
+                    const matchesSearch = !searchTerm || cardText.includes(searchTerm);
+                    const matchesMealType = !mealType || cardMealType === mealType;
+                    const matchesProperties = !properties || cardProperties === properties;
+                    const matchesRegion = !region || cardRegion === region;
+
+                    const isVisible = matchesSearch && matchesMealType && matchesProperties && matchesRegion;
+
+                    if (isVisible) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update results count
+                resultsCount.textContent = `${visibleCount} foods found`;
+
+                // Show active filters
+                if (searchTerm) activeFiltersList.push(`Search: "${searchTerm}"`);
+                if (mealType) activeFiltersList.push(`Meal: ${mealType}`);
+                if (properties) activeFiltersList.push(`Property: ${properties}`);
+                if (region) activeFiltersList.push(`Region: ${region}`);
+
+                if (activeFiltersList.length > 0) {
+                    activeFilters.innerHTML = activeFiltersList.map(filter => 
+                        `<span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm">${filter}</span>`
+                    ).join('');
+                    activeFilters.classList.remove('hidden');
+                } else {
+                    activeFilters.classList.add('hidden');
+                }
+            }
+
+            function toggleFavorite(foodId, btn) {
+                if (favorites.has(foodId)) {
+                    favorites.delete(foodId);
+                    btn.classList.remove('favorited');
+                    btn.innerHTML = `
+                        <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    `;
+                } else {
+                    favorites.add(foodId);
+                    btn.classList.add('favorited');
+                    btn.innerHTML = `
+                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    `;
+                }
+                updateFavoritesCount();
+            }
+
+            function updateFavoritesCount() {
+                favoritesCount.textContent = `${favorites.size} favorites saved`;
+            }
+
+            function showFoodDetail(foodId) {
+                const food = foodData[foodId];
+                if (!food) return;
+
+                modalTitle.textContent = food.name;
+                modalContent.innerHTML = `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <img src="${food.image}" alt="${food.name}" class="w-full h-64 object-cover rounded-lg mb-4"
+                                 onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop'; this.onerror=null;">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div class="bg-background p-3 rounded-lg">
+                                    <span class="text-text-secondary">Region:</span>
+                                    <p class="font-medium text-text-primary">${food.region}</p>
+                                </div>
+                                <div class="bg-background p-3 rounded-lg">
+                                    <span class="text-text-secondary">Properties:</span>
+                                    <p class="font-medium text-text-primary">${food.properties}</p>
+                                </div>
+                                <div class="bg-background p-3 rounded-lg">
+                                    <span class="text-text-secondary">Body Type:</span>
+                                    <p class="font-medium text-success">${food.bodyType}</p>
+                                </div>
+                                <div class="bg-background p-3 rounded-lg">
+                                    <span class="text-text-secondary">Prep Time:</span>
+                                    <p class="font-medium text-text-primary">${food.prepTime}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-text-primary mb-3">Description</h3>
+                            <p class="text-text-secondary mb-4">${food.description}</p>
+                            
+                            <h3 class="text-lg font-semibold text-text-primary mb-3">Health Benefits</h3>
+                            <ul class="list-disc list-inside text-text-secondary mb-4 space-y-1">
+                                ${food.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                            </ul>
+                            
+                            <h3 class="text-lg font-semibold text-text-primary mb-3">Cultural History</h3>
+                            <p class="text-text-secondary mb-4">${food.history}</p>
+                            
+                            <h3 class="text-lg font-semibold text-text-primary mb-3">Key Ingredients</h3>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${food.ingredients.map(ingredient => 
+                                    `<span class="bg-primary-50 text-primary-700 px-2 py-1 rounded text-sm">${ingredient}</span>`
+                                ).join('')}
+                            </div>
+                            
+                            <h3 class="text-lg font-semibold text-text-primary mb-3">Preparation</h3>
+                            <p class="text-text-secondary">${food.preparation}</p>
+                        </div>
+                    </div>
+                `;
+                
+                foodModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeFoodModal() {
+                foodModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !foodModal.classList.contains('hidden')) {
+                    closeFoodModal();
+                }
+            });
+        });
+    </script>
+<!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
+
+
+<script type="module" src="chatbot/chatbot.js"></script>
+
+
+
+</body>
+</html>

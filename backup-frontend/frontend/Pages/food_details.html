@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Details - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="body_type_quiz.html" class="text-text-secondary hover:text-primary transition-standard">Take Quiz</a>
+                    <a href="body_type_results.html" class="text-text-secondary hover:text-primary transition-standard">My Results</a>
+                    <a href="food_recommendations.html" class="text-text-secondary hover:text-primary transition-standard">Recommendations</a>
+                    <a href="cultural_wisdom.html" class="text-text-secondary hover:text-primary transition-standard">Cultural Wisdom</a>
+                    <a href="user_login.html" class="text-text-secondary hover:text-primary transition-standard">Account</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-surface border-t border-primary-100">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="body_type_quiz.html" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-standard">Take Quiz</a>
+                <a href="body_type_results.html" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-standard">My Results</a>
+                <a href="food_recommendations.html" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-standard">Recommendations</a>
+                <a href="cultural_wisdom.html" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-standard">Cultural Wisdom</a>
+                <a href="user_login.html" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-primary-50 rounded-md transition-standard">Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-8" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="food_recommendations.html" class="inline-flex items-center text-sm font-medium text-text-secondary hover:text-primary transition-standard">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                            Recommendations
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium text-text-primary md:ml-2">Golden Turmeric Oatmeal</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Food Header -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Food Image -->
+                <div class="relative">
+                    <img id="foodImage" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Golden Turmeric Oatmeal" class="w-full h-96 object-cover rounded-xl shadow-soft" onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop'; this.onerror=null;" />
+                    
+                    <!-- Overlay Information -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-xl"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span id="propertiesTag" class="bg-accent text-white text-xs px-3 py-1 rounded-full font-medium">Warming</span>
+                            <span id="seasonTag" class="bg-primary text-white text-xs px-3 py-1 rounded-full font-medium">Winter Friendly</span>
+                            <span id="bodyTypeTag" class="bg-success text-white text-xs px-3 py-1 rounded-full font-medium">Perfect for Vata</span>
+                        </div>
+                    </div>
+
+                    <!-- Bookmark Button -->
+                    <button id="bookmarkBtn" class="absolute top-4 right-4 w-12 h-12 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard shadow-soft">
+                        <svg class="w-6 h-6 text-text-secondary hover:text-accent transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Food Details -->
+                <div>
+                    <h1 id="foodTitle" class="text-fluid-3xl font-inter font-semibold text-text-primary mb-3">Golden Turmeric Oatmeal</h1>
+                    <p id="foodSubtitle" class="text-fluid-lg text-text-secondary mb-6">Traditional Indian breakfast with anti-inflammatory spices</p>
+
+                    <!-- Quick Info Grid -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-surface p-4 rounded-lg border border-primary-100">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 1.52L12 22l-4.09-5.48L2 15l6.91-1.74L12 2z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-text-primary">Region</span>
+                            </div>
+                            <p id="regionInfo" class="text-text-secondary">Indian Cuisine</p>
+                        </div>
+                        
+                        <div class="bg-surface p-4 rounded-lg border border-primary-100">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-text-primary">Properties</span>
+                            </div>
+                            <p id="propertiesInfo" class="text-text-secondary">Warming & Grounding</p>
+                        </div>
+
+                        <div class="bg-surface p-4 rounded-lg border border-primary-100">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-text-primary">Body Type</span>
+                            </div>
+                            <p id="bodyTypeInfo" class="text-success font-medium">Perfect for Vata</p>
+                        </div>
+
+                        <div class="bg-surface p-4 rounded-lg border border-primary-100">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-text-primary">Prep Time</span>
+                            </div>
+                            <p id="prepTimeInfo" class="text-text-secondary">15 minutes</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3">
+                        <button id="addToFavoritesBtn" class="btn-primary flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                            <span>Add to Favorites</span>
+                        </button>
+
+                        <button id="shareBtn" class="btn-secondary flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                            </svg>
+                            <span>Share</span>
+                        </button>
+
+                        <button id="printRecipeBtn" class="btn-secondary flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                            </svg>
+                            <span>Print Recipe</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Nutritional Information -->
+                    <div class="card">
+                        <h2 class="text-fluid-2xl font-inter font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-6 h-6 text-primary mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9.663 17h4.673M12 3v1m6.364-.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                            Nutritional Profile
+                        </h2>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-4">Ayurvedic Benefits</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start space-x-2">
+                                        <svg class="w-5 h-5 text-success mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-text-secondary">Reduces inflammation and supports joint health</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <svg class="w-5 h-5 text-success mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-text-secondary">Improves digestion and supports gut health</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <svg class="w-5 h-5 text-success mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-text-secondary">Provides sustained energy and mental clarity</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <svg class="w-5 h-5 text-success mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-text-secondary">Balances Vata dosha with grounding qualities</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-4">Modern Nutrition</h3>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center py-2 border-b border-primary-100">
+                                        <span class="text-text-secondary">Protein</span>
+                                        <span class="font-medium text-text-primary">8g</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-primary-100">
+                                        <span class="text-text-secondary">Fiber</span>
+                                        <span class="font-medium text-text-primary">6g</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-primary-100">
+                                        <span class="text-text-secondary">Antioxidants</span>
+                                        <span class="font-medium text-success">High</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-primary-100">
+                                        <span class="text-text-secondary">Iron</span>
+                                        <span class="font-medium text-text-primary">15% DV</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cultural Context -->
+                    <div class="card">
+                        <h2 class="text-fluid-2xl font-inter font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-6 h-6 text-accent mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                            </svg>
+                            Cultural Heritage
+                        </h2>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-3">Historical Significance</h3>
+                                <p class="text-text-secondary mb-4">
+                                    Turmeric has been revered in Indian culture for over 4,000 years, not just as a spice but as a sacred healing herb. 
+                                    Known as "Haridra" in Sanskrit, it was considered a gift from the divine and used in religious ceremonies, 
+                                    medicinal preparations, and daily cooking.
+                                </p>
+                                <p class="text-text-secondary">
+                                    This golden breakfast represents the ancient wisdom of combining nutrition with healing, 
+                                    creating a meal that nourishes both body and spirit according to Ayurvedic principles.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-3">Regional Variations</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-background p-4 rounded-lg">
+                                        <h4 class="font-medium text-text-primary mb-2">South Indian Style</h4>
+                                        <p class="text-sm text-text-secondary">Often includes curry leaves and coconut milk for added richness</p>
+                                    </div>
+                                    <div class="bg-background p-4 rounded-lg">
+                                        <h4 class="font-medium text-text-primary mb-2">North Indian Style</h4>
+                                        <p class="text-sm text-text-secondary">Enhanced with cardamom and served with almonds and dates</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-3">Traditional Medicinal Uses</h3>
+                                <div class="bg-accent-50 border-l-4 border-accent p-4 rounded">
+                                    <p class="text-accent-700">
+                                        In Ayurveda, this preparation was traditionally given to children and elderly for building immunity, 
+                                        improving digestion, and maintaining mental clarity. The combination of warming spices helps balance 
+                                        the cold, light qualities of Vata dosha.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preparation Method -->
+                    <div class="card">
+                        <h2 class="text-fluid-2xl font-inter font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-6 h-6 text-warning mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                            </svg>
+                            Preparation Guide
+                        </h2>
+
+                        <!-- Video Tutorial Placeholder -->
+                        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-8 mb-6 text-center">
+                            <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-text-primary mb-2">Video Tutorial</h3>
+                            <p class="text-text-secondary mb-4">Watch our step-by-step cooking demonstration</p>
+                            <button class="btn-primary">Play Video Tutorial</button>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-4">Ingredients</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">1 cup rolled oats</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">2 cups almond milk</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">1 tsp turmeric powder</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">1/2 tsp ground ginger</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">1/2 tsp cinnamon</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">2 tbsp honey</span>
+                                    </li>
+                                    <li class="flex items-center space-x-3">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        <span class="text-text-secondary">Pinch of black pepper</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-4">Instructions</h3>
+                                <ol class="space-y-3">
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">1</span>
+                                        <span class="text-text-secondary">Heat almond milk in a saucepan over medium heat</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">2</span>
+                                        <span class="text-text-secondary">Add oats and cook for 5 minutes, stirring occasionally</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">3</span>
+                                        <span class="text-text-secondary">Mix in turmeric, ginger, cinnamon, and black pepper</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">4</span>
+                                        <span class="text-text-secondary">Simmer for 5 more minutes until creamy</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">5</span>
+                                        <span class="text-text-secondary">Remove from heat and stir in honey</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="flex items-center justify-center w-6 h-6 bg-primary text-white text-xs rounded-full mt-0.5">6</span>
+                                        <span class="text-text-secondary">Serve warm, garnished with nuts or fresh fruit</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Optimal Consumption Timing -->
+                        <div class="bg-success-50 border border-success-200 p-4 rounded-lg mt-6">
+                            <h4 class="text-lg font-semibold text-success-700 mb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                                Optimal Consumption
+                            </h4>
+                            <p class="text-success-600">
+                                Best consumed in the morning between 7-9 AM when digestive fire is strongest. 
+                                Avoid eating 3 hours before sleep to maintain healthy digestion patterns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <!-- Ingredient Combinations -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Ideal Combinations</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 bg-success-50 rounded-lg">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm text-success-700">Fresh ginger + Black pepper</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-success-50 rounded-lg">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm text-success-700">Coconut milk + Cardamom</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-success-50 rounded-lg">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm text-success-700">Almonds + Dates</span>
+                            </div>
+                        </div>
+
+                        <h4 class="text-md font-medium text-text-primary mt-6 mb-3">Contraindications</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-3 p-3 bg-warning-50 rounded-lg">
+                                <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                                </svg>
+                                <span class="text-sm text-warning-700">Avoid with gallstones</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-warning-50 rounded-lg">
+                                <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                                </svg>
+                                <span class="text-sm text-warning-700">Reduce if taking blood thinners</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Similar Foods -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Similar Foods</h3>
+                        <div class="space-y-3">
+                            <a href="javascript:void(0)" class="block hover:bg-primary-50 p-3 rounded-lg transition-standard">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=80&auto=format&fit=crop" alt="Cardamom Rice Pudding" class="w-12 h-12 object-cover rounded-lg" />
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-text-primary">Cardamom Rice Pudding</h4>
+                                        <p class="text-xs text-text-secondary">Warming • Indian</p>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="javascript:void(0)" class="block hover:bg-primary-50 p-3 rounded-lg transition-standard">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=80" alt="Ginger Miso Soup" class="w-12 h-12 object-cover rounded-lg" />
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-text-primary">Ginger Miso Soup</h4>
+                                        <p class="text-xs text-text-secondary">Warming • Asian</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="javascript:void(0)" class="block hover:bg-primary-50 p-3 rounded-lg transition-standard">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=80&auto=format&fit=crop" alt="Mediterranean Lentil Soup" class="w-12 h-12 object-cover rounded-lg" />
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-medium text-text-primary">Lentil Soup</h4>
+                                        <p class="text-xs text-text-secondary">Warming • Mediterranean</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- User Notes -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Personal Notes</h3>
+                        <textarea id="personalNotes" rows="4" class="input-field resize-none" placeholder="Add your personal notes about this food..."></textarea>
+                        <button id="saveNotesBtn" class="btn-secondary mt-3 w-full">Save Notes</button>
+                    </div>
+
+                    <!-- Rating & Reviews -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Rate This Food</h3>
+                        <div class="flex items-center space-x-1 mb-4">
+                            <button class="rating-star w-8 h-8 text-text-secondary hover:text-warning transition-standard" data-rating="1">
+                                <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                            </button>
+                            <button class="rating-star w-8 h-8 text-text-secondary hover:text-warning transition-standard" data-rating="2">
+                                <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                            </button>
+                            <button class="rating-star w-8 h-8 text-text-secondary hover:text-warning transition-standard" data-rating="3">
+                                <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                            </button>
+                            <button class="rating-star w-8 h-8 text-text-secondary hover:text-warning transition-standard" data-rating="4">
+                                <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                            </button>
+                            <button class="rating-star w-8 h-8 text-text-secondary hover:text-warning transition-standard" data-rating="5">
+                                <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9l-5.91 5.57L14 21l-2-6.36L12 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-sm text-text-secondary">Average rating: 4.8/5 (127 reviews)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Bookmark functionality
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            let isBookmarked = false;
+
+            bookmarkBtn.addEventListener('click', function() {
+                isBookmarked = !isBookmarked;
+                if (isBookmarked) {
+                    bookmarkBtn.innerHTML = `
+                        <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                        </svg>
+                    `;
+                } else {
+                    bookmarkBtn.innerHTML = `
+                        <svg class="w-6 h-6 text-text-secondary hover:text-accent transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                        </svg>
+                    `;
+                }
+            });
+
+            // Favorites functionality
+            const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
+            let isFavorited = false;
+
+            addToFavoritesBtn.addEventListener('click', function() {
+                isFavorited = !isFavorited;
+                if (isFavorited) {
+                    addToFavoritesBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>Added to Favorites</span>
+                    `;
+                    addToFavoritesBtn.classList.remove('btn-primary');
+                    addToFavoritesBtn.classList.add('btn-success');
+                } else {
+                    addToFavoritesBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                        <span>Add to Favorites</span>
+                    `;
+                    addToFavoritesBtn.classList.remove('btn-success');
+                    addToFavoritesBtn.classList.add('btn-primary');
+                }
+            });
+
+            // Share functionality
+            const shareBtn = document.getElementById('shareBtn');
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Golden Turmeric Oatmeal - Nutra Expert AI',
+                        text: 'Check out this healthy Ayurvedic breakfast recipe!',
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback: copy to clipboard
+                    navigator.clipboard.writeText(window.location.href);
+                    // Show tooltip or notification
+                    const originalText = shareBtn.innerHTML;
+                    shareBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Link Copied!</span>
+                    `;
+                    setTimeout(() => {
+                        shareBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+            });
+
+            // Print recipe functionality
+            const printRecipeBtn = document.getElementById('printRecipeBtn');
+            printRecipeBtn.addEventListener('click', function() {
+                window.print();
+            });
+
+            // Rating stars functionality
+            const ratingStars = document.querySelectorAll('.rating-star');
+            let currentRating = 0;
+
+            ratingStars.forEach((star, index) => {
+                star.addEventListener('click', function() {
+                    currentRating = index + 1;
+                    updateStars();
+                });
+
+                star.addEventListener('mouseenter', function() {
+                    highlightStars(index + 1);
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    updateStars();
+                });
+            });
+
+            function highlightStars(rating) {
+                ratingStars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('text-warning');
+                        star.classList.remove('text-text-secondary');
+                    } else {
+                        star.classList.add('text-text-secondary');
+                        star.classList.remove('text-warning');
+                    }
+                });
+            }
+
+            function updateStars() {
+                ratingStars.forEach((star, index) => {
+                    if (index < currentRating) {
+                        star.classList.add('text-warning');
+                        star.classList.remove('text-text-secondary');
+                    } else {
+                        star.classList.add('text-text-secondary');
+                        star.classList.remove('text-warning');
+                    }
+                });
+            }
+
+            // Save notes functionality
+            const saveNotesBtn = document.getElementById('saveNotesBtn');
+            const personalNotes = document.getElementById('personalNotes');
+
+            // Load saved notes
+            const savedNotes = localStorage.getItem('food_notes_turmeric_oatmeal');
+            if (savedNotes) {
+                personalNotes.value = savedNotes;
+            }
+
+            saveNotesBtn.addEventListener('click', function() {
+                const notes = personalNotes.value;
+                localStorage.setItem('food_notes_turmeric_oatmeal', notes);
+                
+                const originalText = saveNotesBtn.textContent;
+                saveNotesBtn.textContent = 'Saved!';
+                saveNotesBtn.classList.add('btn-success');
+                saveNotesBtn.classList.remove('btn-secondary');
+                
+                setTimeout(() => {
+                    saveNotesBtn.textContent = originalText;
+                    saveNotesBtn.classList.add('btn-secondary');
+                    saveNotesBtn.classList.remove('btn-success');
+                }, 2000);
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

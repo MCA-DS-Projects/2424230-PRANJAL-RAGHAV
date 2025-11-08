@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Body Type Results - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+
+<script src="auth.js"></script>
+
+<script>checkAuth();</script>
+
+
+
+
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8" id="navMenu"></nav>
+                    <script src="nav.js"></script>
+
+                <!-- Navigation Links -->
+                <!-- <nav class="hidden md:flex items-center space-x-8"> -->
+                    <!-- <a href="user_login.html" class="text-text-secondary hover:text-primary transition-standard">Sign In</a> -->
+                    <!-- <a href="body_type_quiz.html" class="text-text-secondary hover:text-primary transition-standard">Take Quiz</a>
+                    <a href="food_recommendations.html" class="text-text-secondary hover:text-primary transition-standard">Recommendations</a>
+                </nav> -->
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- <button onclick="logout()" style="position:absolute; right:15px; top:15px; background:#ff5964; color:white; padding:6px 14px; border-radius:6px;">
+  Logout
+</button> -->
+
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Celebration Header -->
+            <div class="text-center mb-12 animate-fade-in">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-success-100 rounded-full mb-4">
+                    <svg class="w-8 h-8 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <h1 class="text-fluid-3xl font-inter font-semibold text-text-primary mb-2">Assessment Complete!</h1>
+                <p class="text-fluid-lg text-text-secondary">Discover your unique Ayurvedic constitution and personalized wellness path</p>
+            </div>
+
+            <!-- Body Type Result Card -->
+            <div class="card shadow-medium mb-8 animate-slide-up" id="bodyTypeCard">
+                <div class="text-center mb-8">
+                    <!-- Body Type Icon -->
+                    <div class="inline-flex items-center justify-center w-24 h-24 rounded-full mb-6" id="bodyTypeIcon">
+                        <!-- Dynamic icon will be inserted here -->
+                    </div>
+                    
+                    <!-- Body Type Name -->
+                    <h2 class="text-fluid-2xl font-inter font-semibold mb-2" id="bodyTypeName">Your Body Type: Pitta</h2>
+                    
+                    <!-- Constitution Percentage -->
+                    <div class="flex justify-center space-x-4 mb-6" id="constitutionBreakdown">
+                        <div class="text-center">
+                            <div class="text-2xl font-semibold text-accent">65%</div>
+                            <div class="text-sm text-text-secondary">Pitta</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-semibold text-primary">25%</div>
+                            <div class="text-sm text-text-secondary">Vata</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-semibold text-secondary">10%</div>
+                            <div class="text-sm text-text-secondary">Kapha</div>
+                        </div>
+                    </div>
+
+                    <!-- Primary Characteristics -->
+                    <div class="bg-accent-50 rounded-lg p-6 border border-accent-200">
+                        <h3 class="text-lg font-inter font-semibold text-accent-700 mb-3">Your Primary Constitution</h3>
+                        <p class="text-text-primary leading-relaxed" id="primaryDescription">
+                            You have a predominantly Pitta constitution, characterized by strong digestive fire, natural leadership qualities, and a balanced, athletic build. Pitta types are known for their intelligence, focus, and ability to make decisions quickly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Characteristics -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Physical Traits -->
+                <div class="card shadow-soft">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-inter font-semibold text-text-primary">Physical Characteristics</h3>
+                    </div>
+                    <ul class="space-y-2 text-text-secondary" id="physicalTraits">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Medium build with good muscle definition
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Warm body temperature, may sweat easily
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Strong appetite and efficient digestion
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Fair or sensitive skin, prone to redness
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mental & Emotional Traits -->
+                <div class="card shadow-soft">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-inter font-semibold text-text-primary">Mental & Emotional Traits</h3>
+                    </div>
+                    <ul class="space-y-2 text-text-secondary" id="mentalTraits">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Sharp intellect and quick decision-making
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Natural leadership and organizational skills
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            Goal-oriented and competitive nature
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                            May experience irritability when stressed
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Balancing Recommendations -->
+            <div class="card shadow-medium mb-8">
+                <h3 class="text-xl font-inter font-semibold text-text-primary mb-6">Balancing Your Constitution</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Foods to Favor -->
+                    <div class="bg-success-50 rounded-lg p-4 border border-success-200">
+                        <div class="flex items-center mb-3">
+                            <svg class="w-5 h-5 text-success-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <h4 class="font-semibold text-success-700">Foods to Favor</h4>
+                        </div>
+                        <ul class="text-sm text-success-600 space-y-1" id="favorableFoods">
+                            <li>• Cool, sweet, and bitter tastes</li>
+                            <li>• Fresh fruits and vegetables</li>
+                            <li>• Coconut, cucumber, leafy greens</li>
+                            <li>• Dairy products in moderation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Foods to Reduce -->
+                    <div class="bg-warning-50 rounded-lg p-4 border border-warning-200">
+                        <div class="flex items-center mb-3">
+                            <svg class="w-5 h-5 text-warning-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <h4 class="font-semibold text-warning-700">Foods to Reduce</h4>
+                        </div>
+                        <ul class="text-sm text-warning-600 space-y-1" id="reduceFoods">
+                            <li>• Spicy, sour, and salty foods</li>
+                            <li>• Red meat and fried foods</li>
+                            <li>• Alcohol and caffeine</li>
+                            <li>• Tomatoes, citrus, vinegar</li>
+                        </ul>
+                    </div>
+
+                    <!-- Lifestyle Tips -->
+                    <div class="bg-primary-50 rounded-lg p-4 border border-primary-200">
+                        <div class="flex items-center mb-3">
+                            <svg class="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <h4 class="font-semibold text-primary">Lifestyle Tips</h4>
+                        </div>
+                        <ul class="text-sm text-primary space-y-1" id="lifestyleTips">
+                            <li>• Stay cool and avoid overheating</li>
+                            <li>• Practice moderation in activities</li>
+                            <li>• Engage in calming exercises</li>
+                            <li>• Maintain regular meal times</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Learning Sections -->
+            <div class="space-y-4 mb-8">
+                <!-- Ayurvedic Principles -->
+                <div class="card shadow-soft">
+                    <button class="w-full flex items-center justify-between p-2 text-left" onclick="toggleSection('ayurvedicPrinciples')">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-inter font-semibold text-text-primary">Understanding Ayurvedic Principles</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary transform transition-transform" id="ayurvedicPrinciplesIcon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-4 pt-4 border-t border-surface" id="ayurvedicPrinciplesContent">
+                        <div class="prose prose-sm max-w-none text-text-secondary">
+                            <p class="mb-4">Ayurveda, the ancient Indian system of medicine, recognizes three fundamental energies or doshas that govern all physiological and psychological processes in the body: Vata (air and space), Pitta (fire and water), and Kapha (earth and water).</p>
+                            <p class="mb-4">Your constitution, or Prakriti, is determined at conception and remains constant throughout your life. However, your current state, or Vikriti, can fluctuate based on lifestyle, diet, stress, and environmental factors.</p>
+                            <p>Understanding your constitution helps you make informed choices about diet, exercise, and lifestyle practices that support your natural balance and promote optimal health.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historical Context -->
+                <div class="card shadow-soft">
+                    <button class="w-full flex items-center justify-between p-2 text-left" onclick="toggleSection('historicalContext')">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-secondary-100 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-inter font-semibold text-text-primary">Historical Context & Wisdom</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary transform transition-transform" id="historicalContextIcon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-4 pt-4 border-t border-surface" id="historicalContextContent">
+                        <div class="prose prose-sm max-w-none text-text-secondary">
+                            <p class="mb-4">Ayurveda has been practiced for over 5,000 years, making it one of the world's oldest healing systems. The foundational texts, including the Charaka Samhita and Sushruta Samhita, were written between 400-200 BCE.</p>
+                            <p class="mb-4">The concept of constitutional types was developed through centuries of observation and clinical practice by ancient physicians who recognized that individuals respond differently to foods, treatments, and environmental conditions.</p>
+                            <p>This personalized approach to health and nutrition predates modern precision medicine by millennia, demonstrating the timeless wisdom of individualized healthcare.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seasonal Considerations -->
+                <div class="card shadow-soft">
+                    <button class="w-full flex items-center justify-between p-2 text-left" onclick="toggleSection('seasonalConsiderations')">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-inter font-semibold text-text-primary">Seasonal Considerations</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary transform transition-transform" id="seasonalConsiderationsIcon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-4 pt-4 border-t border-surface" id="seasonalConsiderationsContent">
+                        <div class="prose prose-sm max-w-none text-text-secondary">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-text-primary mb-2">Summer (Pitta Season)</h4>
+                                    <p class="text-sm mb-3">During hot months, Pitta types should be especially mindful of staying cool and avoiding excessive heat. Focus on cooling foods and activities.</p>
+                                    
+                                    <h4 class="font-semibold text-text-primary mb-2">Winter (Kapha Season)</h4>
+                                    <p class="text-sm">Cold, damp weather can increase Kapha, so Pitta types may benefit from warming spices and more vigorous exercise during this time.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary mb-2">Fall/Spring (Vata Season)</h4>
+                                    <p class="text-sm mb-3">Transitional seasons can increase Vata, so maintain regular routines and eat grounding, nourishing foods.</p>
+                                    
+                                    <h4 class="font-semibold text-text-primary mb-2">Climate Adaptation</h4>
+                                    <p class="text-sm">Your location's climate will influence which seasonal recommendations are most important for maintaining balance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <a href="location_detection.html" class="flex-1 btn-primary min-h-touch flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Get Food Recommendations</span>
+                </a>
+                <a href="body_type_quiz.html" class="flex-1 bg-surface text-text-primary border-2 border-primary-200 px-6 py-3 rounded-lg font-medium transition-all duration-200 ease-out hover:bg-primary-50 hover:border-primary-300 focus:ring-2 focus:ring-primary-300 focus:outline-none min-h-touch flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    <span>Retake Quiz</span>
+                </a>
+            </div>
+
+            <!-- Social Sharing -->
+            <div class="card shadow-soft text-center">
+                <h3 class="text-lg font-inter font-semibold text-text-primary mb-4">Share Your Results</h3>
+                <p class="text-text-secondary mb-6">Let your friends discover their Ayurvedic constitution too!</p>
+                
+                <div class="flex justify-center space-x-4">
+                    <button onclick="shareResults('facebook')" class="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-standard">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Facebook</span>
+                    </button>
+                    
+                    <button onclick="shareResults('twitter')" class="flex items-center space-x-2 bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition-standard">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                        <span>Twitter</span>
+                    </button>
+                    
+                    <button onclick="shareResults('copy')" class="flex items-center space-x-2 bg-surface text-text-primary border border-primary-200 px-4 py-2 rounded-lg hover:bg-primary-50 transition-standard">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Copy Link</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Body type data
+        const bodyTypeData = {
+            vata: {
+                name: 'Vata',
+                color: 'primary',
+                icon: `<svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                    <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                </svg>`,
+                description: 'You have a predominantly Vata constitution, characterized by creativity, quick thinking, and a light, agile build. Vata types are known for their enthusiasm, adaptability, and active minds.',
+                physicalTraits: [
+                    'Light, thin build with prominent joints',
+                    'Cool, dry skin and hair',
+                    'Variable appetite and digestion',
+                    'Quick movements and speech patterns'
+                ],
+                mentalTraits: [
+                    'Creative and imaginative thinking',
+                    'Quick to learn and forget',
+                    'Enthusiastic and energetic',
+                    'May experience anxiety when imbalanced'
+                ],
+                favorableFoods: [
+                    '• Warm, moist, and grounding foods',
+                    '• Sweet, sour, and salty tastes',
+                    '• Cooked grains, root vegetables',
+                    '• Warm milk, ghee, and oils'
+                ],
+                reduceFoods: [
+                    '• Cold, dry, and light foods',
+                    '• Raw vegetables and salads',
+                    '• Caffeine and stimulants',
+                    '• Beans and legumes in excess'
+                ],
+                lifestyleTips: [
+                    '• Maintain regular daily routines',
+                    '• Stay warm and avoid cold exposure',
+                    '• Practice calming activities',
+                    '• Get adequate rest and sleep'
+                ]
+            },
+            pitta: {
+                name: 'Pitta',
+                color: 'accent',
+                icon: `<svg class="w-12 h-12 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L13.5 2.5L16.17 5.17L10.5 10.84L11.92 12.25L15.83 8.34L17.5 10L17.5 9H21ZM1 9H5V7H1V9ZM3 13H1V11H3V13ZM5 17H1V15H5V17ZM1 21H5V19H1V21Z"/>
+                </svg>`,
+                description: 'You have a predominantly Pitta constitution, characterized by strong digestive fire, natural leadership qualities, and a balanced, athletic build. Pitta types are known for their intelligence, focus, and ability to make decisions quickly.',
+                physicalTraits: [
+                    'Medium build with good muscle definition',
+                    'Warm body temperature, may sweat easily',
+                    'Strong appetite and efficient digestion',
+                    'Fair or sensitive skin, prone to redness'
+                ],
+                mentalTraits: [
+                    'Sharp intellect and quick decision-making',
+                    'Natural leadership and organizational skills',
+                    'Goal-oriented and competitive nature',
+                    'May experience irritability when stressed'
+                ],
+                favorableFoods: [
+                    '• Cool, sweet, and bitter tastes',
+                    '• Fresh fruits and vegetables',
+                    '• Coconut, cucumber, leafy greens',
+                    '• Dairy products in moderation'
+                ],
+                reduceFoods: [
+                    '• Spicy, sour, and salty foods',
+                    '• Red meat and fried foods',
+                    '• Alcohol and caffeine',
+                    '• Tomatoes, citrus, vinegar'
+                ],
+                lifestyleTips: [
+                    '• Stay cool and avoid overheating',
+                    '• Practice moderation in activities',
+                    '• Engage in calming exercises',
+                    '• Maintain regular meal times'
+                ]
+            },
+            kapha: {
+                name: 'Kapha',
+                color: 'secondary',
+                icon: `<svg class="w-12 h-12 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13.88 3.09 13.75 3.16 13.61 3.25C13.19 3.52 12.71 3.8 12.26 4.08C9.85 5.85 8.54 8.34 8.76 11.12C8.89 12.91 9.6 14.57 10.75 15.85C11.25 16.37 11.81 16.8 12.37 17.16C12.83 17.47 13.26 17.68 13.61 17.8C13.73 17.84 13.79 17.87 13.87 17.91C13.87 17.91 13.94 17.96 13.95 17.97C13.81 18.15 13.68 18.37 13.54 18.58C13.1 19.26 12.57 19.85 11.95 20.32C11.32 20.81 10.6 21.17 9.84 21.37C9.42 21.47 9 21.52 8.57 21.52C8.49 21.52 7.9 21.48 7.9 21.48C7.9 21.48 7.9 21.59 7.9 21.59C8.11 21.96 8.32 22.35 8.54 22.73C8.76 23.11 8.98 23.5 9.2 23.88C9.42 24.26 9.64 24.65 9.86 25.03C10.08 25.41 10.3 25.8 10.52 26.18C10.74 26.56 10.96 26.95 11.18 27.33C11.4 27.71 11.62 28.1 11.84 28.48C12.06 28.86 12.28 29.25 12.5 29.63C12.72 30.01 12.94 30.4 13.16 30.78C13.38 31.16 13.6 31.55 13.82 31.93C14.04 32.31 14.26 32.7 14.48 33.08C14.7 33.46 14.92 33.85 15.14 34.23C15.36 34.61 15.58 35 15.8 35.38C16.02 35.76 16.24 36.15 16.46 36.53C16.68 36.91 16.9 37.3 17.12 37.68C17.34 38.06 17.56 38.45 17.78 38.83C18 39.21 18.22 39.6 18.44 39.98C18.66 40.36 18.88 40.75 19.1 41.13C19.32 41.51 19.54 41.9 19.76 42.28C19.98 42.66 20.2 43.05 20.42 43.43C20.64 43.81 20.86 44.2 21.08 44.58C21.3 44.96 21.52 45.35 21.74 45.73C21.96 46.11 22.18 46.5 22.4 46.88C22.62 47.26 22.84 47.65 23.06 48.03C23.28 48.41 23.5 48.8 23.72 49.18C23.94 49.56 24.16 49.95 24.38 50.33C24.6 50.71 24.82 51.1 25.04 51.48C25.26 51.86 25.48 52.25 25.7 52.63C25.92 53.01 26.14 53.4 26.36 53.78C26.58 54.16 26.8 54.55 27.02 54.93C27.24 55.31 27.46 55.7 27.68 56.08C27.9 56.46 28.12 56.85 28.34 57.23C28.56 57.61 28.78 58 29 58.38C29.22 58.76 29.44 59.15 29.66 59.53C29.88 59.91 30.1 60.3 30.32 60.68C30.54 61.06 30.76 61.45 30.98 61.83C31.2 62.21 31.42 62.6 31.64 62.98C31.86 63.36 32.08 63.75 32.3 64.13C32.52 64.51 32.74 64.9 32.96 65.28C33.18 65.66 33.4 66.05 33.62 66.43C33.84 66.81 34.06 67.2 34.28 67.58C34.5 67.96 34.72 68.35 34.94 68.73C35.16 69.11 35.38 69.5 35.6 69.88C35.82 70.26 36.04 70.65 36.26 71.03C36.48 71.41 36.7 71.8 36.92 72.18C37.14 72.56 37.36 72.95 37.58 73.33C37.8 73.71 38.02 74.1 38.24 74.48C38.46 74.86 38.68 75.25 38.9 75.63C39.12 76.01 39.34 76.4 39.56 76.78C39.78 77.16 40 77.55 40.22 77.93C40.44 78.31 40.66 78.7 40.88 79.08C41.1 79.46 41.32 79.85 41.54 80.23C41.76 80.61 41.98 81 42.2 81.38C42.42 81.76 42.64 82.15 42.86 82.53C43.08 82.91 43.3 83.3 43.52 83.68C43.74 84.06 43.96 84.45 44.18 84.83C44.4 85.21 44.62 85.6 44.84 85.98C45.06 86.36 45.28 86.75 45.5 87.13C45.72 87.51 45.94 87.9 46.16 88.28C46.38 88.66 46.6 89.05 46.82 89.43C47.04 89.81 47.26 90.2 47.48 90.58C47.7 90.96 47.92 91.35 48.14 91.73C48.36 92.11 48.58 92.5 48.8 92.88C49.02 93.26 49.24 93.65 49.46 94.03C49.68 94.41 49.9 94.8 50.12 95.18C50.34 95.56 50.56 95.95 50.78 96.33C51 96.71 51.22 97.1 51.44 97.48C51.66 97.86 51.88 98.25 52.1 98.63C52.32 99.01 52.54 99.4 52.76 99.78C52.98 100.16 53.2 100.55 53.42 100.93C53.64 101.31 53.86 101.7 54.08 102.08C54.3 102.46 54.52 102.85 54.74 103.23C54.96 103.61 55.18 104 55.4 104.38C55.62 104.76 55.84 105.15 56.06 105.53C56.28 105.91 56.5 106.3 56.72 106.68C56.94 107.06 57.16 107.45 57.38 107.83C57.6 108.21 57.82 108.6 58.04 108.98C58.26 109.36 58.48 109.75 58.7 110.13C58.92 110.51 59.14 110.9 59.36 111.28C59.58 111.66 59.8 112.05 60.02 112.43C60.24 112.81 60.46 113.2 60.68 113.58C60.9 113.96 61.12 114.35 61.34 114.73C61.56 115.11 61.78 115.5 62 115.88C62.22 116.26 62.44 116.65 62.66 117.03C62.88 117.41 63.1 117.8 63.32 118.18C63.54 118.56 63.76 118.95 63.98 119.33C64.2 119.71 64.42 120.1 64.64 120.48C64.86 120.86 65.08 121.25 65.3 121.63C65.52 122.01 65.74 122.4 65.96 122.78C66.18 123.16 66.4 123.55 66.62 123.93C66.84 124.31 67.06 124.7 67.28 125.08C67.5 125.46 67.72 125.85 67.94 126.23C68.16 126.61 68.38 127 68.6 127.38C68.82 127.76 69.04 128.15 69.26 128.53C69.48 128.91 69.7 129.3 69.92 129.68C70.14 130.06 70.36 130.45 70.58 130.83C70.8 131.21 71.02 131.6 71.24 131.98C71.46 132.36 71.68 132.75 71.9 133.13C72.12 133.51 72.34 133.9 72.56 134.28C72.78 134.66 73 135.05 73.22 135.43C73.44 135.81 73.66 136.2 73.88 136.58C74.1 136.96 74.32 137.35 74.54 137.73C74.76 138.11 74.98 138.5 75.2 138.88C75.42 139.26 75.64 139.65 75.86 140.03C76.08 140.41 76.3 140.8 76.52 141.18C76.74 141.56 76.96 141.95 77.18 142.33C77.4 142.71 77.62 143.1 77.84 143.48C78.06 143.86 78.28 144.25 78.5 144.63C78.72 145.01 78.94 145.4 79.16 145.78C79.38 146.16 79.6 146.55 79.82 146.93C80.04 147.31 80.26 147.7 80.48 148.08C80.7 148.46 80.92 148.85 81.14 149.23C81.36 149.61 81.58 150 81.8 150.38C82.02 150.76 82.24 151.15 82.46 151.53C82.68 151.91 82.9 152.3 83.12 152.68C83.34 153.06 83.56 153.45 83.78 153.83C84 154.21 84.22 154.6 84.44 154.98C84.66 155.36 84.88 155.75 85.1 156.13C85.32 156.51 85.54 156.9 85.76 157.28C85.98 157.66 86.2 158.05 86.42 158.43C86.64 158.81 86.86 159.2 87.08 159.58C87.3 159.96 87.52 160.35 87.74 160.73C87.96 161.11 88.18 161.5 88.4 161.88C88.62 162.26 88.84 162.65 89.06 163.03C89.28 163.41 89.5 163.8 89.72 164.18C89.94 164.56 90.16 164.95 90.38 165.33C90.6 165.71 90.82 166.1 91.04 166.48C91.26 166.86 91.48 167.25 91.7 167.63C91.92 168.01 92.14 168.4 92.36 168.78C92.58 169.16 92.8 169.55 93.02 169.93C93.24 170.31 93.46 170.7 93.68 171.08C93.9 171.46 94.12 171.85 94.34 172.23C94.56 172.61 94.78 173 95 173.38C95.22 173.76 95.44 174.15 95.66 174.53C95.88 174.91 96.1 175.3 96.32 175.68C96.54 176.06 96.76 176.45 96.98 176.83C97.2 177.21 97.42 177.6 97.64 177.98C97.86 178.36 98.08 178.75 98.3 179.13C98.52 179.51 98.74 179.9 98.96 180.28C99.18 180.66 99.4 181.05 99.62 181.43C99.84 181.81 100.06 182.2 100.28 182.58C100.5 182.96 100.72 183.35 100.94 183.73C101.16 184.11 101.38 184.5 101.6 184.88C101.82 185.26 102.04 185.65 102.26 186.03C102.48 186.41 102.7 186.8 102.92 187.18C103.14 187.56 103.36 187.95 103.58 188.33C103.8 188.71 104.02 189.1 104.24 189.48C104.46 189.86 104.68 190.25 104.9 190.63C105.12 191.01 105.34 191.4 105.56 191.78C105.78 192.16 106 192.55 106.22 192.93C106.44 193.31 106.66 193.7 106.88 194.08C107.1 194.46 107.32 194.85 107.54 195.23C107.76 195.61 107.98 196 108.2 196.38C108.42 196.76 108.64 197.15 108.86 197.53C109.08 197.91 109.3 198.3 109.52 198.68C109.74 199.06 109.96 199.45 110.18 199.83C110.4 200.21 110.62 200.6 110.84 200.98C111.06 201.36 111.28 201.75 111.5 202.13C111.72 202.51 111.94 202.9 112.16 203.28C112.38 203.66 112.6 204.05 112.82 204.43C113.04 204.81 113.26 205.2 113.48 205.58C113.7 205.96 113.92 206.35 114.14 206.73C114.36 207.11 114.58 207.5 114.8 207.88C115.02 208.26 115.24 208.65 115.46 209.03C115.68 209.41 115.9 209.8 116.12 210.18C116.34 210.56 116.56 210.95 116.78 211.33C117 211.71 117.22 212.1 117.44 212.48C117.66 212.86 117.88 213.25 118.1 213.63C118.32 214.01 118.54 214.4 118.76 214.78C118.98 215.16 119.2 215.55 119.42 215.93C119.64 216.31 119.86 216.7 120.08 217.08C120.3 217.46 120.52 217.85 120.74 218.23C120.96 218.61 121.18 219 121.4 219.38C121.62 219.76 121.84 220.15 122.06 220.53C122.28 220.91 122.5 221.3 122.72 221.68C122.94 222.06 123.16 222.45 123.38 222.83C123.6 223.21 123.82 223.6 124.04 223.98C124.26 224.36 124.48 224.75 124.7 225.13C124.92 225.51 125.14 225.9 125.36 226.28C125.58 226.66 125.8 227.05 126.02 227.43C126.24 227.81 126.46 228.2 126.68 228.58C126.9 228.96 127.12 229.35 127.34 229.73C127.56 230.11 127.78 230.5 128 230.88C128.22 231.26 128.44 231.65 128.66 232.03C128.88 232.41 129.1 232.8 129.32 233.18C129.54 233.56 129.76 233.95 129.98 234.33C130.2 234.71 130.42 235.1 130.64 235.48C130.86 235.86 131.08 236.25 131.3 236.63C131.52 237.01 131.74 237.4 131.96 237.78C132.18 238.16 132.4 238.55 132.62 238.93C132.84 239.31 133.06 239.7 133.28 240.08C133.5 240.46 133.72 240.85 133.94 241.23C134.16 241.61 134.38 242 134.6 242.38C134.82 242.76 135.04 243.15 135.26 243.53C135.48 243.91 135.7 244.3 135.92 244.68C136.14 245.06 136.36 245.45 136.58 245.83C136.8 246.21 137.02 246.6 137.24 246.98C137.46 247.36 137.68 247.75 137.9 248.13C138.12 248.51 138.34 248.9 138.56 249.28C138.78 249.66 139 250.05 139.22 250.43C139.44 250.81 139.66 251.2 139.88 251.58C140.1 251.96 140.32 252.35 140.54 252.73C140.76 253.11 140.98 253.5 141.2 253.88C141.42 254.26 141.64 254.65 141.86 255.03C142.08 255.41 142.3 255.8 142.52 256.18C142.74 256.56 142.96 256.95 143.18 257.33C143.4 257.71 143.62 258.1 143.84 258.48C144.06 258.86 144.28 259.25 144.5 259.63C144.72 260.01 144.94 260.4 145.16 260.78C145.38 261.16 145.6 261.55 145.82 261.93C146.04 262.31 146.26 262.7 146.48 263.08C146.7 263.46 146.92 263.85 147.14 264.23C147.36 264.61 147.58 265 147.8 265.38C148.02 265.76 148.24 266.15 148.46 266.53C148.68 266.91 148.9 267.3 149.12 267.68C149.34 268.06 149.56 268.45 149.78 268.83C150 269.21 150.22 269.6 150.44 269.98C150.66 270.36 150.88 270.75 151.1 271.13C151.32 271.51 151.54 271.9 151.76 272.28C151.98 272.66 152.2 273.05 152.42 273.43C152.64 273.81 152.86 274.2 153.08 274.58C153.3 274.96 153.52 275.35 153.74 275.73C153.96 276.11 154.18 276.5 154.4 276.88C154.62 277.26 154.84 277.65 155.06 278.03C155.28 278.41 155.5 278.8 155.72 279.18C155.94 279.56 156.16 279.95 156.38 280.33C156.6 280.71 156.82 281.1 157.04 281.48C157.26 281.86 157.48 282.25 157.7 282.63C157.92 283.01 158.14 283.4 158.36 283.78C158.58 284.16 158.8 284.55 159.02 284.93C159.24 285.31 159.46 285.7 159.68 286.08C159.9 286.46 160.12 286.85 160.34 287.23C160.56 287.61 160.78 288 161 288.38C161.22 288.76 161.44 289.15 161.66 289.53C161.88 289.91 162.1 290.3 162.32 290.68C162.54 291.06 162.76 291.45 162.98 291.83C163.2 292.21 163.42 292.6 163.64 292.98C163.86 293.36 164.08 293.75 164.3 294.13C164.52 294.51 164.74 294.9 164.96 295.28C165.18 295.66 165.4 296.05 165.62 296.43C165.84 296.81 166.06 297.2 166.28 297.58C166.5 297.96 166.72 298.35 166.94 298.73C167.16 299.11 167.38 299.5 167.6 299.88C167.82 300.26 168.04 300.65 168.26 301.03C168.48 301.41 168.7 301.8 168.92 302.18C169.14 302.56 169.36 302.95 169.58 303.33C169.8 303.71 170.02 304.1 170.24 304.48C170.46 304.86 170.68 305.25 170.9 305.63C171.12 306.01 171.34 306.4 171.56 306.78C171.78 307.16 172 307.55 172.22 307.93C172.44 308.31 172.66 308.7 172.88 309.08C173.1 309.46 173.32 309.85 173.54 310.23C173.76 310.61 173.98 311 174.2 311.38C174.42 311.76 174.64 312.15 174.86 312.53C175.08 312.91 175.3 313.3 175.52 313.68C175.74 314.06 175.96 314.45 176.18 314.83C176.4 315.21 176.62 315.6 176.84 315.98C177.06 316.36 177.28 316.75 177.5 317.13C177.72 317.51 177.94 317.9 178.16 318.28C178.38 318.66 178.6 319.05 178.82 319.43C179.04 319.81 179.26 320.2 179.48 320.58C179.7 320.96 179.92 321.35 180.14 321.73C180.36 322.11 180.58 322.5 180.8 322.88C181.02 323.26 181.24 323.65 181.46 324.03C181.68 324.41 181.9 324.8 182.12 325.18C182.34 325.56 182.56 325.95 182.78 326.33C183 326.71 183.22 327.1 183.44 327.48C183.66 327.86 183.88 328.25 184.1 328.63C184.32 329.01 184.54 329.4 184.76 329.78C184.98 330.16 185.2 330.55 185.42 330.93C185.64 331.31 185.86 331.7 186.08 332.08C186.3 332.46 186.52 332.85 186.74 333.23C186.96 333.61 187.18 334 187.4 334.38C187.62 334.76 187.84 335.15 188.06 335.53C188.28 335.91 188.5 336.3 188.72 336.68C188.94 337.06 189.16 337.45 189.38 337.83C189.6 338.21 189.82 338.6 190.04 338.98C190.26 339.36 190.48 339.75 190.7 340.13C190.92 340.51 191.14 340.9 191.36 341.28C191.58 341.66 191.8 342.05 192.02 342.43C192.24 342.81 192.46 343.2 192.68 343.58C192.9 343.96 193.12 344.35 193.34 344.73C193.56 345.11 193.78 345.5 194 345.88C194.22 346.26 194.44 346.65 194.66 347.03C194.88 347.41 195.1 347.8 195.32 348.18C195.54 348.56 195.76 348.95 195.98 349.33C196.2 349.71 196.42 350.1 196.64 350.48C196.86 350.86 197.08 351.25 197.3 351.63C197.52 352.01 197.74 352.4 197.96 352.78C198.18 353.16 198.4 353.55 198.62 353.93C198.84 354.31 199.06 354.7 199.28 355.08C199.5 355.46 199.72 355.85 199.94 356.23C200.16 356.61 200.38 357 200.6 357.38C200.82 357.76 201.04 358.15 201.26 358.53C201.48 358.91 201.7 359.3 201.92 359.68C202.14 360.06 202.36 360.45 202.58 360.83C202.8 361.21 203.02 361.6 203.24 361.98C203.46 362.36 203.68 362.75 203.9 363.13C204.12 363.51 204.34 363.9 204.56 364.28C204.78 364.66 205 365.05 205.22 365.43C205.44 365.81 205.66 366.2 205.88 366.58C206.1 366.96 206.32 367.35 206.54 367.73C206.76 368.11 206.98 368.5 207.2 368.88C207.42 369.26 207.64 369.65 207.86 370.03C208.08 370.41 208.3 370.8 208.52 371.18C208.74 371.56 208.96 371.95 209.18 372.33C209.4 372.71 209.62 373.1 209.84 373.48C210.06 373.86 210.28 374.25 210.5 374.63C210.72 375.01 210.94 375.4 211.16 375.78C211.38 376.16 211.6 376.55 211.82 376.93C212.04 377.31 212.26 377.7 212.48 378.08C212.7 378.46 212.92 378.85 213.14 379.23C213.36 379.61 213.58 380 213.8 380.38C214.02 380.76 214.24 381.15 214.46 381.53C214.68 381.91 214.9 382.3 215.12 382.68C215.34 383.06 215.56 383.45 215.78 383.83C216 384.21 216.22 384.6 216.44 384.98C216.66 385.36 216.88 385.75 217.1 386.13C217.32 386.51 217.54 386.9 217.76 387.28C217.98 387.66 218.2 388.05 218.42 388.43C218.64 388.81 218.86 389.2 219.08 389.58C219.3 389.96 219.52 390.35 219.74 390.73C219.96 391.11 220.18 391.5 220.4 391.88C220.62 392.26 220.84 392.65 221.06 393.03C221.28 393.41 221.5 393.8 221.72 394.18C221.94 394.56 222.16 394.95 222.38 395.33C222.6 395.71 222.82 396.1 223.04 396.48C223.26 396.86 223.48 397.25 223.7 397.63C223.92 398.01 224.14 398.4 224.36 398.78C224.58 399.16 224.8 399.55 225.02 399.93C225.24 400.31 225.46 400.7 225.68 401.08C225.9 401.46 226.12 401.85 226.34 402.23C226.56 402.61 226.78 403 227 403.38C227.22 403.76 227.44 404.15 227.66 404.53C227.88 404.91 228.1 405.3 228.32 405.68C228.54 406.06 228.76 406.45 228.98 406.83C229.2 407.21 229.42 407.6 229.64 407.98C229.86 408.36 230.08 408.75 230.3 409.13C230.52 409.51 230.74 409.9 230.96 410.28C231.18 410.66 231.4 411.05 231.62 411.43C231.84 411.81 232.06 412.2 232.28 412.58C232.5 412.96 232.72 413.35 232.94 413.73C233.16 414.11 233.38 414.5 233.6 414.88C233.82 415.26 234.04 415.65 234.26 416.03C234.48 416.41 234.7 416.8 234.92 417.18C235.14 417.56 235.36 417.95 235.58 418.33C235.8 418.71 236.02 419.1 236.24 419.48C236.46 419.86 236.68 420.25 236.9 420.63C237.12 421.01 237.34 421.4 237.56 421.78C237.78 422.16 238 422.55 238.22 422.93C238.44 423.31 238.66 423.7 238.88 424.08C239.1 424.46 239.32 424.85 239.54 425.23C239.76 425.61 239.98 426 240.2 426.38C240.42 426.76 240.64 427.15 240.86 427.53C241.08 427.91 241.3 428.3 241.52 428.68C241.74 429.06 241.96 429.45 242.18 429.83C242.4 430.21 242.62 430.6 242.84 430.98C243.06 431.36 243.28 431.75 243.5 432.13C243.72 432.51 243.94 432.9 244.16 433.28C244.38 433.66 244.6 434.05 244.82 434.43C245.04 434.81 245.26 435.2 245.48 435.58C245.7 435.96 245.92 436.35 246.14 436.73C246.36 437.11 246.58 437.5 246.8 437.88C247.02 438.26 247.24 438.65 247.46 439.03C247.68 439.41 247.9 439.8 248.12 440.18C248.34 440.56 248.56 440.95 248.78 441.33C249 441.71 249.22 442.1 249.44 442.48C249.66 442.86 249.88 443.25 250.1 443.63C250.32 444.01 250.54 444.4 250.76 444.78C250.98 445.16 251.2 445.55 251.42 445.93C251.64 446.31 251.86 446.7 252.08 447.08C252.3 447.46 252.52 447.85 252.74 448.23C252.96 448.61 253.18 449 253.4 449.38C253.62 449.76 253.84 450.15 254.06 450.53C254.28 450.91 254.5 451.3 254.72 451.68C254.94 452.06 255.16 452.45 255.38 452.83C255.6 453.21 255.82 453.6 256.04 453.98C256.26 454.36 256.48 454.75 256.7 455.13C256.92 455.51 257.14 455.9 257.36 456.28C257.58 456.66 257.8 457.05 258.02 457.43C258.24 457.81 258.46 458.2 258.68 458.58C258.9 458.96 259.12 459.35 259.34 459.73C259.56 460.11 259.78 460.5 260 460.88C260.22 461.26 260.44 461.65 260.66 462.03C260.88 462.41 261.1 462.8 261.32 463.18C261.54 463.56 261.76 463.95 261.98 464.33C262.2 464.71 262.42 465.1 262.64 465.48C262.86 465.86 263.08 466.25 263.3 466.63C263.52 467.01 263.74 467.4 263.96 467.78C264.18 468.16 264.4 468.55 264.62 468.93C264.84 469.31 265.06 469.7 265.28 470.08C265.5 470.46 265.72 470.85 265.94 471.23C266.16 471.61 266.38 472 266.6 472.38C266.82 472.76 267.04 473.15 267.26 473.53C267.48 473.91 267.7 474.3 267.92 474.68C268.14 475.06 268.36 475.45 268.58 475.83C268.8 476.21 269.02 476.6 269.24 476.98C269.46 477.36 269.68 477.75 269.9 478.13C270.12 478.51 270.34 478.9 270.56 479.28C270.78 479.66 271 480.05 271.22 480.43C271.44 480.81 271.66 481.2 271.88 481.58C272.1 481.96 272.32 482.35 272.54 482.73C272.76 483.11 272.98 483.5 273.2 483.88C273.42 484.26 273.64 484.65 273.86 485.03C274.08 485.41 274.3 485.8 274.52 486.18C274.74 486.56 274.96 486.95 275.18 487.33C275.4 487.71 275.62 488.1 275.84 488.48C276.06 488.86 276.28 489.25 276.5 489.63C276.72 490.01 276.94 490.4 277.16 490.78C277.38 491.16 277.6 491.55 277.82 491.93C278.04 492.31 278.26 492.7 278.48 493.08C278.7 493.46 278.92 493.85 279.14 494.23C279.36 494.61 279.58 495 279.8 495.38C280.02 495.76 280.24 496.15 280.46 496.53C280.68 496.91 280.9 497.3 281.12 497.68C281.34 498.06 281.56 498.45 281.78 498.83C282 499.21 282.22 499.6 282.44 499.98C282.66 500.36 282.88 500.75 283.1 501.13C283.32 501.51 283.54 501.9 283.76 502.28C283.98 502.66 284.2 503.05 284.42 503.43C284.64 503.81 284.86 504.2 285.08 504.58C285.3 504.96 285.52 505.35 285.74 505.73C285.96 506.11 286.18 506.5 286.4 506.88C286.62 507.26 286.84 507.65 287.06 508.03C287.28 508.41 287.5 508.8 287.72 509.18C287.94 509.56 288.16 509.95 288.38 510.33C288.6 510.71 288.82 511.1 289.04 511.48C289.26 511.86 289.48 512.25 289.7 512.63C289.92 513.01 290.14 513.4 290.36 513.78C290.58 514.16 290.8 514.55 291.02 514.93C291.24 515.31 291.46 515.7 291.68 516.08C291.9 516.46 292.12 516.85 292.34 517.23C292.56 517.61 292.78 518 293 518.38C293.22 518.76 293.44 519.15 293.66 519.53C293.88 519.91 294.1 520.3 294.32 520.68C294.54 521.06 294.76 521.45 294.98 521.83C295.2 522.21 295.42 522.6 295.64 522.98C295.86 523.36 296.08 523.75 296.3 524.13C296.52 524.51 296.74 524.9 296.96 525.28C297.18 525.66 297.4 526.05 297.62 526.43C297.84 526.81 298.06 527.2 298.28 527.58C298.5 527.96 298.72 528.35 298.94 528.73C299.16 529.11 299.38 529.5 299.6 529.88C299.82 530.26 300.04 530.65 300.26 531.03C300.48 531.41 300.7 531.8 300.92 532.18C301.14 532.56 301.36 532.95 301.58 533.33C301.8 533.71 302.02 534.1 302.24 534.48C302.46 534.86 302.68 535.25 302.9 535.63C303.12 536.01 303.34 536.4 303.56 536.78C303.78 537.16 304 537.55 304.22 537.93C304.44 538.31 304.66 538.7 304.88 539.08C305.1 539.46 305.32 539.85 305.54 540.23C305.76 540.61 305.98 541 306.2 541.38C306.42 541.76 306.64 542.15 306.86 542.53C307.08 542.91 307.3 543.3 307.52 543.68C307.74 544.06 307.96 544.45 308.18 544.83C308.4 545.21 308.62 545.6 308.84 545.98C309.06 546.36 309.28 546.75 309.5 547.13C309.72 547.51 309.94 547.9 310.16 548.28C310.38 548.66 310.6 549.05 310.82 549.43C311.04 549.81 311.26 550.2 311.48 550.58C311.7 550.96 311.92 551.35 312.14 551.73C312.36 552.11 312.58 552.5 312.8 552.88C313.02 553.26 313.24 553.65 313.46 554.03C313.68 554.41 313.9 554.8 314.12 555.18C314.34 555.56 314.56 555.95 314.78 556.33C315 556.71 315.22 557.1 315.44 557.48C315.66 557.86 315.88 558.25 316.1 558.63C316.32 559.01 316.54 559.4 316.76 559.78C316.98 560.16 317.2 560.55 317.42 560.93C317.64 561.31 317.86 561.7 318.08 562.08C318.3 562.46 318.52 562.85 318.74 563.23C318.96 563.61 319.18 564 319.4 564.38C319.62 564.76 319.84 565.15 320.06 565.53C320.28 565.91 320.5 566.3 320.72 566.68C320.94 567.06 321.16 567.45 321.38 567.83C321.6 568.21 321.82 568.6 322.04 568.98C322.26 569.36 322.48 569.75 322.7 570.13C322.92 570.51 323.14 570.9 323.36 571.28C323.58 571.66 323.8 572.05 324.02 572.43C324.24 572.81 324.46 573.2 324.68 573.58C324.9 573.96 325.12 574.35 325.34 574.73C325.56 575.11 325.78 575.5 326 575.88C326.22 576.26 326.44 576.65 326.66 577.03C326.88 577.41 327.1 577.8 327.32 578.18C327.54 578.56 327.76 578.95 327.98 579.33C328.2 579.71 328.42 580.1 328.64 580.48C328.86 580.86 329.08 581.25 329.3 581.63C329.52 582.01 329.74 582.4 329.96 582.78C330.18 583.16 330.4 583.55 330.62 583.93C330.84 584.31 331.06 584.7 331.28 585.08C331.5 585.46 331.72 585.85 331.94 586.23C332.16 586.61 332.38 587 332.6 587.38C332.82 587.76 333.04 588.15 333.26 588.53C333.48 588.91 333.7 589.3 333.92 589.68C334.14 590.06 334.36 590.45 334.58 590.83C334.8 591.21 335.02 591.6 335.24 591.98C335.46 592.36 335.68 592.75 335.9 593.13C336.12 593.51 336.34 593.9 336.56 594.28C336.78 594.66 337 595.05 337.22 595.43C337.44 595.81 337.66 596.2 337.88 596.58C338.1 596.96 338.32 597.35 338.54 597.73C338.76 598.11 338.98 598.5 339.2 598.88C339.42 599.26 339.64 599.65 339.86 600.03C340.08 600.41 340.3 600.8 340.52 601.18C340.74 601.56 340.96 601.95 341.18 602.33C341.4 602.71 341.62 603.1 341.84 603.48C342.06 603.86 342.28 604.25 342.5 604.63C342.72 605.01 342.94 605.4 343.16 605.78C343.38 606.16 343.6 606.55 343.82 606.93C344.04 607.31 344.26 607.7 344.48 608.08C344.7 608.46 344.92 608.85 345.14 609.23C345.36 609.61 345.58 610 345.8 610.38C346.02 610.76 346.24 611.15 346.46 611.53C346.68 611.91 346.9 612.3 347.12 612.68C347.34 613.06 347.56 613.45 347.78 613.83C348 614.21 348.22 614.6 348.44 614.98C348.66 615.36 348.88 615.75 349.1 616.13C349.32 616.51 349.54 616.9 349.76 617.28C349.98 617.66 350.2 618.05 350.42 618.43C350.64 618.81 350.86 619.2 351.08 619.58C351.3 619.96 351.52 620.35 351.74 620.73C351.96 621.11 352.18 621.5 352.4 621.88C352.62 622.26 352.84 622.65 353.06 623.03C353.28 623.41 353.5 623.8 353.72 624.18C353.94 624.56 354.16 624.95 354.38 625.33C354.6 625.71 354.82 626.1 355.04 626.48C355.26 626.86 355.48 627.25 355.7 627.63C355.92 628.01 356.14 628.4 356.36 628.78C356.58 629.16 356.8 629.55 357.02 629.93C357.24 630.31 357.46 630.7 357.68 631.08C357.9 631.46 358.12 631.85 358.34 632.23C358.56 632.61 358.78 633 359 633.38C359.22 633.76 359.44 634.15 359.66 634.53C359.88 634.91 360.1 635.3 360.32 635.68C360.54 636.06 360.76 636.45 360.98 636.83C361.2 637.21 361.42 637.6 361.64 637.98C361.86 638.36 362.08 638.75 362.3 639.13C362.52 639.51 362.74 639.9 362.96 640.28C363.18 640.66 363.4 641.05 363.62 641.43C363.84 641.81 364.06 642.2 364.28 642.58C364.5 642.96 364.72 643.35 364.94 643.73C365.16 644.11 365.38 644.5 365.6 644.88C365.82 645.26 366.04 645.65 366.26 646.03C366.48 646.41 366.7 646.8 366.92 647.18C367.14 647.56 367.36 647.95 367.58 648.33C367.8 648.71 368.02 649.1 368.24 649.48C368.46 649.86 368.68 650.25 368.9 650.63C369.12 651.01 369.34 651.4 369.56 651.78C369.78 652.16 370 652.55 370.22 652.93C370.44 653.31 370.66 653.7 370.88 654.08C371.1 654.46 371.32 654.85 371.54 655.23C371.76 655.61 371.98 656 372.2 656.38C372.42 656.76 372.64 657.15 372.86 657.53C373.08 657.91 373.3 658.3 373.52 658.68C373.74 659.06 373.96 659.45 374.18 659.83C374.4 660.21 374.62 660.6 374.84 660.98C375.06 661.36 375.28 661.75 375.5 662.13C375.72 662.51 375.94 662.9 376.16 663.28C376.38 663.66 376.6 664.05 376.82 664.43C377.04 664.81 377.26 665.2 377.48 665.58C377.7 665.96 377.92 666.35 378.14 666.73C378.36 667.11 378.58 667.5 378.8 667.88C379.02 668.26 379.24 668.65 379.46 669.03C379.68 669.41 379.9 669.8 380.12 670.18C380.34 670.56 380.56 670.95 380.78 671.33C381 671.71 381.22 672.1 381.44 672.48C381.66 672.86 381.88 673.25 382.1 673.63C382.32 674.01 382.54 674.4 382.76 674.78C382.98 675.16 383.2 675.55 383.42 675.93C383.64 676.31 383.86 676.7 384.08 677.08C384.3 677.46 384.52 677.85 384.74 678.23C384.96 678.61 385.18 679 385.4 679.38C385.62 679.76 385.84 680.15 386.06 680.53C386.28 680.91 386.5 681.3 386.72 681.68C386.94 682.06 387.16 682.45 387.38 682.83C387.6 683.21 387.82 683.6 388.04 683.98C388.26 684.36 388.48 684.75 388.7 685.13C388.92 685.51 389.14 685.9 389.36 686.28C389.58 686.66 389.8 687.05 390.02 687.43C390.24 687.81 390.46 688.2 390.68 688.58C390.9 688.96 391.12 689.35 391.34 689.73C391.56 690.11 391.78 690.5 392 690.88C392.22 691.26 392.44 691.65 392.66 692.03C392.88 692.41 393.1 692.8 393.32 693.18C393.54 693.56 393.76 693.95 393.98 694.33C394.2 694.71 394.42 695.1 394.64 695.48C394.86 695.86 395.08 696.25 395.3 696.63C395.52 697.01 395.74 697.4 395.96 697.78C396.18 698.16 396.4 698.55 396.62 698.93C396.84 699.31 397.06 699.7 397.28 700.08C397.5 700.46 397.72 700.85 397.94 701.23C398.16 701.61 398.38 702 398.6 702.38C398.82 702.76 399.04 703.15 399.26 703.53C399.48 703.91 399.7 704.3 399.92 704.68C400.14 705.06 400.36 705.45 400.58 705.83C400.8 706.21 401.02 706.6 401.24 706.98C401.46 707.36 401.68 707.75 401.9 708.13C402.12 708.51 402.34 708.9 402.56 709.28C402.78 709.66 403 710.05 403.22 710.43C403.44 710.81 403.66 711.2 403.88 711.58C404.1 711.96 404.32 712.35 404.54 712.73C404.76 713.11 404.98 713.5 405.2 713.88C405.42 714.26 405.64 714.65 405.86 715.03C406.08 715.41 406.3 715.8 406.52 716.18C406.74 716.56 406.96 716.95 407.18 717.33C407.4 717.71 407.62 718.1 407.84 718.48C408.06 718.86 408.28 719.25 408.5 719.63C408.72 720.01 408.94 720.4 409.16 720.78C409.38 721.16 409.6 721.55 409.82 721.93C410.04 722.31 410.26 722.7 410.48 723.08C410.7 723.46 410.92 723.85 411.14 724.23C411.36 724.61 411.58 725 411.8 725.38C412.02 725.76 412.24 726.15 412.46 726.53C412.68 726.91 412.9 727.3 413.12 727.68C413.34 728.06 413.56 728.45 413.78 728.83C414 729.21 414.22 729.6 414.44 729.98C414.66 730.36 414.88 730.75 415.1 731.13C415.32 731.51 415.54 731.9 415.76 732.28C415.98 732.66 416.2 733.05 416.42 733.43C416.64 733.81 416.86 734.2 417.08 734.58C417.3 734.96 417.52 735.35 417.74 735.73C417.96 736.11 418.18 736.5 418.4 736.88C418.62 737.26 418.84 737.65 419.06 738.03C419.28 738.41 419.5 738.8 419.72 739.18C419.94 739.56 420.16 739.95 420.38 740.33C420.6 740.71 420.82 741.1 421.04 741.48C421.26 741.86 421.48 742.25 421.7 742.63C421.92 743.01 422.14 743.4 422.36 743.78C422.58 744.16 422.8 744.55 423.02 744.93C423.24 745.31 423.46 745.7 423.68 746.08C423.9 746.46 424.12 746.85 424.34 747.23C424.56 747.61 424.78 748 425 748.38C425.22 748.76 425.44 749.15 425.66 749.53C425.88 749.91 426.1 750.3 426.32 750.68C426.54 751.06 426.76 751.45 426.98 751.83C427.2 752.21 427.42 752.6 427.64 752.98C427.86 753.36 428.08 753.75 428.3 754.13C428.52 754.51 428.74 754.9 428.96 755.28C429.18 755.66 429.4 756.05 429.62 756.43C429.84 756.81 430.06 757.2 430.28 757.58C430.5 757.96 430.72 758.35 430.94 758.73C431.16 759.11 431.38 759.5 431.6 759.88C431.82 760.26 432.04 760.65 432.26 761.03C432.48 761.41 432.7 761.8 432.92 762.18C433.14 762.56 433.36 762.95 433.58 763.33C433.8 763.71 434.02 764.1 434.24 764.48C434.46 764.86 434.68 765.25 434.9 765.63C435.12 766.01 435.34 766.4 435.56 766.78C435.78 767.16 436 767.55 436.22 767.93C436.44 768.31 436.66 768.7 436.88 769.08C437.1 769.46 437.32 769.85 437.54 770.23C437.76 770.61 437.98 771 438.2 771.38C438.42 771.76 438.64 772.15 438.86 772.53C439.08 772.91 439.3 773.3 439.52 773.68C439.74 774.06 439.96 774.45 440.18 774.83C440.4 775.21 440.62 775.6 440.84 775.98C441.06 776.36 441.28 776.75 441.5 777.13C441.72 777.51 441.94 777.9 442.16 778.28C442.38 778.66 442.6 779.05 442.82 779.43C443.04 779.81 443.26 780.2 443.48 780.58C443.7 780.96 443.92 781.35 444.14 781.73C444.36 782.11 444.58 782.5 444.8 782.88C445.02 783.26 445.24 783.65 445.46 784.03C445.68 784.41 445.9 784.8 446.12 785.18C446.34 785.56 446.56 785.95 446.78 786.33C447 786.71 447.22 787.1 447.44 787.48C447.66 787.86 447.88 788.25 448.1 788.63C448.32 789.01 448.54 789.4 448.76 789.78C448.98 790.16 449.2 790.55 449.42 790.93C449.64 791.31 449.86 791.7 450.08 792.08C450.3 792.46 450.52 792.85 450.74 793.23C450.96 793.61 451.18 794 451.4 794.38C451.62 794.76 451.84 795.15 452.06 795.53C452.28 795.91 452.5 796.3 452.72 796.68C452.94 797.06 453.16 797.45 453.38 797.83C453.6 798.21 453.82 798.6 454.04 798.98C454.26 799.36 454.48 799.75 454.7 800.13C454.92 800.51 455.14 800.9 455.36 801.28C455.58 801.66 455.8 802.05 456.02 802.43C456.24 802.81 456.46 803.2 456.68 803.58C456.9 803.96 457.12 804.35 457.34 804.73C457.56 805.11 457.78 805.5 458 805.88C458.22 806.26 458.44 806.65 458.66 807.03C458.88 807.41 459.1 807.8 459.32 808.18C459.54 808.56 459.76 808.95 459.98 809.33C460.2 809.71 460.42 810.1 460.64 810.48C460.86 810.86 461.08 811.25 461.3 811.63C461.52 812.01 461.74 812.4 461.96 812.78C462.18 813.16 462.4 813.55 462.62 813.93C462.84 814.31 463.06 814.7 463.28 815.08C463.5 815.46 463.72 815.85 463.94 816.23C464.16 816.61 464.38 817 464.6 817.38C464.82 817.76 465.04 818.15 465.26 818.53C465.48 818.91 465.7 819.3 465.92 819.68C466.14 820.06 466.36 820.45 466.58 820.83C466.8 821.21 467.02 821.6 467.24 821.98C467.46 822.36 467.68 822.75 467.9 823.13C468.12 823.51 468.34 823.9 468.56 824.28C468.78 824.66 469 825.05 469.22 825.43C469.44 825.81 469.66 826.2 469.88 826.58C470.1 826.96 470.32 827.35 470.54 827.73C470.76 828.11 470.98 828.5 471.2 828.88C471.42 829.26 471.64 829.65 471.86 830.03C472.08 830.41 472.3 830.8 472.52 831.18C472.74 831.56 472.96 831.95 473.18 832.33C473.4 832.71 473.62 833.1 473.84 833.48C474.06 833.86 474.28 834.25 474.5 834.63C474.72 835.01 474.94 835.4 475.16 835.78C475.38 836.16 475.6 836.55 475.82 836.93C476.04 837.31 476.26 837.7 476.48 838.08C476.7 838.46 476.92 838.85 477.14 839.23C477.36 839.61 477.58 840 477.8 840.38C478.02 840.76 478.24 841.15 478.46 841.53C478.68 841.91 478.9 842.3 479.12 842.68C479.34 843.06 479.56 843.45 479.78 843.83C480 844.21 480.22 844.6 480.44 844.98C480.66 845.36 480.88 845.75 481.1 846.13C481.32 846.51 481.54 846.9 481.76 847.28C481.98 847.66 482.2 848.05 482.42 848.43C482.64 848.81 482.86 849.2 483.08 849.58C483.3 849.96 483.52 850.35 483.74 850.73C483.96 851.11 484.18 851.5 484.4 851.88C484.62 852.26 484.84 852.65 485.06 853.03C485.28 853.41 485.5 853.8 485.72 854.18C485.94 854.56 486.16 854.95 486.38 855.33C486.6 855.71 486.82 856.1 487.04 856.48C487.26 856.86 487.48 857.25 487.7 857.63C487.92 858.01 488.14 858.4 488.36 858.78C488.58 859.16 488.8 859.55 489.02 859.93C489.24 860.31 489.46 860.7 489.68 861.08C489.9 861.46 490.12 861.85 490.34 862.23C490.56 862.61 490.78 863 491 863.38C491.22 863.76 491.44 864.15 491.66 864.53C491.88 864.91 492.1 865.3 492.32 865.68C492.54 866.06 492.76 866.45 492.98 866.83C493.2 867.21 493.42 867.6 493.64 867.98C493.86 868.36 494.08 868.75 494.3 869.13C494.52 869.51 494.74 869.9 494.96 870.28C495.18 870.66 495.4 871.05 495.62 871.43C495.84 871.81 496.06 872.2 496.28 872.58C496.5 872.96 496.72 873.35 496.94 873.73C497.16 874.11 497.38 874.5 497.6 874.88C497.82 875.26 498.04 875.65 498.26 876.03C498.48 876.41 498.7 876.8 498.92 877.18C499.14 877.56 499.36 877.95 499.58 878.33C499.8 878.71 500.02 879.1 500.24 879.48C500.46 879.86 500.68 880.25 500.9 880.63C501.12 881.01 501.34 881.4 501.56 881.78C501.78 882.16 502 882.55 502.22 882.93C502.44 883.31 502.66 883.7 502.88 884.08C503.1 884.46 503.32 884.85 503.54 885.23C503.76 885.61 503.98 886 504.2 886.38C504.42 886.76 504.64 887.15 504.86 887.53C505.08 887.91 505.3 888.3 505.52 888.68C505.74 889.06 505.96 889.45 506.18 889.83C506.4 890.21 506.62 890.6 506.84 890.98C507.06 891.36 507.28 891.75 507.5 892.13C507.72 892.51 507.94 892.9 508.16 893.28C508.38 893.66 508.6 894.05 508.82 894.43C509.04 894.81 509.26 895.2 509.48 895.58C509.7 895.96 509.92 896.35 510.14 896.73C510.36 897.11 510.58 897.5 510.8 897.88C511.02 898.26 511.24 898.65 511.46 899.03C511.68 899.41 511.9 899.8 512.12 900.18C512.34 900.56 512.56 900.95 512.78 901.33C513 901.71 513.22 902.1 513.44 902.48C513.66 902.86 513.88 903.25 514.1 903.63C514.32 904.01 514.54 904.4 514.76 904.78C514.98 905.16 515.2 905.55 515.42 905.93C515.64 906.31 515.86 906.7 516.08 907.08C516.3 907.46 516.52 907.85 516.74 908.23C516.96 908.61 517.18 909 517.4 909.38C517.62 909.76 517.84 910.15 518.06 910.53C518.28 910.91 518.5 911.3 518.72 911.68C518.94 912.06 519.16 912.45 519.38 912.83C519.6 913.21 519.82 913.6 520.04 913.98C520.26 914.36 520.48 914.75 520.7 915.13C520.92 915.51 521.14 915.9 521.36 916.28C521.58 916.66 521.8 917.05 522.02 917.43C522.24 917.81 522.46 918.2 522.68 918.58C522.9 918.96 523.12 919.35 523.34 919.73C523.56 920.11 523.78 920.5 524 920.88C524.22 921.26 524.44 921.65 524.66 922.03C524.88 922.41 525.1 922.8 525.32 923.18C525.54 923.56 525.76 923.95 525.98 924.33C526.2 924.71 526.42 925.1 526.64 925.48C526.86 925.86 527.08 926.25 527.3 926.63C527.52 927.01 527.74 927.4 527.96 927.78C528.18 928.16 528.4 928.55 528.62 928.93C528.84 929.31 529.06 929.7 529.28 930.08C529.5 930.46 529.72 930.85 529.94 931.23C530.16 931.61 530.38 932 530.6 932.38C530.82 932.76 531.04 933.15 531.26 933.53C531.48 933.91 531.7 934.3 531.92 934.68C532.14 935.06 532.36 935.45 532.58 935.83C532.8 936.21 533.02 936.6 533.24 936.98C533.46 937.36 533.68 937.75 533.9 938.13C534.12 938.51 534.34 938.9 534.56 939.28C534.78 939.66 535 940.05 535.22 940.43C535.44 940.81 535.66 941.2 535.88 941.58C536.1 941.96 536.32 942.35 536.54 942.73C536.76 943.11 536.98 943.5 537.2 943.88C537.42 944.26 537.64 944.65 537.86 945.03C538.08 945.41 538.3 945.8 538.52 946.18C538.74 946.56 538.96 946.95 539.18 947.33C539.4 947.71 539.62 948.1 539.84 948.48C540.06 948.86 540.28 949.25 540.5 949.63C540.72 950.01 540.94 950.4 541.16 950.78C541.38 951.16 541.6 951.55 541.82 951.93C542.04 952.31 542.26 952.7 542.48 953.08C542.7 953.46 542.92 953.85 543.14 954.23C543.36 954.61 543.58 955 543.8 955.38C544.02 955.76 544.24 956.15 544.46 956.53C544.68 956.91 544.9 957.3 545.12 957.68C545.34 958.06 545.56 958.45 545.78 958.83C546 959.21 546.22 959.6 546.44 959.98C546.66 960.36 546.88 960.75 547.1 961.13C547.32 961.51 547.54 961.9 547.76 962.28C547.98 962.66 548.2 963.05 548.42 963.43C548.64 963.81 548.86 964.2 549.08 964.58C549.3 964.96 549.52 965.35 549.74 965.73C549.96 966.11 550.18 966.5 550.4 966.88C550.62 967.26 550.84 967.65 551.06 968.03C551.28 968.41 551.5 968.8 551.72 969.18C551.94 969.56 552.16 969.95 552.38 970.33C552.6 970.71 552.82 971.1 553.04 971.48C553.26 971.86 553.48 972.25 553.7 972.63C553.92 973.01 554.14 973.4 554.36 973.78C554.58 974.16 554.8 974.55 555.02 974.93C555.24 975.31 555.46 975.7 555.68 976.08C555.9 976.46 556.12 976.85 556.34 977.23C556.56 977.61 556.78 978 557 978.38C557.22 978.76 557.44 979.15 557.66 979.53C557.88 979.91 558.1 980.3 558.32 980.68C558.54 981.06 558.76 981.45 558.98 981.83C559.2 982.21 559.42 982.6 559.64 982.98C559.86 983.36 560.08 983.75 560.3 984.13C560.52 984.51 560.74 984.9 560.96 985.28C561.18 985.66 561.4 986.05 561.62 986.43C561.84 986.81 562.06 987.2 562.28 987.58C562.5 987.96 562.72 988.35 562.94 988.73C563.16 989.11 563.38 989.5 563.6 989.88C563.82 990.26 564.04 990.65 564.26 991.03C564.48 991.41 564.7 991.8 564.92 992.18C565.14 992.56 565.36 992.95 565.58 993.33C565.8 993.71 566.02 994.1 566.24 994.48C566.46 994.86 566.68 995.25 566.9 995.63C567.12 996.01 567.34 996.4 567.56 996.78C567.78 997.16 568 997.55 568.22 997.93C568.44 998.31 568.66 998.7 568.88 999.08C569.1 999.46 569.32 999.85 569.54 1000.23C569.76 1000.61 569.98 1001 570.2 1001.38C570.42 1001.76 570.64 1002.15 570.86 1002.53C571.08 1002.91 571.3 1003.3 571.52 1003.68C571.74 1004.06 571.96 1004.45 572.18 1004.83C572.4 1005.21 572.62 1005.6 572.84 1005.98C573.06 1006.36 573.28 1006.75 573.5 1007.13C573.72 1007.51 573.94 1007.9 574.16 1008.28C574.38 1008.66 574.6 1009.05 574.82 1009.43C575.04 1009.81 575.26 1010.2 575.48 1010.58C575.7 1010.96 575.92 1011.35 576.14 1011.73C576.36 1012.11 576.58 1012.5 576.8 1012.88C577.02 1013.26 577.24 1013.65 577.46 1014.03C577.68 1014.41 577.9 1014.8 578.12 1015.18C578.34 1015.56 578.56 1015.95 578.78 1016.33C579 1016.71 579.22 1017.1 579.44 1017.48C579.66 1017.86 579.88 1018.25 580.1 1018.63C580.32 1019.01 580.54 1019.4 580.76 1019.78C580.98 1020.16 581.2 1020.55 581.42 1020.93C581.64 1021.31 581.86 1021.7 582.08 1022.08C582.3 1022.46 582.52 1022.85 582.74 1023.23C582.96 1023.61 583.18 1024 583.4 1024.38C583.62 1024.76 583.84 1025.15 584.06 1025.53C584.28 1025.91 584.5 1026.3 584.72 1026.68C584.94 1027.06 585.16 1027.45 585.38 1027.83C585.6 1028.21 585.82 1028.6 586.04 1028.98C586.26 1029.36 586.48 1029.75 586.7 1030.13C586.92 1030.51 587.14 1030.9 587.36 1031.28C587.58 1031.66 587.8 1032.05 588.02 1032.43C588.24 1032.81 588.46 1033.2 588.68 1033.58C588.9 1033.96 589.12 1034.35 589.34 1034.73C589.56 1035.11 589.78 1035.5 590 1035.88C590.22 1036.26 590.44 1036.65 590.66 1037.03C590.88 1037.41 591.1 1037.8 591.32 1038.18C591.54 1038.56 591.76 1038.95 591.98 1039.33C592.2 1039.71 592.42 1040.1 592.64 1040.48C592.86 1040.86 593.08 1041.25 593.3 1041.63C593.52 1042.01 593.74 1042.4 593.96 1042.78C594.18 1043.16 594.4 1043.55 594.62 1043.93C594.84 1044.31 595.06 1044.7 595.28 1045.08C595.5 1045.46 595.72 1045.85 595.94 1046.23C596.16 1046.61 596.38 1047 596.6 1047.38C596.82 1047.76 597.04 1048.15 597.26 1048.53C597.48 1048.91 597.7 1049.3 597.92 1049.68C598.14 1050.06 598.36 1050.45 598.58 1050.83C598.8 1051.21 599.02 1051.6 599.24 1051.98C599.46 1052.36 599.68 1052.75 599.9 1053.13C600.12 1053.51 600.34 1053.9 600.56 1054.28C600.78 1054.66 601 1055.05 601.22 1055.43C601.44 1055.81 601.66 1056.2 601.88 1056.58C602.1 1056.96 602.32 1057.35 602.54 1057.73C602.76 1058.11 602.98 1058.5 603.2 1058.88C603.42 1059.26 603.64 1059.65 603.86 1060.03C604.08 1060.41 604.3 1060.8 604.52 1061.18C604.74 1061.56 604.96 1061.95 605.18 1062.33C605.4 1062.71 605.62 1063.1 605.84 1063.48C606.06 1063.86 606.28 1064.25 606.5 1064.63C606.72 1065.01 606.94 1065.4 607.16 1065.78C607.38 1066.16 607.6 1066.55 607.82 1066.93C608.04 1067.31 608.26 1067.7 608.48 1068.08C608.7 1068.46 608.92 1068.85 609.14 1069.23C609.36 1069.61 609.58 1070 609.8 1070.38C610.02 1070.76 610.24 1071.15 610.46 1071.53C610.68 1071.91 610.9 1072.3 611.12 1072.68C611.34 1073.06 611.56 1073.45 611.78 1073.83C612 1074.21 612.22 1074.6 612.44 1074.98C612.66 1075.36 612.88 1075.75 613.1 1076.13C613.32 1076.51 613.54 1076.9 613.76 1077.28C613.98 1077.66 614.2 1078.05 614.42 1078.43C614.64 1078.81 614.86 1079.2 615.08 1079.58C615.3 1079.96 615.52 1080.35 615.74 1080.73C615.96 1081.11 616.18 1081.5 616.4 1081.88C616.62 1082.26 616.84 1082.65 617.06 1083.03C617.28 1083.41 617.5 1083.8 617.72 1084.18C617.94 1084.56 618.16 1084.95 618.38 1085.33C618.6 1085.71 618.82 1086.1 619.04 1086.48C619.26 1086.86 619.48 1087.25 619.7 1087.63C619.92 1088.01 620.14 1088.4 620.36 1088.78C620.58 1089.16 620.8 1089.55 621.02 1089.93C621.24 1090.31 621.46 1090.7 621.68 1091.08C621.9 1091.46 622.12 1091.85 622.34 1092.23C622.56 1092.61 622.78 1093 623 1093.38C623.22 1093.76 623.44 1094.15 623.66 1094.53C623.88 1094.91 624.1 1095.3 624.32 1095.68C624.54 1096.06 624.76 1096.45 624.98 1096.83C625.2 1097.21 625.42 1097.6 625.64 1097.98C625.86 1098.36 626.08 1098.75 626.3 1099.13C626.52 1099.51 626.74 1099.9 626.96 1100.28C627.18 1100.66 627.4 1101.05 627.62 1101.43C627.84 1101.81 628.06 1102.2 628.28 1102.58C628.5 1102.96 628.72 1103.35 628.94 1103.73C629.16 1104.11 629.38 1104.5 629.6 1104.88C629.82 1105.26 630.04 1105.65 630.26 1106.03C630.48 1106.41 630.7 1106.8 630.92 1107.18C631.14 1107.56 631.36 1107.95 631.58 1108.33C631.8 1108.71 632.02 1109.1 632.24 1109.48C632.46 1109.86 632.68 1110.25 632.9 1110.63C633.12 1111.01 633.34 1111.4 633.56 1111.78C633.78 1112.16 634 1112.55 634.22 1112.93C634.44 1113.31 634.66 1113.7 634.88 1114.08C635.1 1114.46 635.32 1114.85 635.54 1115.23C635.76 1115.61 635.98 1116 636.2 1116.38C636.42 1116.76 636.64 1117.15 636.86 1117.53C637.08 1117.91 637.3 1118.3 637.52 1118.68C637.74 1119.06 637.96 1119.45 638.18 1119.83C638.4 1120.21 638.62 1120.6 638.84 1120.98C639.06 1121.36 639.28 1121.75 639.5 1122.13C639.72 1122.51 639.94 1122.9 640.16 1123.28C640.38 1123.66 640.6 1124.05 640.82 1124.43C641.04 1124.81 641.26 1125.2 641.48 1125.58C641.7 1125.96 641.92 1126.35 642.14 1126.73C642.36 1127.11 642.58 1127.5 642.8 1127.88C643.02 1128.26 643.24 1128.65 643.46 1129.03C643.68 1129.41 643.9 1129.8 644.12 1130.18C644.34 1130.56 644.56 1130.95 644.78 1131.33C645 1131.71 645.22 1132.1 645.44 1132.48C645.66 1132.86 645.88 1133.25 646.1 1133.63C646.32 1134.01 646.54 1134.4 646.76 1134.78C646.98 1135.16 647.2 1135.55 647.42 1135.93C647.64 1136.31 647.86 1136.7 648.08 1137.08C648.3 1137.46 648.52 1137.85 648.74 1138.23C648.96 1138.61 649.18 1139 649.4 1139.38C649.62 1139.76 649.84 1140.15 650.06 1140.53C650.28 1140.91 650.5 1141.3 650.72 1141.68C650.94 1142.06 651.16 1142.45 651.38 1142.83C651.6 1143.21 651.82 1143.6 652.04 1143.98C652.26 1144.36 652.48 1144.75 652.7 1145.13C652.92 1145.51 653.14 1145.9 653.36 1146.28C653.58 1146.66 653.8 1147.05 654.02 1147.43C654.24 1147.81 654.46 1148.2 654.68 1148.58C654.9 1148.96 655.12 1149.35 655.34 1149.73C655.56 1150.11 655.78 1150.5 656 1150.88C656.22 1151.26 656.44 1151.65 656.66 1152.03C656.88 1152.41 657.1 1152.8 657.32 1153.18C657.54 1153.56 657.76 1153.95 657.98 1154.33C658.2 1154.71 658.42 1155.1 658.64 1155.48C658.86 1155.86 659.08 1156.25 659.3 1156.63C659.52 1157.01 659.74 1157.4 659.96 1157.78C660.18 1158.16 660.4 1158.55 660.62 1158.93C660.84 1159.31 661.06 1159.7 661.28 1160.08C661.5 1160.46 661.72 1160.85 661.94 1161.23C662.16 1161.61 662.38 1162 662.6 1162.38C662.82 1162.76 663.04 1163.15 663.26 1163.53C663.48 1163.91 663.7 1164.3 663.92 1164.68C664.14 1165.06 664.36 1165.45 664.58 1165.83C664.8 1166.21 665.02 1166.6 665.24 1166.98C665.46 1167.36 665.68 1167.75 665.9 1168.13C666.12 1168.51 666.34 1168.9 666.56 1169.28C666.78 1169.66 667 1170.05 667.22 1170.43C667.44 1170.81 667.66 1171.2 667.88 1171.58C668.1 1171.96 668.32 1172.35 668.54 1172.73C668.76 1173.11 668.98 1173.5 669.2 1173.88C669.42 1174.26 669.64 1174.65 669.86 1175.03C670.08 1175.41 670.3 1175.8 670.52 1176.18C670.74 1176.56 670.96 1176.95 671.18 1177.33C671.4 1177.71 671.62 1178.1 671.84 1178.48C672.06 1178.86 672.28 1179.25 672.5 1179.63C672.72 1180.01 672.94 1180.4 673.16 1180.78C673.38 1181.16 673.6 1181.55 673.82 1181.93C674.04 1182.31 674.26 1182.7 674.48 1183.08C674.7 1183.46 674.92 1183.85 675.14 1184.23C675.36 1184.61 675.58 1185 675.8 1185.38C676.02 1185.76 676.24 1186.15 676.46 1186.53C676.68 1186.91 676.9 1187.3 677.12 1187.68C677.34 1188.06 677.56 1188.45 677.78 1188.83C678 1189.21 678.22 1189.6 678.44 1189.98C678.66 1190.36 678.88 1190.75 679.1 1191.13C679.32 1191.51 679.54 1191.9 679.76 1192.28C679.98 1192.66 680.2 1193.05 680.42 1193.43C680.64 1193.81 680.86 1194.2 681.08 1194.58C681.3 1194.96 681.52 1195.35 681.74 1195.73C681.96 1196.11 682.18 1196.5 682.4 1196.88C682.62 1197.26 682.84 1197.65 683.06 1198.03C683.28 1198.41 683.5 1198.8 683.72 1199.18C683.94 1199.56 684.16 1199.95 684.38 1200.33C684.6 1200.71 684.82 1201.1 685.04 1201.48C685.26 1201.86 685.48 1202.25 685.7 1202.63C685.92 1203.01 686.14 1203.4 686.36 1203.78C686.58 1204.16 686.8 1204.55 687.02 1204.93C687.24 1205.31 687.46 1205.7 687.68 1206.08C687.9 1206.46 688.12 1206.85 688.34 1207.23C688.56 1207.61 688.78 1208 689 1208.38C689.22 1208.76 689.44 1209.15 689.66 1209.53C689.88 1209.91 690.1 1210.3 690.32 1210.68C690.54 1211.06 690.76 1211.45 690.98 1211.83C691.2 1212.21 691.42 1212.6 691.64 1212.98C691.86 1213.36 692.08 1213.75 692.3 1214.13C692.52 1214.51 692.74 1214.9 692.96 1215.28C693.18 1215.66 693.4 1216.05 693.62 1216.43C693.84 1216.81 694.06 1217.2 694.28 1217.58C694.5 1217.96 694.72 1218.35 694.94 1218.73C695.16 1219.11 695.38 1219.5 695.6 1219.88C695.82 1220.26 696.04 1220.65 696.26 1221.03C696.48 1221.41 696.7 1221.8 696.92 1222.18C697.14 1222.56 697.36 1222.95 697.58 1223.33C697.8 1223.71 698.02 1224.1 698.24 1224.48C698.46 1224.86 698.68 1225.25 698.9 1225.63C699.12 1226.01 699.34 1226.4 699.56 1226.78C699.78 1227.16 700 1227.55 700.22 1227.93C700.44 1228.31 700.66 1228.7 700.88 1229.08C701.1 1229.46 701.32 1229.85 701.54 1230.23C701.76 1230.61 701.98 1231 702.2 1231.38C702.42 1231.76 702.64 1232.15 702.86 1232.53C703.08 1232.91 703.3 1233.3 703.52 1233.68C703.74 1234.06 703.96 1234.45 704.18 1234.83C704.4 1235.21 704.62 1235.6 704.84 1235.98C705.06 1236.36 705.28 1236.75 705.5 1237.13C705.72 1237.51 705.94 1237.9 706.16 1238.28C706.38 1238.66 706.6 1239.05 706.82 1239.43C707.04 1239.81 707.26 1240.2 707.48 1240.58C707.7 1240.96 707.92 1241.35 708.14 1241.73C708.36 1242.11 708.58 1242.5 708.8 1242.88C709.02 1243.26 709.24 1243.65 709.46 1244.03C709.68 1244.41 709.9 1244.8 710.12 1245.18C710.34 1245.56 710.56 1245.95 710.78 1246.33C711 1246.71 711.22 1247.1 711.44 1247.48C711.66 1247.86 711.88 1248.25 712.1 1248.63C712.32 1249.01 712.54 1249.4 712.76 1249.78C712.98 1250.16 713.2 1250.55 713.42 1250.93C713.64 1251.31 713.86 1251.7 714.08 1252.08C714.3 1252.46 714.52 1252.85 714.74 1253.23C714.96 1253.61 715.18 1254 715.4 1254.38C715.62 1254.76 715.84 1255.15 716.06 1255.53C716.28 1255.91 716.5 1256.3 716.72 1256.68C716.94 1257.06 717.16 1257.45 717.38 1257.83C717.6 1258.21 717.82 1258.6 718.04 1258.98C718.26 1259.36 718.48 1259.75 718.7 1260.13C718.92 1260.51 719.14 1260.9 719.36 1261.28C719.58 1261.66 719.8 1262.05 720.02 1262.43C720.24 1262.81 720.46 1263.2 720.68 1263.58C720.9 1263.96 721.12 1264.35 721.34 1264.73C721.56 1265.11 721.78 1265.5 722 1265.88C722.22 1266.26 722.44 1266.65 722.66 1267.03C722.88 1267.41 723.1 1267.8 723.32 1268.18C723.54 1268.56 723.76 1268.95 723.98 1269.33C724.2 1269.71 724.42 1270.1 724.64 1270.48C724.86 1270.86 725.08 1271.25 725.3 1271.63C725.52 1272.01 725.74 1272.4 725.96 1272.78C726.18 1273.16 726.4 1273.55 726.62 1273.93C726.84 1274.31 727.06 1274.7 727.28 1275.08C727.5 1275.46 727.72 1275.85 727.94 1276.23C728.16 1276.61 728.38 1277 728.6 1277.38C728.82 1277.76 729.04 1278.15 729.26 1278.53C729.48 1278.91 729.7 1279.3 729.92 1279.68C730.14 1280.06 730.36 1280.45 730.58 1280.83C730.8 1281.21 731.02 1281.6 731.24 1281.98C731.46 1282.36 731.68 1282.75 731.9 1283.13C732.12 1283.51 732.34 1283.9 732.56 1284.28C732.78 1284.66 733 1285.05 733.22 1285.43C733.44 1285.81 733.66 1286.2 733.88 1286.58C734.1 1286.96 734.32 1287.35 734.54 1287.73C734.76 1288.11 734.98 1288.5 735.2 1288.88C735.42 1289.26 735.64 1289.65 735.86 1290.03C736.08 1290.41 736.3 1290.8 736.52 1291.18C736.74 1291.56 736.96 1291.95 737.18 1292.33C737.4 1292.71 737.62 1293.1 737.84 1293.48C738.06 1293.86 738.28 1294.25 738.5 1294.63C738.72 1295.01 738.94 1295.4 739.16 1295.78C739.38 1296.16 739.6 1296.55 739.82 1296.93C740.04 1297.31 740.26 1297.7 740.48 1298.08C740.7 1298.46 740.92 1298.85 741.14 1299.23C741.36 1299.61 741.58 1300 741.8 1300.38C742.02 1300.76 742.24 1301.15 742.46 1301.53C742.68 1301.91 742.9 1302.3 743.12 1302.68C743.34 1303.06 743.56 1303.45 743.78 1303.83C744 1304.21 744.22 1304.6 744.44 1304.98C744.66 1305.36 744.88 1305.75 745.1 1306.13C745.32 1306.51 745.54 1306.9 745.76 1307.28C745.98 1307.66 746.2 1308.05 746.42 1308.43C746.64 1308.81 746.86 1309.2 747.08 1309.58C747.3 1309.96 747.52 1310.35 747.74 1310.73C747.96 1311.11 748.18 1311.5 748.4 1311.88C748.62 1312.26 748.84 1312.65 749.06 1313.03C749.28 1313.41 749.5 1313.8 749.72 1314.18C749.94 1314.56 750.16 1314.95 750.38 1315.33C750.6 1315.71 750.82 1316.1 751.04 1316.48C751.26 1316.86 751.48 1317.25 751.7 1317.63C751.92 1318.01 752.14 1318.4 752.36 1318.78C752.58 1319.16 752.8 1319.55 753.02 1319.93C753.24 1320.31 753.46 1320.7 753.68 1321.08C753.9 1321.46 754.12 1321.85 754.34 1322.23C754.56 1322.61 754.78 1323 755 1323.38C755.22 1323.76 755.44 1324.15 755.66 1324.53C755.88 1324.91 756.1 1325.3 756.32 1325.68C756.54 1326.06 756.76 1326.45 756.98 1326.83C757.2 1327.21 757.42 1327.6 757.64 1327.98C757.86 1328.36 758.08 1328.75 758.3 1329.13C758.52 1329.51 758.74 1329.9 758.96 1330.28C759.18 1330.66 759.4 1331.05 759.62 1331.43C759.84 1331.81 760.06 1332.2 760.28 1332.58C760.5 1332.96 760.72 1333.35 760.94 1333.73C761.16 1334.11 761.38 1334.5 761.6 1334.88C761.82 1335.26 762.04 1335.65 762.26 1336.03C762.48 1336.41 762.7 1336.8 762.92 1337.18C763.14 1337.56 763.36 1337.95 763.58 1338.33C763.8 1338.71 764.02 1339.1 764.24 1339.48C764.46 1339.86 764.68 1340.25 764.9 1340.63C765.12 1341.01 765.34 1341.4 765.56 1341.78C765.78 1342.16 766 1342.55 766.22 1342.93C766.44 1343.31 766.66 1343.7 766.88 1344.08C767.1 1344.46 767.32 1344.85 767.54 1345.23C767.76 1345.61 767.98 1346 768.2 1346.38C768.42 1346.76 768.64 1347.15 768.86 1347.53C769.08 1347.91 769.3 1348.3 769.52 1348.68C769.74 1349.06 769.96 1349.45 770.18 1349.83C770.4 1350.21 770.62 1350.6 770.84 1350.98C771.06 1351.36 771.28 1351.75 771.5 1352.13C771.72 1352.51 771.94 1352.9 772.16 1353.28C772.38 1353.66 772.6 1354.05 772.82 1354.43C773.04 1354.81 773.26 1355.2 773.48 1355.58C773.7 1355.96 773.92 1356.35 774.14 1356.73C774.36 1357.11 774.58 1357.5 774.8 1357.88C775.02 1358.26 775.24 1358.65 775.46 1359.03C775.68 1359.41 775.9 1359.8 776.12 1360.18C776.34 1360.56 776.56 1360.95 776.78 1361.33C777 1361.71 777.22 1362.1 777.44 1362.48C777.66 1362.86 777.88 1363.25 778.1 1363.63C778.32 1364.01 778.54 1364.4 778.76 1364.78C778.98 1365.16 779.2 1365.55 779.42 1365.93C779.64 1366.31 779.86 1366.7 780.08 1367.08C780.3 1367.46 780.52 1367.85 780.74 1368.23C780.96 1368.61 781.18 1369 781.4 1369.38C781.62 1369.76 781.84 1370.15 782.06 1370.53C782.28 1370.91 782.5 1371.3 782.72 1371.68C782.94 1372.06 783.16 1372.45 783.38 1372.83C783.6 1373.21 783.82 1373.6 784.04 1373.98C784.26 1374.36 784.48 1374.75 784.7 1375.13C784.92 1375.51 785.14 1375.9 785.36 1376.28C785.58 1376.66 785.8 1377.05 786.02 1377.43C786.24 1377.81 786.46 1378.2 786.68 1378.58C786.9 1378.96 787.12 1379.35 787.34 1379.73C787.56 1380.11 787.78 1380.5 788 1380.88C788.22 1381.26 788.44 1381.65 788.66 1382.03C788.88 1382.41 789.1 1382.8 789.32 1383.18C789.54 1383.56 789.76 1383.95 789.98 1384.33C790.2 1384.71 790.42 1385.1 790.64 1385.48C790.86 1385.86 791.08 1386.25 791.3 1386.63C791.52 1387.01 791.74 1387.4 791.96 1387.78C792.18 1388.16 792.4 1388.55 792.62 1388.93C792.84 1389.31 793.06 1389.7 793.28 1390.08C793.5 1390.46 793.72 1390.85 793.94 1391.23C794.16 1391.61 794.38 1392 794.6 1392.38C794.82 1392.76 795.04 1393.15 795.26 1393.53C795.48 1393.91 795.7 1394.3 795.92 1394.68C796.14 1395.06 796.36 1395.45 796.58 1395.83C796.8 1396.21 797.02 1396.6 797.24 1396.98C797.46 1397.36 797.68 1397.75 797.9 1398.13C798.12 1398.51 798.34 1398.9 798.56 1399.28C798.78 1399.66 799 1400.05 799.22 1400.43C799.44 1400.81 799.66 1401.2 799.88 1401.58C800.1 1401.96 800.32 1402.35 800.54 1402.73C800.76 1403.11 800.98 1403.5 801.2 1403.88C801.42 1404.26 801.64 1404.65 801.86 1405.03C802.08 1405.41 802.3 1405.8 802.52 1406.18C802.74 1406.56 802.96 1406.95 803.18 1407.33C803.4 1407.71 803.62 1408.1 803.84 1408.48C804.06 1408.86 804.28 1409.25 804.5 1409.63C804.72 1410.01 804.94 1410.4 805.16 1410.78C805.38 1411.16 805.6 1411.55 805.82 1411.93C806.04 1412.31 806.26 1412.7 806.48 1413.08C806.7 1413.46 806.92 1413.85 807.14 1414.23C807.36 1414.61 807.58 1415 807.8 1415.38C808.02 1415.76 808.24 1416.15 808.46 1416.53C808.68 1416.91 808.9 1417.3 809.12 1417.68C809.34 1418.06 809.56 1418.45 809.78 1418.83C810 1419.21 810.22 1419.6 810.44 1419.98C810.66 1420.36 810.88 1420.75 811.1 1421.13C811.32 1421.51 811.54 1421.9 811.76 1422.28C811.98 1422.66 812.2 1423.05 812.42 1423.43C812.64 1423.81 812.86 1424.2 813.08 1424.58C813.3 1424.96 813.52 1425.35 813.74 1425.73C813.96 1426.11 814.18 1426.5 814.4 1426.88C814.62 1427.26 814.84 1427.65 815.06 1428.03C815.28 1428.41 815.5 1428.8 815.72 1429.18C815.94 1429.56 816.16 1429.95 816.38 1430.33C816.6 1430.71 816.82 1431.1 817.04 1431.48C817.26 1431.86 817.48 1432.25 817.7 1432.63C817.92 1433.01 818.14 1433.4 818.36 1433.78C818.58 1434.16 818.8 1434.55 819.02 1434.93C819.24 1435.31 819.46 1435.7 819.68 1436.08C819.9 1436.46 820.12 1436.85 820.34 1437.23C820.56 1437.61 820.78 1438 821 1438.38C821.22 1438.76 821.44 1439.15 821.66 1439.53C821.88 1439.91 822.1 1440.3 822.32 1440.68C822.54 1441.06 822.76 1441.45 822.98 1441.83C823.2 1442.21 823.42 1442.6 823.64 1442.98C823.86 1443.36 824.08 1443.75 824.3 1444.13C824.52 1444.51 824.74 1444.9 824.96 1445.28C825.18 1445.66 825.4 1446.05 825.62 1446.43C825.84 1446.81 826.06 1447.2 826.28 1447.58C826.5 1447.96 826.72 1448.35 826.94 1448.73C827.16 1449.11 827.38 1449.5 827.6 1449.88C827.82 1450.26 828.04 1450.65 828.26 1451.03C828.48 1451.41 828.7 1451.8 828.92 1452.18C829.14 1452.56 829.36 1452.95 829.58 1453.33C829.8 1453.71 830.02 1454.1 830.24 1454.48C830.46 1454.86 830.68 1455.25 830.9 1455.63C831.12 1456.01 831.34 1456.4 831.56 1456.78C831.78 1457.16 832 1457.55 832.22 1457.93C832.44 1458.31 832.66 1458.7 832.88 1459.08C833.1 1459.46 833.32 1459.85 833.54 1460.23C833.76 1460.61 833.98 1461 834.2 1461.38C834.42 1461.76 834.64 1462.15 834.86 1462.53C835.08 1462.91 835.3 1463.3 835.52 1463.68C835.74 1464.06 835.96 1464.45 836.18 1464.83C836.4 1465.21 836.62 1465.6 836.84 1465.98C837.06 1466.36 837.28 1466.75 837.5 1467.13C837.72 1467.51 837.94 1467.9 838.16 1468.28C838.38 1468.66 838.6 1469.05 838.82 1469.43C839.04 1469.81 839.26 1470.2 839.48 1470.58C839.7 1470.96 839.92 1471.35 840.14 1471.73C840.36 1472.11 840.58 1472.5 840.8 1472.88C841.02 1473.26 841.24 1473.65 841.46 1474.03C841.68 1474.41 841.9 1474.8 842.12 1475.18C842.34 1475.56 842.56 1475.95 842.78 1476.33C843 1476.71 843.22 1477.1 843.44 1477.48C843.66 1477.86 843.88 1478.25 844.1 1478.63C844.32 1479.01 844.54 1479.4 844.76 1479.78C844.98 1480.16 845.2 1480.55 845.42 1480.93C845.64 1481.31 845.86 1481.7 846.08 1482.08C846.3 1482.46 846.52 1482.85 846.74 1483.23C846.96 1483.61 847.18 1484 847.4 1484.38C847.62 1484.76 847.84 1485.15 848.06 1485.53C848.28 1485.91 848.5 1486.3 848.72 1486.68C848.94 1487.06 849.16 1487.45 849.38 1487.83C849.6 1488.21 849.82 1488.6 850.04 1488.98C850.26 1489.36 850.48 1489.75 850.7 1490.13C850.92 1490.51 851.14 1490.9 851.36 1491.28C851.58 1491.66 851.8 1492.05 852.02 1492.43C852.24 1492.81 852.46 1493.2 852.68 1493.58C852.9 1493.96 853.12 1494.35 853.34 1494.73C853.56 1495.11 853.78 1495.5 854 1495.88"/>
+                </svg>`,
+                description: 'You have a predominantly Kapha constitution, characterized by stability, strength, and a naturally robust build. Kapha types are known for their calm demeanor, loyalty, and steady energy.',
+                physicalTraits: [
+                    'Solid, sturdy build with good endurance',
+                    'Cool, moist skin and thick hair',
+                    'Slow but steady appetite and digestion',
+                    'Tendency to gain weight easily'
+                ],
+                mentalTraits: [
+                    'Calm, patient, and methodical thinking',
+                    'Excellent long-term memory',
+                    'Loyal and compassionate nature',
+                    'May experience lethargy when imbalanced'
+                ],
+                favorableFoods: [
+                    '• Warm, light, and stimulating foods',
+                    '• Pungent, bitter, and astringent tastes',
+                    '• Spices, leafy greens, legumes',
+                    '• Minimal dairy and oils'
+                ],
+                reduceFoods: [
+                    '• Cold, heavy, and oily foods',
+                    '• Sweet, sour, and salty tastes',
+                    '• Dairy products and fried foods',
+                    '• Excessive carbohydrates'
+                ],
+                lifestyleTips: [
+                    '• Stay active with regular exercise',
+                    '• Maintain stimulating routines',
+                    '• Avoid excessive sleep',
+                    '• Seek variety and new experiences'
+                ]
+            }
+        };
+
+        // Initialize page with mock data (in real app, this would come from quiz results)
+        function initializePage() {
+            // Mock quiz results - in real app, get from localStorage or URL params
+            const mockResults = {
+                primaryType: 'pitta',
+                constitution: {
+                    pitta: 65,
+                    vata: 25,
+                    kapha: 10
+                }
+            };
+
+            displayResults(mockResults);
+        }
+
+        // Display body type results
+        function displayResults(results) {
+            const primaryType = results.primaryType;
+            const constitution = results.constitution;
+            const typeData = bodyTypeData[primaryType];
+
+            // Update body type icon and background
+            const iconContainer = document.getElementById('bodyTypeIcon');
+            iconContainer.innerHTML = typeData.icon;
+            iconContainer.className = `inline-flex items-center justify-center w-24 h-24 rounded-full mb-6 bg-${typeData.color}-100`;
+
+            // Update body type name
+            document.getElementById('bodyTypeName').textContent = `Your Body Type: ${typeData.name}`;
+
+            // Update constitution breakdown
+            const breakdown = document.getElementById('constitutionBreakdown');
+            breakdown.innerHTML = `
+                <div class="text-center">
+                    <div class="text-2xl font-semibold text-${typeData.color}">${constitution[primaryType]}%</div>
+                    <div class="text-sm text-text-secondary">${typeData.name}</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-semibold text-primary">${constitution.vata}%</div>
+                    <div class="text-sm text-text-secondary">Vata</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-semibold text-secondary">${constitution.kapha}%</div>
+                    <div class="text-sm text-text-secondary">Kapha</div>
+                </div>
+            `;
+
+            // Update primary description
+            document.getElementById('primaryDescription').textContent = typeData.description;
+
+            // Update physical traits
+            const physicalTraits = document.getElementById('physicalTraits');
+            physicalTraits.innerHTML = typeData.physicalTraits.map(trait => `
+                <li class="flex items-center">
+                    <span class="w-2 h-2 bg-${typeData.color} rounded-full mr-3"></span>
+                    ${trait}
+                </li>
+            `).join('');
+
+            // Update mental traits
+            const mentalTraits = document.getElementById('mentalTraits');
+            mentalTraits.innerHTML = typeData.mentalTraits.map(trait => `
+                <li class="flex items-center">
+                    <span class="w-2 h-2 bg-${typeData.color} rounded-full mr-3"></span>
+                    ${trait}
+                </li>
+            `).join('');
+
+            // Update favorable foods
+            const favorableFoods = document.getElementById('favorableFoods');
+            favorableFoods.innerHTML = typeData.favorableFoods.map(food => `<li>${food}</li>`).join('');
+
+            // Update foods to reduce
+            const reduceFoods = document.getElementById('reduceFoods');
+            reduceFoods.innerHTML = typeData.reduceFoods.map(food => `<li>${food}</li>`).join('');
+
+            // Update lifestyle tips
+            const lifestyleTips = document.getElementById('lifestyleTips');
+            lifestyleTips.innerHTML = typeData.lifestyleTips.map(tip => `<li>${tip}</li>`).join('');
+        }
+
+        // Toggle expandable sections
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + 'Content');
+            const icon = document.getElementById(sectionId + 'Icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Share results functionality
+        function shareResults(platform) {
+            const url = window.location.href;
+            const text = "I just discovered my Ayurvedic body type! Find out yours with this personalized assessment.";
+            
+            switch(platform) {
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(url).then(() => {
+                        // Show success message
+                        const button = event.target.closest('button');
+                        const originalText = button.innerHTML;
+                        button.innerHTML = `
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span>Copied!</span>
+                        `;
+                        setTimeout(() => {
+                            button.innerHTML = originalText;
+                        }, 2000);
+                    });
+                    break;
+            }
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+<!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
+
+
+<script type="module" src="chatbot/chatbot.js"></script>
+
+</body>
+</html>

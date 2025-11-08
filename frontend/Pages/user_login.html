@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="user_registration.html" class="text-text-secondary hover:text-primary transition-standard">Sign Up</a>
+                    <a href="body_type_quiz.html" class="text-text-secondary hover:text-primary transition-standard">Take Quiz</a>
+                    <a href="food_recommendations.html" class="text-text-secondary hover:text-primary transition-standard">Recommendations</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md mx-auto">
+            <!-- Login Form Container -->
+            <div class="card shadow-medium">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <h1 class="text-fluid-3xl font-inter font-semibold text-text-primary mb-2">Welcome Back</h1>
+                    <p class="text-fluid-base text-text-secondary">Sign in to access your personalized nutrition recommendations</p>
+                </div>
+
+                <!-- Trust Signals -->
+                <div class="flex justify-center items-center space-x-4 mb-8 p-4 bg-success-50 rounded-lg border border-success-200">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-sm font-medium text-success-700">SSL Secured</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-success-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-sm font-medium text-success-700">Privacy Protected</span>
+                    </div>
+                </div>
+
+                <!-- Demo Credentials Notice -->
+                <div class="mb-6 p-4 bg-accent-50 rounded-lg border border-accent-200">
+                    <h3 class="text-sm font-medium text-accent-700 mb-2">Demo Credentials</h3>
+                    <div class="text-xs text-accent-600 space-y-1">
+                        <p><strong>Admin:</strong> admin@nutraexpert.com / Admin123!</p>
+                        <p><strong>User:</strong> user@example.com / User123!</p>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-6">
+                    <!-- Email Address -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" required class="input-field" placeholder="Enter your email address" autocomplete="email" />
+                        <div id="emailError" class="hidden mt-1 text-sm text-error-600"></div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-text-primary mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" required class="input-field pr-10" placeholder="Enter your password" autocomplete="current-password" />
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg id="eyeIcon" class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="passwordError" class="hidden mt-1 text-sm text-error-600"></div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="rememberMe" name="rememberMe" class="w-4 h-4 text-primary border-surface rounded focus:ring-primary-300 focus:ring-2" />
+                            <span class="ml-2 text-sm text-text-secondary">Remember me</span>
+                        </label>
+                        <a href="javascript:void(0)" id="forgotPasswordLink" class="text-sm text-primary hover:text-primary-600 transition-standard">Forgot password?</a>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="loginError" class="hidden p-3 bg-error-50 border border-error-200 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-error-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="loginErrorText" class="text-sm text-error-700"></span>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="loginSuccess" class="hidden p-3 bg-success-50 border border-success-200 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-success-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm text-success-700">Login successful! Redirecting...</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="w-full btn-primary min-h-touch flex items-center justify-center space-x-2">
+                        <span id="submitText">Sign In</span>
+                        <div id="loadingSpinner" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    </button>
+                </form>
+
+                <!-- Social Login Options -->
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-surface"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-surface text-text-secondary">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-surface rounded-lg shadow-soft bg-background text-sm font-medium text-text-secondary hover:bg-surface transition-standard">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            <span class="ml-2">Google</span>
+                        </button>
+
+                        <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-surface rounded-lg shadow-soft bg-background text-sm font-medium text-text-secondary hover:bg-surface transition-standard">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span class="ml-2">Facebook</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Registration Link -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-text-secondary">
+                        Don't have an account? 
+                        <a href="user_registration.html" class="text-primary hover:text-primary-600 font-medium transition-standard">Create one here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional Trust Signals -->
+            <div class="mt-8 text-center">
+                <div class="flex justify-center items-center space-x-6 text-xs text-text-secondary">
+                    <div class="flex items-center space-x-1">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=100&auto=format&fit=crop" alt="Health Certification" class="w-6 h-6 rounded" onerror="this.src='https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;" />
+                        <span>Health Certified</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <img src="https://images.pixabay.com/photo/2017/06/10/07/18/list-2389219_960_720.png" alt="GDPR Compliant" class="w-6 h-6 rounded" onerror="this.src='https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=100&auto=format&fit=crop'; this.onerror=null;" />
+                        <span>GDPR Compliant</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Data Protected" class="w-6 h-6 rounded" onerror="this.src='https://images.pixabay.com/photo/2018/07/14/11/33/earth-3537401_960_720.jpg'; this.onerror=null;" />
+                        <span>Data Protected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-surface rounded-xl p-6 w-full max-w-md shadow-strong">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-inter font-semibold text-text-primary">Reset Password</h3>
+                <button id="closeForgotModal" class="text-text-secondary hover:text-text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-sm text-text-secondary mb-4">Enter your email address and we'll send you a link to reset your password.</p>
+            <form id="forgotPasswordForm">
+                <div class="mb-4">
+                    <label for="resetEmail" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                    <input type="email" id="resetEmail" name="resetEmail" required class="input-field" placeholder="Enter your email address" />
+                </div>
+                <div class="flex space-x-3">
+                    <button type="button" id="cancelReset" class="flex-1 px-4 py-2 border border-surface rounded-lg text-text-secondary hover:bg-surface transition-standard">Cancel</button>
+                    <button type="submit" class="flex-1 btn-primary">Send Reset Link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+   <!-- // proptect from login  -->
+    <script>
+  if (localStorage.getItem("userSession")) {
+    window.location.replace("user_dashboard.html");
+  }
+</script>
+
+
+<!-- Login form functionality -->
+<script>
+
+        // Login form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+            const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+            const closeForgotModal = document.getElementById('closeForgotModal');
+            const cancelReset = document.getElementById('cancelReset');
+            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+
+            // Demo credentials
+            const validCredentials = [
+                { email: 'admin@nutraexpert.com', password: 'Admin123!', role: 'admin' },
+                { email: 'user@example.com', password: 'User123!', role: 'user' }
+            ];
+
+            // Password visibility toggle
+            togglePasswordBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                const eyeIcon = document.getElementById('eyeIcon');
+                if (type === 'text') {
+                    eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>';
+                } else {
+                    eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
+                }
+            });
+
+            // Real-time validation
+            emailInput.addEventListener('input', validateEmail);
+            passwordInput.addEventListener('input', validatePassword);
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const errorDiv = document.getElementById('emailError');
+                
+                if (value && !emailRegex.test(value)) {
+                    showError('emailError', 'Please enter a valid email address');
+                    return false;
+                } else {
+                    hideError('emailError');
+                    return true;
+                }
+            }
+
+            function validatePassword() {
+                const value = passwordInput.value;
+                const errorDiv = document.getElementById('passwordError');
+                
+                if (value && value.length < 6) {
+                    showError('passwordError', 'Password must be at least 6 characters long');
+                    return false;
+                } else {
+                    hideError('passwordError');
+                    return true;
+                }
+            }
+
+            function showError(elementId, message) {
+                const errorDiv = document.getElementById(elementId);
+                errorDiv.textContent = message;
+                errorDiv.classList.remove('hidden');
+            }
+
+            function hideError(elementId) {
+                const errorDiv = document.getElementById(elementId);
+                errorDiv.classList.add('hidden');
+            }
+
+            function showLoginError(message) {
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                errorText.textContent = message;
+                errorDiv.classList.remove('hidden');
+                document.getElementById('loginSuccess').classList.add('hidden');
+            }
+
+            function showLoginSuccess() {
+                const successDiv = document.getElementById('loginSuccess');
+                successDiv.classList.remove('hidden');
+                document.getElementById('loginError').classList.add('hidden');
+            }
+
+            // Form submission
+           // ✅ Real API Login with Flask backend todo
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!validateEmail() || !validatePassword()) return;
+
+    submitText.textContent = 'Signing In...';
+    loadingSpinner.classList.remove('hidden');
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            showLoginSuccess();
+
+            // Store user session
+            // localStorage.setItem('userSession', JSON.stringify(data.user));
+            saveAuth(data.user, data.token);
+
+
+            // Redirect after success
+            setTimeout(() => {
+                // window.location.href = 'body_type_quiz.html';
+                window.location.href = 'user_dashboard.html';
+
+            }, 1500);
+        } else {
+            showLoginError(data.error || 'Invalid email or password');
+        }
+    } catch (err) {
+        console.error(err);
+        showLoginError('Server error, please try again later');
+    } finally {
+        submitText.textContent = 'Sign In';
+        loadingSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+    }
+});
+
+
+            // Forgot password modal
+            forgotPasswordLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                forgotPasswordModal.classList.remove('hidden');
+            });
+
+            closeForgotModal.addEventListener('click', function() {
+                forgotPasswordModal.classList.add('hidden');
+            });
+
+            cancelReset.addEventListener('click', function() {
+                forgotPasswordModal.classList.add('hidden');
+            });
+
+            // Close modal when clicking outside
+            forgotPasswordModal.addEventListener('click', function(e) {
+                if (e.target === forgotPasswordModal) {
+                    forgotPasswordModal.classList.add('hidden');
+                }
+            });
+
+            // Forgot password form submission todo
+forgotPasswordForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const resetEmail = document.getElementById('resetEmail').value.trim();
+
+    if (!resetEmail) {
+        alert('Please enter your email address');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/forgot-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: resetEmail })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Password reset link has been sent to your email.');
+            forgotPasswordModal.classList.add('hidden');
+            document.getElementById('resetEmail').value = '';
+        } else {
+            alert(data.error || 'Something went wrong');
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Server error. Please try again later.');
+    }
+});
+
+
+            // Auto-fill demo credentials on click
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.bg-accent-50')) {
+                    const isAdmin = e.target.textContent.includes('Admin');
+                    if (isAdmin) {
+                        emailInput.value = 'admin@nutraexpert.com';
+                        passwordInput.value = 'Admin123!';
+                    } else {
+                        emailInput.value = 'user@example.com';
+                        passwordInput.value = 'User123!';
+                    }
+                }
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

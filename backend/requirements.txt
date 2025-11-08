@@ -1,0 +1,10 @@
+@'
+flask
+flask-cors
+flask-bcrypt
+flask-pymongo
+pymongo
+dnspython
+python-dotenv
+requests
+'@ | Out-File -Encoding utf8 requirements.txt

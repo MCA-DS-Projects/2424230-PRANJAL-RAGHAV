@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Body Type Quiz - Nutra Expert AI</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+
+<script src="auth.js"></script>
+
+<script>checkAuth();</script>
+
+
+
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft border-b border-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L20 23L13.09 23.74L12 30L10.91 23.74L4 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <span class="text-xl font-inter font-semibold text-primary">Nutra Expert AI</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <!-- <nav class="hidden md:flex items-center space-x-8"> -->
+                    <!-- <a href="user_login.html" class="text-text-secondary hover:text-primary transition-standard">Sign In</a> -->
+                    <!-- <a href="body_type_quiz.html" class="text-primary font-medium">Take Quiz</a>
+                    <a href="food_recommendations.html" class="text-text-secondary hover:text-primary transition-standard">Recommendations</a>
+                </nav> -->
+
+                <nav class="hidden md:flex items-center space-x-8" id="navMenu"></nav>
+                    <script src="nav.js"></script>
+
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary-50 transition-standard">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- <button onclick="logout()" style="position:absolute; right:15px; top:15px; background:#ff5964; color:white; padding:6px 14px; border-radius:6px;">
+  Logout
+</button> -->
+
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Quiz Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-fluid-3xl font-inter font-semibold text-text-primary mb-4">Discover Your Ayurvedic Body Type</h1>
+                <p class="text-fluid-lg text-text-secondary max-w-2xl mx-auto">Answer these questions honestly to determine your unique constitution (Prakriti) and receive personalized nutrition recommendations based on ancient Ayurvedic wisdom.</p>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="card shadow-medium mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-inter font-semibold text-text-primary">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">12</span></h2>
+                            <p class="text-sm text-text-secondary">Take your time to answer thoughtfully</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-text-secondary mb-1">Progress</p>
+                        <p class="text-lg font-semibold text-primary"><span id="progressPercentage">8</span>%</p>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-surface rounded-full h-3 overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-primary to-primary-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 8.33%"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="card shadow-medium">
+                <!-- Question Display -->
+                <div id="questionContainer" class="mb-8">
+                    <div class="flex items-start space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-accent-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 id="questionTitle" class="text-fluid-xl font-inter font-semibold text-text-primary mb-2">What best describes your body frame?</h3>
+                            <p id="questionDescription" class="text-fluid-base text-text-secondary">Consider your natural build and how you've looked most of your adult life.</p>
+                        </div>
+                        <!-- Tooltip -->
+                        <button class="tooltip-trigger w-8 h-8 bg-primary-50 rounded-full flex items-center justify-center hover:bg-primary-100 transition-standard" data-tooltip="Body frame is one of the key indicators in Ayurveda to determine your constitution. Vata types tend to be thin, Pitta types medium build, and Kapha types have a larger frame.">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="answerOptions" class="space-y-4">
+                        <!-- Option 1 -->
+                        <label class="answer-option flex items-start space-x-4 p-4 border-2 border-surface rounded-lg cursor-pointer hover:border-primary-200 hover:bg-primary-50 transition-all duration-200">
+                            <input type="radio" name="answer" value="vata" class="mt-1 w-5 h-5 text-primary border-surface focus:ring-primary-300 focus:ring-2" />
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=100&auto=format&fit=crop" alt="Thin body frame" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;" />
+                                    <h4 class="font-medium text-text-primary">Thin and lean build</h4>
+                                </div>
+                                <p class="text-sm text-text-secondary">I have a naturally slender frame, find it difficult to gain weight, and have prominent joints or bones.</p>
+                            </div>
+                        </label>
+
+                        <!-- Option 2 -->
+                        <label class="answer-option flex items-start space-x-4 p-4 border-2 border-surface rounded-lg cursor-pointer hover:border-primary-200 hover:bg-primary-50 transition-all duration-200">
+                            <input type="radio" name="answer" value="pitta" class="mt-1 w-5 h-5 text-primary border-surface focus:ring-primary-300 focus:ring-2" />
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <img src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Medium body frame" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pixabay.com/photo/2017/08/01/14/05/people-2563491_960_720.jpg'; this.onerror=null;" />
+                                    <h4 class="font-medium text-text-primary">Medium and athletic build</h4>
+                                </div>
+                                <p class="text-sm text-text-secondary">I have a moderate, well-proportioned frame with good muscle definition and can gain or lose weight relatively easily.</p>
+                            </div>
+                        </label>
+
+                        <!-- Option 3 -->
+                        <label class="answer-option flex items-start space-x-4 p-4 border-2 border-surface rounded-lg cursor-pointer hover:border-primary-200 hover:bg-primary-50 transition-all duration-200">
+                            <input type="radio" name="answer" value="kapha" class="mt-1 w-5 h-5 text-primary border-surface focus:ring-primary-300 focus:ring-2" />
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <img src="https://images.pixabay.com/photo/2017/08/01/14/05/people-2563491_960_720.jpg" alt="Larger body frame" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=100&auto=format&fit=crop'; this.onerror=null;" />
+                                    <h4 class="font-medium text-text-primary">Larger and solid build</h4>
+                                </div>
+                                <p class="text-sm text-text-secondary">I have a naturally larger frame with broad shoulders or hips, gain weight easily, and have a solid, sturdy appearance.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-6 border-t border-surface">
+                    <button id="prevBtn" class="flex items-center space-x-2 px-6 py-3 text-text-secondary hover:text-primary transition-standard disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span>Previous</span>
+                    </button>
+
+                    <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>Select an answer to continue</span>
+                    </div>
+
+                    <button id="nextBtn" class="btn-primary min-h-touch flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <span id="nextBtnText">Next</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Screen (Hidden by default) -->
+            <div id="loadingScreen" class="hidden fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50">
+                <div class="card shadow-strong text-center max-w-md mx-4">
+                    <div class="mb-6">
+                        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                        </div>
+                        <h3 class="text-fluid-xl font-inter font-semibold text-text-primary mb-2">Analyzing Your Constitution</h3>
+                        <p class="text-fluid-base text-text-secondary">We're calculating your unique Ayurvedic body type based on your responses...</p>
+                    </div>
+                    <div class="space-y-2 text-sm text-text-secondary">
+                        <p id="loadingStep">• Evaluating physical characteristics</p>
+                        <div class="w-full bg-surface rounded-full h-2">
+                            <div id="loadingProgress" class="bg-primary h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltip -->
+            <div id="tooltip" class="hidden absolute z-50 px-3 py-2 text-sm text-white bg-text-primary rounded-lg shadow-medium max-w-xs">
+                <div id="tooltipContent"></div>
+                <div class="tooltip-arrow absolute w-2 h-2 bg-text-primary transform rotate-45"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-primary-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Nutra Expert AI. All Rights Reserved.</p>
+                <div class="mt-2 flex justify-center space-x-6">
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-xs text-text-secondary hover:text-primary transition-standard">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz data and logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizData = [
+                {
+                    id: 1,
+                    title: "What best describes your body frame?",
+                    description: "Consider your natural build and how you've looked most of your adult life.",
+                    tooltip: "Body frame is one of the key indicators in Ayurveda to determine your constitution. Vata types tend to be thin, Pitta types medium build, and Kapha types have a larger frame.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Thin and lean build",
+                            description: "I have a naturally slender frame, find it difficult to gain weight, and have prominent joints or bones.",
+                            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Medium and athletic build",
+                            description: "I have a moderate, well-proportioned frame with good muscle definition and can gain or lose weight relatively easily.",
+                            image: "https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Larger and solid build",
+                            description: "I have a naturally larger frame with broad shoulders or hips, gain weight easily, and have a solid, sturdy appearance.",
+                            image: "https://images.pixabay.com/photo/2017/08/01/14/05/people-2563491_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "How would you describe your skin?",
+                    description: "Think about your skin's natural characteristics without makeup or treatments.",
+                    tooltip: "Skin type is a strong indicator of your dosha. Vata skin tends to be dry, Pitta skin is sensitive and warm, while Kapha skin is typically oily and thick.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Dry and rough",
+                            description: "My skin tends to be dry, rough, or flaky, especially in cold weather. I need regular moisturizing.",
+                            image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Warm and sensitive",
+                            description: "My skin is warm to touch, sensitive to sun, and prone to rashes, freckles, or redness.",
+                            image: "https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Oily and thick",
+                            description: "My skin is naturally oily, thick, and smooth. I rarely have dry skin problems.",
+                            image: "https://images.pixabay.com/photo/2020/08/18/16/19/woman-5498843_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "What's your typical appetite like?",
+                    description: "Consider your natural hunger patterns and eating habits.",
+                    tooltip: "Digestive fire (Agni) varies by constitution. Vata has irregular appetite, Pitta has strong appetite, and Kapha has slow but steady appetite.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Irregular and variable",
+                            description: "My appetite varies greatly - sometimes I'm very hungry, other times I forget to eat entirely.",
+                            image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Strong and regular",
+                            description: "I have a strong, consistent appetite and get irritable or uncomfortable when I skip meals.",
+                            image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Mild but steady",
+                            description: "I have a steady, moderate appetite and can easily skip meals without discomfort.",
+                            image: "https://images.pixabay.com/photo/2017/05/11/19/44/fresh-fruits-2305192_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "How do you typically sleep?",
+                    description: "Think about your natural sleep patterns and quality.",
+                    tooltip: "Sleep patterns reflect your nervous system's constitution. Vata types are light sleepers, Pitta types sleep moderately, and Kapha types are heavy sleepers.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Light and restless",
+                            description: "I'm a light sleeper, wake up easily, and sometimes have trouble falling back asleep.",
+                            image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Moderate and sound",
+                            description: "I sleep moderately well, usually 6-8 hours, and wake up feeling refreshed.",
+                            image: "https://images.pexels.com/photos/935777/pexels-photo-935777.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Deep and long",
+                            description: "I'm a heavy sleeper, need 8+ hours of sleep, and sometimes feel groggy upon waking.",
+                            image: "https://images.pixabay.com/photo/2016/11/21/12/51/bed-1845026_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "How do you handle stress?",
+                    description: "Consider your typical emotional and physical responses to stressful situations.",
+                    tooltip: "Stress responses are characteristic of each dosha. Vata becomes anxious, Pitta becomes irritated, and Kapha becomes withdrawn.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Become anxious and worried",
+                            description: "I tend to worry, feel anxious, and my mind races when under stress.",
+                            image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Get irritated and angry",
+                            description: "I become impatient, irritable, or angry when stressed and want to take action immediately.",
+                            image: "https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Withdraw and become sluggish",
+                            description: "I tend to withdraw, avoid the situation, or become lethargic when overwhelmed.",
+                            image: "https://images.pixabay.com/photo/2018/06/23/01/30/woman-3492176_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "What's your energy level like throughout the day?",
+                    description: "Think about your natural energy patterns and when you feel most active.",
+                    tooltip: "Energy patterns reflect your constitutional type. Vata has bursts of energy, Pitta has consistent energy, and Kapha has steady but slower energy.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Comes in bursts",
+                            description: "My energy comes in waves - I can be very active then suddenly feel depleted.",
+                            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Consistent and strong",
+                            description: "I maintain steady, strong energy throughout the day and prefer to stay active.",
+                            image: "https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Steady but slow to start",
+                            description: "I have steady energy but take time to get going in the morning and prefer a slower pace.",
+                            image: "https://images.pixabay.com/photo/2017/08/01/14/05/people-2563491_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    title: "How do you prefer to learn new things?",
+                    description: "Consider your natural learning style and information processing preferences.",
+                    tooltip: "Learning styles reflect mental constitution. Vata learns quickly but forgets easily, Pitta learns systematically, and Kapha learns slowly but retains well.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Quickly but need repetition",
+                            description: "I grasp concepts quickly but need to review multiple times to retain information.",
+                            image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Systematically and thoroughly",
+                            description: "I prefer organized, logical learning with clear goals and measurable progress.",
+                            image: "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Slowly but retain well",
+                            description: "I take time to learn new things but once I understand, I remember it for a long time.",
+                            image: "https://images.pixabay.com/photo/2015/09/05/21/51/reading-925589_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: "What's your natural body temperature?",
+                    description: "Consider how you typically feel in different weather conditions.",
+                    tooltip: "Body temperature preferences indicate your constitutional heating. Vata feels cold, Pitta runs warm, and Kapha is generally cool but comfortable.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Often feel cold",
+                            description: "I tend to feel cold easily and prefer warm weather and clothing.",
+                            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Run warm or hot",
+                            description: "I tend to feel warm or hot and prefer cooler environments and lighter clothing.",
+                            image: "https://images.pexels.com/photos/1029896/pexels-photo-1029896.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Comfortable in most temperatures",
+                            description: "I'm generally comfortable in various temperatures but may feel sluggish in very humid conditions.",
+                            image: "https://images.pixabay.com/photo/2016/11/29/13/14/attractive-1869761_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    title: "How would you describe your hair?",
+                    description: "Think about your hair's natural texture, thickness, and characteristics.",
+                    tooltip: "Hair characteristics reflect your constitution. Vata hair is dry and thin, Pitta hair is fine and may gray early, Kapha hair is thick and oily.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Dry and thin",
+                            description: "My hair tends to be dry, thin, or brittle and may be curly or frizzy.",
+                            image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Fine and may gray early",
+                            description: "My hair is fine to medium texture, may be straight or slightly wavy, and shows early graying or thinning.",
+                            image: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Thick and oily",
+                            description: "My hair is naturally thick, strong, and tends to be oily or lustrous.",
+                            image: "https://images.pixabay.com/photo/2017/05/13/12/40/fashion-2309519_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    title: "What's your typical speaking style?",
+                    description: "Consider how you naturally communicate and express yourself.",
+                    tooltip: "Communication style reflects mental constitution. Vata speaks quickly and variably, Pitta speaks precisely and directly, Kapha speaks slowly and thoughtfully.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Fast and animated",
+                            description: "I speak quickly, use lots of gestures, and my topics may jump around.",
+                            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Clear and direct",
+                            description: "I speak clearly, directly, and prefer to get straight to the point.",
+                            image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Slow and thoughtful",
+                            description: "I speak slowly, think before I talk, and prefer meaningful conversations.",
+                            image: "https://images.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 11,
+                    title: "How do you approach decision-making?",
+                    description: "Think about your natural process when facing choices or decisions.",
+                    tooltip: "Decision-making patterns reflect your mental constitution. Vata changes mind frequently, Pitta decides quickly and firmly, Kapha takes time but sticks to decisions.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Change my mind frequently",
+                            description: "I make decisions quickly but often change my mind or second-guess myself.",
+                            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Decide quickly and stick to it",
+                            description: "I analyze options efficiently, make firm decisions, and rarely change my mind.",
+                            image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Take time but stay committed",
+                            description: "I take my time to consider all options but once decided, I stick with my choice.",
+                            image: "https://images.pixabay.com/photo/2016/01/19/17/48/woman-1149911_960_720.jpg"
+                        }
+                    ]
+                },
+                {
+                    id: 12,
+                    title: "What's your relationship with routine?",
+                    description: "Consider how you feel about schedules, habits, and daily routines.",
+                    tooltip: "Relationship with routine reflects your constitutional nature. Vata struggles with routine, Pitta creates efficient routines, Kapha loves stable routines.",
+                    options: [
+                        {
+                            value: "vata",
+                            title: "Struggle to maintain routines",
+                            description: "I find it difficult to stick to routines and prefer spontaneity and variety.",
+                            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=100&auto=format&fit=crop"
+                        },
+                        {
+                            value: "pitta",
+                            title: "Create efficient systems",
+                            description: "I like organized routines that help me achieve my goals efficiently.",
+                            image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=100"
+                        },
+                        {
+                            value: "kapha",
+                            title: "Love stable, consistent routines",
+                            description: "I thrive on stable routines and find comfort in predictable daily patterns.",
+                            image: "https://images.pixabay.com/photo/2017/07/31/11/21/people-2557396_960_720.jpg"
+                        }
+                    ]
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            let answers = {};
+            const totalQuestions = quizData.length;
+
+            // DOM elements
+            const currentQuestionEl = document.getElementById('currentQuestion');
+            const totalQuestionsEl = document.getElementById('totalQuestions');
+            const progressPercentageEl = document.getElementById('progressPercentage');
+            const progressBarEl = document.getElementById('progressBar');
+            const questionTitleEl = document.getElementById('questionTitle');
+            const questionDescriptionEl = document.getElementById('questionDescription');
+            const answerOptionsEl = document.getElementById('answerOptions');
+            const prevBtnEl = document.getElementById('prevBtn');
+            const nextBtnEl = document.getElementById('nextBtn');
+            const nextBtnTextEl = document.getElementById('nextBtnText');
+            const loadingScreenEl = document.getElementById('loadingScreen');
+
+            // Initialize quiz
+            function initQuiz() {
+                totalQuestionsEl.textContent = totalQuestions;
+                displayQuestion(currentQuestionIndex);
+            }
+
+            // Display current question
+            function displayQuestion(index) {
+                const question = quizData[index];
+                const questionNumber = index + 1;
+                const progressPercent = Math.round((questionNumber / totalQuestions) * 100);
+
+                // Update progress
+                currentQuestionEl.textContent = questionNumber;
+                progressPercentageEl.textContent = progressPercent;
+                progressBarEl.style.width = `${progressPercent}%`;
+
+                // Update question content
+                questionTitleEl.textContent = question.title;
+                questionDescriptionEl.textContent = question.description;
+
+                // Update tooltip
+                const tooltipTrigger = document.querySelector('.tooltip-trigger');
+                tooltipTrigger.setAttribute('data-tooltip', question.tooltip);
+
+                // Generate answer options
+                answerOptionsEl.innerHTML = question.options.map(option => `
+                    <label class="answer-option flex items-start space-x-4 p-4 border-2 border-surface rounded-lg cursor-pointer hover:border-primary-200 hover:bg-primary-50 transition-all duration-200">
+                        <input type="radio" name="answer" value="${option.value}" class="mt-1 w-5 h-5 text-primary border-surface focus:ring-primary-300 focus:ring-2">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="${option.image}" 
+                                     alt="${option.title}" 
+                                     class="w-8 h-8 rounded-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
+                                <h4 class="font-medium text-text-primary">${option.title}</h4>
+                            </div>
+                            <p class="text-sm text-text-secondary">${option.description}</p>
+                        </div>
+                    </label>
+                `).join('');
+
+                // Restore previous answer if exists
+                if (answers[question.id]) {
+                    const radioInput = document.querySelector(`input[value="${answers[question.id]}"]`);
+                    if (radioInput) {
+                        radioInput.checked = true;
+                        enableNextButton();
+                    }
+                }
+
+                // Update navigation buttons
+                prevBtnEl.disabled = index === 0;
+                updateNextButton(index);
+
+                // Add event listeners to new radio buttons
+                const radioInputs = document.querySelectorAll('input[name="answer"]');
+                radioInputs.forEach(input => {
+                    input.addEventListener('change', handleAnswerChange);
+                });
+
+                // Update answer option styling
+                updateAnswerOptionStyling();
+            }
+
+            // Handle answer change
+            function handleAnswerChange(event) {
+                const questionId = quizData[currentQuestionIndex].id;
+                answers[questionId] = event.target.value;
+                enableNextButton();
+                updateAnswerOptionStyling();
+            }
+
+            // Update answer option styling
+            function updateAnswerOptionStyling() {
+                const options = document.querySelectorAll('.answer-option');
+                options.forEach(option => {
+                    const input = option.querySelector('input[type="radio"]');
+                    if (input.checked) {
+                        option.classList.add('border-primary-400', 'bg-primary-50');
+                        option.classList.remove('border-surface');
+                    } else {
+                        option.classList.remove('border-primary-400', 'bg-primary-50');
+                        option.classList.add('border-surface');
+                    }
+                });
+            }
+
+            // Enable next button
+            function enableNextButton() {
+                nextBtnEl.disabled = false;
+                nextBtnEl.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            // Update next button text
+            function updateNextButton(index) {
+                if (index === totalQuestions - 1) {
+                    nextBtnTextEl.textContent = 'Complete Assessment';
+                } else {
+                    nextBtnTextEl.textContent = 'Next';
+                }
+            }
+
+            // Navigation handlers
+            prevBtnEl.addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    displayQuestion(currentQuestionIndex);
+                }
+            });
+
+            nextBtnEl.addEventListener('click', function() {
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion(currentQuestionIndex);
+                    nextBtnEl.disabled = !answers[quizData[currentQuestionIndex].id];
+                } else {
+                    // Complete quiz
+                    completeQuiz();
+                }
+            });
+
+            // Complete quiz and show loading
+            function completeQuiz() {
+                loadingScreenEl.classList.remove('hidden');
+                
+                const loadingSteps = [
+                    "• Evaluating physical characteristics",
+                    "• Analyzing mental patterns",
+                    "• Assessing digestive tendencies",
+                    "• Calculating constitutional balance",
+                    "• Preparing personalized recommendations"
+                ];
+
+                let stepIndex = 0;
+                const loadingStepEl = document.getElementById('loadingStep');
+                const loadingProgressEl = document.getElementById('loadingProgress');
+
+                const loadingInterval = setInterval(() => {
+                    if (stepIndex < loadingSteps.length) {
+                        loadingStepEl.textContent = loadingSteps[stepIndex];
+                        loadingProgressEl.style.width = `${((stepIndex + 1) / loadingSteps.length) * 100}%`;
+                        stepIndex++;
+                    } else {
+                        clearInterval(loadingInterval);
+                        // Calculate results and redirect
+                        setTimeout(() => {
+                            calculateAndRedirect();
+                        }, 1000);
+                    }
+                }, 800);
+            }
+
+            // Calculate results and redirect
+            function calculateAndRedirect() {
+                const scores = { vata: 0, pitta: 0, kapha: 0 };
+                
+                Object.values(answers).forEach(answer => {
+                    scores[answer]++;
+                });
+
+                // Determine dominant dosha
+                const dominantDosha = Object.keys(scores).reduce((a, b) => 
+                    scores[a] > scores[b] ? a : b
+                );
+
+                // Store results in localStorage
+                localStorage.setItem('quizResults', JSON.stringify({
+                    scores: scores,
+                    dominantDosha: dominantDosha,
+                    answers: answers,
+                    completedAt: new Date().toISOString()
+                }));
+
+                // Redirect to results page
+                window.location.href = 'body_type_results.html';
+            }
+
+            // Tooltip functionality
+            const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+            const tooltip = document.getElementById('tooltip');
+            const tooltipContent = document.getElementById('tooltipContent');
+
+            tooltipTriggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', function(e) {
+                    const tooltipText = this.getAttribute('data-tooltip');
+                    tooltipContent.textContent = tooltipText;
+                    tooltip.classList.remove('hidden');
+                    
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.left = `${rect.left - tooltip.offsetWidth + rect.width}px`;
+                    tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+                });
+
+                trigger.addEventListener('mouseleave', function() {
+                    tooltip.classList.add('hidden');
+                });
+            });
+
+            // Initialize quiz
+            initQuiz();
+        });
+    </script>
+<!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
+
+
+<script type="module" src="chatbot/chatbot.js"></script>
+
+</body>
+</html>
