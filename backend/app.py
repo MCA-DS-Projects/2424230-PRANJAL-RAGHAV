@@ -1,14 +1,26 @@
 
+# from flask import Flask
+# from flask_cors import CORS
+# from flask_bcrypt import Bcrypt
+# from flask_pymongo import PyMongo
+# from dotenv import load_dotenv
+# from backend.routes.location_routes import location_bp
+# from backend.routes.weather_routes import weather_bp
+# from backend.routes.location_routes import location_bp
+# from backend.routes.auth_routes import auth_bp, init_mail
+# from backend.routes.chat_routes import chat_bp
+# import os
 from flask import Flask
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
-from backend.routes.location_routes import location_bp
-from backend.routes.weather_routes import weather_bp
-from backend.routes.location_routes import location_bp
-from backend.routes.auth_routes import auth_bp, init_mail
-from backend.routes.chat_routes import chat_bp
+
+from routes.location_routes import location_bp
+from routes.weather_routes import weather_bp
+from routes.auth_routes import auth_bp, init_mail
+from routes.chat_routes import chat_bp
+
 import os
 
 # Load environment variables
