@@ -1,4 +1,3 @@
-@'
 flask
 flask-cors
 flask-bcrypt
@@ -7,4 +6,5 @@ pymongo
 dnspython
 python-dotenv
 requests
-'@ | Out-File -Encoding utf8 requirements.txt
+gunicorn
+
