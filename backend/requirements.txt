@@ -7,4 +7,4 @@ dnspython
 python-dotenv
 requests
 gunicorn
-
+flask-mail
