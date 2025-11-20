@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+<script src="../scripts/config.js"></script>
 
 
 <script src="auth.js"></script>
@@ -77,10 +78,10 @@
                             </div>
                             <div>
                                 <div class="flex items-center space-x-2">
-                                    <span class="text-lg font-semibold text-text-primary">San Francisco, CA</span>
-                                    <span class="text-2xl font-bold text-accent">72°F</span>
+                                    <span id="weatherLocation" class="text-lg font-semibold text-text-primary"></span>
+                                     <span id="weatherTemp" class="text-2xl font-bold text-accent"></span>
                                 </div>
-                                <p class="text-sm text-text-secondary">Mild & Dry - Perfect for warming foods</p>
+                                <p id="weatherComment" class="text-sm text-text-secondary"></p>
                             </div>
                         </div>
                     </div>
@@ -185,199 +186,10 @@
             </div>
 
             <!-- Food Recommendations Grid -->
-            <div id="foodGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-                <!-- Food Card 1 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="1" data-meal-type="breakfast" data-properties="warming" data-region="indian">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Golden Turmeric Oatmeal" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="1">
-                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Golden Turmeric Oatmeal</h3>
-                        <p class="text-sm text-text-secondary mb-3">Traditional Indian breakfast with anti-inflammatory spices</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-primary bg-primary-50 px-2 py-1 rounded">Indian Cuisine</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-xs text-success">Perfect for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Breakfast</span>
-                            <span>⏰ 15 min prep</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Food Card 2 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="2" data-meal-type="lunch" data-properties="warming" data-region="mediterranean">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop" alt="Mediterranean Lentil Soup" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="2">
-                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Mediterranean Lentil Soup</h3>
-                        <p class="text-sm text-text-secondary mb-3">Protein-rich soup with herbs and olive oil</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-secondary bg-secondary-50 px-2 py-1 rounded">Mediterranean</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-xs text-success">Great for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Lunch</span>
-                            <span>⏰ 30 min prep</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="foodGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8"></div>
 
-                <!-- Food Card 3 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="3" data-meal-type="snacks" data-properties="neutral" data-region="american">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.pixabay.com/photo/2016/12/06/18/27/almonds-1887523_960_720.jpg" alt="Spiced Almond Mix" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1508736793122-f516e3ba5569?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="3">
-                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-warning text-white text-xs px-2 py-1 rounded-full">Neutral</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Spiced Almond Mix</h3>
-                        <p class="text-sm text-text-secondary mb-3">Roasted almonds with warming spices</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-accent bg-accent-50 px-2 py-1 rounded">American</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-xs text-success">Good for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Snack</span>
-                            <span>⏰ 5 min prep</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Card 4 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="4" data-meal-type="dinner" data-properties="warming" data-region="asian">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Ginger Miso Soup" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="4">
-                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Ginger Miso Soup</h3>
-                        <p class="text-sm text-text-secondary mb-3">Digestive soup with fermented miso and fresh ginger</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-warning bg-warning-50 px-2 py-1 rounded">Asian</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-xs text-success">Excellent for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Dinner</span>
-                            <span>⏰ 20 min prep</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Card 5 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="5" data-meal-type="breakfast" data-properties="warming" data-region="indian">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=400&auto=format&fit=crop" alt="Cardamom Rice Pudding" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard favorited" data-food-id="5">
-                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">Warming</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Cardamom Rice Pudding</h3>
-                        <p class="text-sm text-text-secondary mb-3">Creamy breakfast pudding with aromatic spices</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-primary bg-primary-50 px-2 py-1 rounded">Indian Cuisine</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-xs text-success">Perfect for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Breakfast</span>
-                            <span>⏰ 25 min prep</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Card 6 -->
-                <div class="card hover:shadow-medium transition-standard cursor-pointer food-card" data-food-id="6" data-meal-type="lunch" data-properties="cooling" data-region="mediterranean">
-                    <div class="relative overflow-hidden rounded-lg mb-4">
-                        <img src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Greek Cucumber Salad" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
-                        <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard" data-food-id="6">
-                            <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-3 left-3">
-                            <span class="bg-primary text-white text-xs px-2 py-1 rounded-full">Cooling</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-text-primary mb-2">Greek Cucumber Salad</h3>
-                        <p class="text-sm text-text-secondary mb-3">Fresh salad with herbs and olive oil dressing</p>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs text-secondary bg-secondary-50 px-2 py-1 rounded">Mediterranean</span>
-                            <div class="flex items-center space-x-1">
-                                <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
-                                </svg>
-                                <span class="text-xs text-warning">Use sparingly for Vata</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-text-secondary">
-                            <span>🍽️ Lunch</span>
-                            <span>⏰ 10 min prep</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <!-- Educational Tip -->
             <div class="card bg-accent-50 border-accent-200 mb-8">
@@ -437,252 +249,359 @@
         </div>
     </footer>
 
+    
     <script>
-        // Food recommendations functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const mealTypeFilter = document.getElementById('mealTypeFilter');
-            const propertiesFilter = document.getElementById('propertiesFilter');
-            const regionFilter = document.getElementById('regionFilter');
-            const resetFilters = document.getElementById('resetFilters');
-            const activeFilters = document.getElementById('activeFilters');
-            const resultsCount = document.getElementById('resultsCount');
-            const favoritesCount = document.getElementById('favoritesCount');
-            const foodGrid = document.getElementById('foodGrid');
-            const foodModal = document.getElementById('foodModal');
-            const closeModal = document.getElementById('closeModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalContent = document.getElementById('modalContent');
 
-            let favorites = new Set(['2', '4', '5']); // Mock favorited items
-            let allFoodCards = document.querySelectorAll('.food-card');
+// const API_BASE = "${window.API_BASE_URL}";
+const API_BASE = window.API_BASE_URL;
 
-            // Mock food data for detailed view
-            const foodData = {
-                '1': {
-                    name: 'Golden Turmeric Oatmeal',
-                    image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600',
-                    region: 'Indian Cuisine',
-                    properties: 'Warming',
-                    bodyType: 'Perfect for Vata',
-                    prepTime: '15 minutes',
-                    mealType: 'Breakfast',
-                    description: 'A nourishing breakfast that combines the grounding properties of oats with the anti-inflammatory benefits of turmeric.',
-                    history: 'Turmeric has been used in Ayurvedic medicine for over 4,000 years. This golden spice was considered sacred in ancient India and was used in religious ceremonies.',
-                    benefits: ['Reduces inflammation', 'Supports digestion', 'Boosts immunity', 'Provides sustained energy'],
-                    ingredients: ['Rolled oats', 'Turmeric powder', 'Ginger', 'Cinnamon', 'Almond milk', 'Honey'],
-                    preparation: 'Combine oats with warm almond milk, add turmeric, ginger, and cinnamon. Simmer for 10 minutes and sweeten with honey.'
-                },
-                '2': {
-                    name: 'Mediterranean Lentil Soup',
-                    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop',
-                    region: 'Mediterranean',
-                    properties: 'Warming',
-                    bodyType: 'Great for Vata',
-                    prepTime: '30 minutes',
-                    mealType: 'Lunch',
-                    description: 'A protein-rich soup that provides grounding energy and supports digestive health with Mediterranean herbs.',
-                    history: 'Lentils have been cultivated in the Mediterranean region for over 8,000 years and were considered a staple food in ancient Greece and Rome.',
-                    benefits: ['High in protein', 'Rich in fiber', 'Supports heart health', 'Provides sustained energy'],
-                    ingredients: ['Red lentils', 'Olive oil', 'Onions', 'Garlic', 'Tomatoes', 'Bay leaves', 'Thyme'],
-                    preparation: 'Sauté onions and garlic in olive oil, add lentils, tomatoes, and herbs. Simmer for 25 minutes until tender.'
-                }
-            };
+const PAGE_SIZE = 30;
 
-            // Initialize favorites display
-            updateFavoritesCount();
+let state = {
+  page: 1,
+  total: 0,
+  items: [],
+  filters: { search: "", mealType: "", properties: "", region: "" },
+  loading: false,
+  userId: null,
+  favorites: new Set()
+};
 
-            // Search functionality
-            searchInput.addEventListener('input', filterFoods);
-            mealTypeFilter.addEventListener('change', filterFoods);
-            propertiesFilter.addEventListener('change', filterFoods);
-            regionFilter.addEventListener('change', filterFoods);
+document.addEventListener('DOMContentLoaded', init);
 
-            // Reset filters
-            resetFilters.addEventListener('click', function() {
-                searchInput.value = '';
-                mealTypeFilter.value = '';
-                propertiesFilter.value = '';
-                regionFilter.value = '';
-                filterFoods();
-            });
+async function init(){
+  // body type + weather (you already do elsewhere)
+  // user id from localStorage
+  state.userId = localStorage.getItem("nutra_userId");
 
-            // Favorite functionality
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.favorite-btn')) {
-                    const btn = e.target.closest('.favorite-btn');
-                    const foodId = btn.dataset.foodId;
-                    toggleFavorite(foodId, btn);
-                }
-            });
+  wireFilters();
+  await loadFavorites();   // load favorites first
+  await fetchAndRender(true);
 
-            // Food card click for modal
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.food-card') && !e.target.closest('.favorite-btn')) {
-                    const card = e.target.closest('.food-card');
-                    const foodId = card.dataset.foodId;
-                    showFoodDetail(foodId);
-                }
-            });
+  // Load more button
+  addLoadMoreButton();
+}
 
-            // Modal close
-            closeModal.addEventListener('click', closeFoodModal);
-            foodModal.addEventListener('click', function(e) {
-                if (e.target === foodModal) {
-                    closeFoodModal();
-                }
-            });
+function wireFilters(){
+  const searchInput = document.getElementById('searchInput');
+  const mealTypeFilter = document.getElementById('mealTypeFilter');
+  const propertiesFilter = document.getElementById('propertiesFilter');
+  const regionFilter = document.getElementById('regionFilter');
+  const resetFilters = document.getElementById('resetFilters');
 
-            function filterFoods() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const mealType = mealTypeFilter.value;
-                const properties = propertiesFilter.value;
-                const region = regionFilter.value;
+  searchInput.addEventListener('input', debounce(async (e) => {
+    state.filters.search = e.target.value.trim();
+    state.page = 1;
+    await fetchAndRender(true);
+  }, 300));
 
-                let visibleCount = 0;
-                const activeFiltersList = [];
+  mealTypeFilter.addEventListener('change', async (e) => {
+    state.filters.mealType = e.target.value;
+    state.page = 1;
+    await fetchAndRender(true);
+  });
 
-                allFoodCards.forEach(card => {
-                    const cardMealType = card.dataset.mealType;
-                    const cardProperties = card.dataset.properties;
-                    const cardRegion = card.dataset.region;
-                    const cardText = card.textContent.toLowerCase();
+  propertiesFilter.addEventListener('change', async (e) => {
+    state.filters.properties = e.target.value;
+    state.page = 1;
+    await fetchAndRender(true);
+  });
 
-                    const matchesSearch = !searchTerm || cardText.includes(searchTerm);
-                    const matchesMealType = !mealType || cardMealType === mealType;
-                    const matchesProperties = !properties || cardProperties === properties;
-                    const matchesRegion = !region || cardRegion === region;
+  regionFilter.addEventListener('change', async (e) => {
+    state.filters.region = e.target.value;
+    state.page = 1;
+    await fetchAndRender(true);
+  });
 
-                    const isVisible = matchesSearch && matchesMealType && matchesProperties && matchesRegion;
+  resetFilters.addEventListener('click', async () => {
+    document.getElementById('searchInput').value = "";
+    document.getElementById('mealTypeFilter').value = "";
+    document.getElementById('propertiesFilter').value = "";
+    document.getElementById('regionFilter').value = "";
+    state.filters = { search: "", mealType: "", properties: "", region: "" };
+    state.page = 1;
+    await fetchAndRender(true);
+  });
 
-                    if (isVisible) {
-                        card.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+  // Card / favorite delegation
+  document.addEventListener('click', async (e) => {
+    const favBtn = e.target.closest('.favorite-btn');
+    if (favBtn) {
+      e.stopPropagation();
+      const id = favBtn.dataset.foodId;
+      await toggleFavorite(id, favBtn);
+      return;
+    }
+    const card = e.target.closest('.food-card');
+    if (card && !e.target.closest('.favorite-btn')) {
+      const id = card.dataset.foodId;
+      showFoodDetail(id);
+    }
+  });
 
-                // Update results count
-                resultsCount.textContent = `${visibleCount} foods found`;
+  // Close modal
+  document.getElementById('closeModal').addEventListener('click', closeFoodModal);
+  document.getElementById('foodModal').addEventListener('click', (e)=>{
+    if(e.target.id === 'foodModal') closeFoodModal();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeFoodModal();
+  });
+}
 
-                // Show active filters
-                if (searchTerm) activeFiltersList.push(`Search: "${searchTerm}"`);
-                if (mealType) activeFiltersList.push(`Meal: ${mealType}`);
-                if (properties) activeFiltersList.push(`Property: ${properties}`);
-                if (region) activeFiltersList.push(`Region: ${region}`);
+function addLoadMoreButton(){
+  const container = document.querySelector('.max-w-7xl.mx-auto');
+  let btn = document.getElementById('loadMoreBtn');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'loadMoreBtn';
+    btn.className = 'btn-primary block mx-auto my-6 px-6 py-3 rounded-lg';
+    btn.textContent = 'Load More';
+    btn.addEventListener('click', async ()=>{
+      if (state.loading) return;
+      state.page += 1;
+      await fetchAndRender(false);
+    });
+    container.appendChild(btn);
+  }
+}
 
-                if (activeFiltersList.length > 0) {
-                    activeFilters.innerHTML = activeFiltersList.map(filter => 
-                        `<span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm">${filter}</span>`
-                    ).join('');
-                    activeFilters.classList.remove('hidden');
-                } else {
-                    activeFilters.classList.add('hidden');
-                }
-            }
+function buildQuery(){
+  const p = new URLSearchParams();
+  p.set("page", state.page);
+  p.set("limit", PAGE_SIZE);
+  if (state.filters.search) p.set("search", state.filters.search);
+  if (state.filters.mealType) p.set("mealType", state.filters.mealType);
+  if (state.filters.properties) p.set("properties", state.filters.properties);
+  if (state.filters.region) p.set("region", state.filters.region);
+  return p.toString();
+}
 
-            function toggleFavorite(foodId, btn) {
-                if (favorites.has(foodId)) {
-                    favorites.delete(foodId);
-                    btn.classList.remove('favorited');
-                    btn.innerHTML = `
-                        <svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                        </svg>
-                    `;
-                } else {
-                    favorites.add(foodId);
-                    btn.classList.add('favorited');
-                    btn.innerHTML = `
-                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
-                    `;
-                }
-                updateFavoritesCount();
-            }
+async function fetchAndRender(reset){
+  state.loading = true;
+  document.getElementById('loadingState')?.classList.remove('hidden');
 
-            function updateFavoritesCount() {
-                favoritesCount.textContent = `${favorites.size} favorites saved`;
-            }
+  const qs = buildQuery();
+  const res = await fetch(`${API_BASE}/api/foods/?${qs}`);
+  const data = await res.json();
 
-            function showFoodDetail(foodId) {
-                const food = foodData[foodId];
-                if (!food) return;
+  state.total = data.total || 0;
 
-                modalTitle.textContent = food.name;
-                modalContent.innerHTML = `
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <img src="${food.image}" alt="${food.name}" class="w-full h-64 object-cover rounded-lg mb-4"
-                                 onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop'; this.onerror=null;">
-                            <div class="grid grid-cols-2 gap-4 text-sm">
-                                <div class="bg-background p-3 rounded-lg">
-                                    <span class="text-text-secondary">Region:</span>
-                                    <p class="font-medium text-text-primary">${food.region}</p>
-                                </div>
-                                <div class="bg-background p-3 rounded-lg">
-                                    <span class="text-text-secondary">Properties:</span>
-                                    <p class="font-medium text-text-primary">${food.properties}</p>
-                                </div>
-                                <div class="bg-background p-3 rounded-lg">
-                                    <span class="text-text-secondary">Body Type:</span>
-                                    <p class="font-medium text-success">${food.bodyType}</p>
-                                </div>
-                                <div class="bg-background p-3 rounded-lg">
-                                    <span class="text-text-secondary">Prep Time:</span>
-                                    <p class="font-medium text-text-primary">${food.prepTime}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-text-primary mb-3">Description</h3>
-                            <p class="text-text-secondary mb-4">${food.description}</p>
-                            
-                            <h3 class="text-lg font-semibold text-text-primary mb-3">Health Benefits</h3>
-                            <ul class="list-disc list-inside text-text-secondary mb-4 space-y-1">
-                                ${food.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
-                            </ul>
-                            
-                            <h3 class="text-lg font-semibold text-text-primary mb-3">Cultural History</h3>
-                            <p class="text-text-secondary mb-4">${food.history}</p>
-                            
-                            <h3 class="text-lg font-semibold text-text-primary mb-3">Key Ingredients</h3>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                ${food.ingredients.map(ingredient => 
-                                    `<span class="bg-primary-50 text-primary-700 px-2 py-1 rounded text-sm">${ingredient}</span>`
-                                ).join('')}
-                            </div>
-                            
-                            <h3 class="text-lg font-semibold text-text-primary mb-3">Preparation</h3>
-                            <p class="text-text-secondary">${food.preparation}</p>
-                        </div>
-                    </div>
-                `;
-                
-                foodModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
+  if (reset) {
+    state.items = data.items || [];
+    renderFoods(state.items, true);
+  } else {
+    state.items = state.items.concat(data.items || []);
+    renderFoods(data.items, false);
+  }
 
-            function closeFoodModal() {
-                foodModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
+  updateResultsCount();
+  updateLoadMoreVisibility();
 
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && !foodModal.classList.contains('hidden')) {
-                    closeFoodModal();
-                }
-            });
-        });
-    </script>
+  document.getElementById('loadingState')?.classList.add('hidden');
+  state.loading = false;
+}
+
+function updateLoadMoreVisibility(){
+  const btn = document.getElementById('loadMoreBtn');
+  const shown = state.items.length;
+  if (shown >= state.total) {
+    btn.style.display = 'none';
+  } else {
+    btn.style.display = 'inline-block';
+  }
+}
+
+function renderFoods(items, replace){
+  const grid = document.getElementById('foodGrid');
+  if (replace) grid.innerHTML = "";
+
+  const html = items.map(cardTemplate).join("");
+  grid.insertAdjacentHTML('beforeend', html);
+}
+
+function cardTemplate(item){
+  const isFav = state.favorites.has(item._id);
+  const regionLabel = (item.region && item.region[0]) ? cap(item.region[0]) : "";
+  const propLabel = (item.properties && item.properties[0]) ? cap(item.properties[0]) : "";
+  const meal = (item.mealType && item.mealType[0]) ? cap(item.mealType[0]) : "";
+
+  return `
+  <div class="card hover:shadow-medium transition-standard cursor-pointer food-card"
+       data-food-id="${item._id}"
+       data-meal-type="${(item.mealType||[]).join(',')}"
+       data-properties="${(item.properties||[]).join(',')}"
+       data-region="${(item.region||[]).join(',')}">
+    <div class="relative overflow-hidden rounded-lg mb-4">
+      <img src="${item.image || ''}" alt="${escapeHtml(item.name)}"
+           class="w-full h-48 object-cover"
+           loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=400&auto=format&fit=crop'; this.onerror=null;">
+      <button class="favorite-btn absolute top-3 right-3 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-standard ${isFav ? 'favorited':''}"
+              data-food-id="${item._id}">
+        ${isFav ? favSvgFilled() : favSvgOutline()}
+      </button>
+      ${propLabel ? `<div class="absolute bottom-3 left-3">
+        <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">${propLabel}</span>
+      </div>` : ``}
+    </div>
+    <div>
+      <h3 class="text-lg font-semibold text-text-primary mb-2">${escapeHtml(item.name)}</h3>
+      <p class="text-sm text-text-secondary mb-3">${escapeHtml(item.description || '')}</p>
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs text-primary bg-primary-50 px-2 py-1 rounded">${regionLabel || 'General'}</span>
+        <div class="flex items-center space-x-1">
+          <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="text-xs text-success">${escapeHtml(item.bodyTypeMsg || 'Vata friendly')}</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-between text-xs text-text-secondary">
+        <span>🍽️ ${meal || 'Meal'}</span>
+        <span>⏰ ${escapeHtml(item.prepTime || '')}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function favSvgOutline(){
+  return `<svg class="w-5 h-5 text-text-secondary hover:text-error transition-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+  </svg>`;
+}
+function favSvgFilled(){
+  return `<svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>`;
+}
+
+function updateResultsCount(){
+  const el = document.getElementById('resultsCount');
+  el.textContent = `${state.total} foods found`;
+}
+
+async function loadFavorites(){
+  if (!state.userId) { state.favorites = new Set(); updateFavoritesCount(); return; }
+  const res = await fetch(`${API_BASE}/api/users/${state.userId}/favorites`);
+  const data = await res.json();
+  const arr = data.favorites || [];
+  state.favorites = new Set(arr);
+  updateFavoritesCount();
+}
+
+async function toggleFavorite(foodId, btn){
+  if (!state.userId) {
+    alert("Please log in to save favorites.");
+    return;
+  }
+  const isFav = state.favorites.has(foodId);
+  if (isFav) {
+    await fetch(`${API_BASE}/api/users/${state.userId}/favorites/${foodId}`, { method: "DELETE" });
+    state.favorites.delete(foodId);
+    btn.classList.remove('favorited');
+    btn.innerHTML = favSvgOutline();
+  } else {
+    await fetch(`${API_BASE}/api/users/${state.userId}/favorites`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ foodId })
+    });
+    state.favorites.add(foodId);
+    btn.classList.add('favorited');
+    btn.innerHTML = favSvgFilled();
+  }
+  updateFavoritesCount();
+}
+
+function updateFavoritesCount(){
+  const el = document.getElementById('favoritesCount');
+  el.textContent = `${state.favorites.size} favorites saved`;
+}
+
+// Modal
+async function showFoodDetail(foodId){
+  const res = await fetch(`${API_BASE}/api/foods/${foodId}`);
+  const food = await res.json();
+  const modalTitle = document.getElementById('modalTitle');
+  const modalContent = document.getElementById('modalContent');
+  modalTitle.textContent = food.name || 'Food Details';
+  modalContent.innerHTML = `
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <img src="${food.image || ''}" alt="${escapeHtml(food.name || '')}"
+             class="w-full h-64 object-cover rounded-lg mb-4"
+             onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop'; this.onerror=null;">
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="bg-background p-3 rounded-lg"><span class="text-text-secondary">Region:</span>
+            <p class="font-medium text-text-primary">${(food.region||[]).map(cap).join(', ')}</p></div>
+          <div class="bg-background p-3 rounded-lg"><span class="text-text-secondary">Properties:</span>
+            <p class="font-medium text-text-primary">${(food.properties||[]).map(cap).join(', ')}</p></div>
+          <div class="bg-background p-3 rounded-lg"><span class="text-text-secondary">Body Type:</span>
+            <p class="font-medium text-success">${escapeHtml(food.bodyTypeMsg || '')}</p></div>
+          <div class="bg-background p-3 rounded-lg"><span class="text-text-secondary">Prep Time:</span>
+            <p class="font-medium text-text-primary">${escapeHtml(food.prepTime || '')}</p></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-text-primary mb-3">Description</h3>
+        <p class="text-text-secondary mb-4">${escapeHtml(food.description || '')}</p>
+        ${(food.benefits||[]).length ? `
+          <h3 class="text-lg font-semibold text-text-primary mb-3">Health Benefits</h3>
+          <ul class="list-disc list-inside text-text-secondary mb-4 space-y-1">
+            ${(food.benefits||[]).map(b=>`<li>${escapeHtml(b)}</li>`).join('')}
+          </ul>` : ``}
+        ${(food.ingredients||[]).length ? `
+          <h3 class="text-lg font-semibold text-text-primary mb-3">Key Ingredients</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${(food.ingredients||[]).map(i=>`<span class="bg-primary-50 text-primary-700 px-2 py-1 rounded text-sm">${escapeHtml(i)}</span>`).join('')}
+          </div>` : ``}
+      </div>
+    </div>`;
+  document.getElementById('foodModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFoodModal(){
+  document.getElementById('foodModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+// Utils
+function cap(s){ return (s||'').charAt(0).toUpperCase() + (s||'').slice(1); }
+function escapeHtml(s=''){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function debounce(fn, wait){
+  let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); };
+}
+</script>
+
+
 <!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
 
 
 <script type="module" src="chatbot/chatbot.js"></script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const locationName = localStorage.getItem("nutra_location");
+    const tempF = localStorage.getItem("nutra_temp");
+    const humidity = localStorage.getItem("nutra_humidity");
+
+    if(locationName){
+        document.getElementById("weatherLocation").textContent = locationName;
+        document.getElementById("weatherTemp").textContent = tempF + "°F";
+
+        let text = "";
+        if(humidity < 40) text = "Dry Climate - warm foods preferred";
+        else if(humidity > 70) text = "Humid - light digestive foods recommended";
+        else text = "Balanced humidity";
+
+        document.getElementById("weatherComment").textContent = text;
+    }
+});
+</script>
 
 
 </body>

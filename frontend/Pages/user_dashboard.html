@@ -1,3 +1,12 @@
+
+
+Skip to content
+Using Gmail with screen readers
+Conversations
+1% of 2,048 GB used
+Terms · Privacy · Programme Policies
+Last account activity: 3 minutes ago
+Details
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnutraexpe1849back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
-
+<script src="../scripts/config.js"></script>
 
 
 
@@ -131,7 +140,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="flex items-center space-x-2">
                                 <div class="w-2 h-2 bg-success rounded-full"></div>
-                                <span class="text-sm text-success-700">Current Season: Winter</span>
+                                <!-- <span class="text-sm text-success-700">Current Season: Winter</span> -->
+                            <span id="dashSeason" class="text-sm text-success-700"></span>
+
+
+                            
                             </div>
                             <div class="flex items-center space-x-2">
                                 <div class="w-2 h-2 bg-primary rounded-full"></div>
@@ -295,8 +308,11 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-accent-700">San Francisco, CA</h3>
-                                <p class="text-2xl font-bold text-accent-800">72°F</p>
+                                <!-- <h3 class="font-semibold text-accent-700">San Francisco, CA</h3>
+                                <p class="text-2xl font-bold text-accent-800">72°F</p> -->
+                                <h3 id="dashLocation" class="font-semibold text-accent-700"></h3>
+                                 <p id="dashTemp" class="text-2xl font-bold text-accent-800"></p>
+
                             </div>
                         </div>
                         <p class="text-sm text-accent-600 mb-3">Mild & Dry weather supports warming foods to balance your Vata constitution</p>
@@ -531,6 +547,35 @@
     </footer>
 
     <script>
+
+
+
+// -----------------------------------------
+// LOAD SAVED WEATHER ON DASHBOARD
+// -----------------------------------------
+function loadDashboardWeather() {
+
+    const loc    = localStorage.getItem("nutra_location");
+    const temp   = localStorage.getItem("nutra_temp");
+    const season = localStorage.getItem("nutra_season");
+
+    // If user hasn't selected a location yet
+    if (!loc || !temp || !season) {
+        document.getElementById("dashLocation").innerText = "Location not set";
+        document.getElementById("dashTemp").innerText = "--°F";
+        document.getElementById("dashSeason").innerText = "Current Season: --";
+        return;
+    }
+
+    // Update the dashboard UI
+    document.getElementById("dashLocation").innerText = loc;
+    document.getElementById("dashTemp").innerText = temp + "°F";
+    document.getElementById("dashSeason").innerText = "Current Season: " + season;
+}
+
+// Run when dashboard loads
+window.addEventListener("DOMContentLoaded", loadDashboardWeather);
+
 
             // get user
 const session = JSON.parse(localStorage.getItem("userSession"));

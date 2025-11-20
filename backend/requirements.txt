@@ -6,5 +6,6 @@ pymongo
 dnspython
 python-dotenv
 requests
-gunicorn
-flask-mail
+groq
+jinja2
+flask_mail
