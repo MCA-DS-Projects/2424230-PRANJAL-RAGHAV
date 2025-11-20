@@ -3,3 +3,27 @@ node_modules
 .idea
 package-lock.json
 backend/.env
+@"
+# ignore env and keys
+*.env
+backend/.env
+*.pem
+*.pfx
+
+# python/cache etc
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+"@ | Out-File -Encoding utf8 .gitignore
+
+# create template without secrets
+@"
+# example values - DO NOT COMMIT SECRETS
+GROQ_API_KEY=your_groq_api_key_here
+OTHER_SECRET=
+"@ | Out-File -Encoding utf8 backend/.env.example
+
+git add .gitignore backend/.env.example
+git commit -m "chore: add .gitignore and .env.example (no secrets)"
+git push origin main
